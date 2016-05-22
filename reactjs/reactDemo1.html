@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://cdn.bootcss.com/react/15.1.0/react.js"></script>
+    <script src="http://cdn.bootcss.com/react/15.1.0/react-with-addons.js"></script>
+    <script src="http://cdn.bootcss.com/react/15.1.0/react-dom.js"></script>
+    <style>
+		.red{
+			color:red;
+		}
+    </style>
+</head>
+
+<body>
+    <!-- <script type="text/jsx"> -->
+    <!-- 
+	  /**
+     * angular:mvvm ui组件相对复杂不利于重用,重
+    	react:只view层,组件化的开发思路,轻
+    	lyn老师
+   	*
+   	* http://facebook.github.io/react/index.html
+   	* https://jsfiddle.net/reactjs/69z2wepo/
+   	* jsx:js xml
+   	* 语法糖:增加程序的可读性
+   	* jsx就是js的语法糖,最终被解析成js 
+   	* coffeeJs 也是,需要解析器,解析成js
+   	* <script type="text/jsx">
+   	* 可直接写html标签  不需要字符串拼接
+   	* 可生成自定义标签  ,react components
+   	* 
+    */
+
+     -->
+    <div id="container">
+        <!-- This element's contents will be replaced with your component. -->
+    </div>
+    <script type='text/javascript'>
+    // props和state的差异对比
+    // props是调用方,不怎么变,专心
+    // state是私属于当前组件,可以变化,花心
+    //<![CDATA[
+
+    var Hello = React.createClass({
+        displayName: 'Hello',
+        getInitialState:function (argument) {
+        	 alert("init");
+        	 return {
+        	 	style:{
+        	 		color:"red",
+        	 		opacity:1.0,
+        	 		fontSize:"12px"
+        	 	}
+        	 } 
+        },
+        render: function() {
+            return React.createElement("div", null, "Hello ", this.props.name);
+        },
+        componentWillMount:function (argument) {
+        	 alert("will") 
+        },
+        componentDidMount:function (argument) {
+        	 alert("did") 
+        }
+
+    });
+
+    ReactDOM.render(
+        React.createElement(Hello, {
+            name: "World",
+        }),
+        document.getElementById('container')
+    );
+
+    //]]>
+    </script>
+</body>
+
+</html>

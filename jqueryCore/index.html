@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="firstBox">
+        <p>2</p>
+        <ul>
+            <li>1</li>
+            <li>3</li>
+            <li id="f1">4</li>
+            <li>5</li>
+        </ul>
+    </div>
+    <p>22</p>
+    <div class="firstBox"></div>
+    <script src="jquery-1.11.2.min.js"></script>
+    <script>
+    // jquery核心函数
+    // 1.jquery(sel[,context])
+    // 第二个参数是 在这个范围内 匹配选择器
+    // jQuery NOT jquery
+    console.log(jQuery());
+    console.log(jQuery("p", $(".firstBox")[0]).length);
+
+
+    // 2.jQuery(html[,props])
+    // 第一个参数尽可能闭合
+    // 第二个参数是 配置第一个参数的相应属性  可以是class,text,甚至是 click
+    // 注意此时只是写了 但并没有添加到html文件里
+    var para = $("<p></p>", {
+        "class": "addPara",
+        text: "<span>我要飞得更高</span>",
+        click: function() {
+            $(this).text("才会看得更远")
+        }
+    })
+    console.log(para);
+    // 写到html文件
+    para.appendTo(".firstBox")
+    $("<input>",{
+    	// input必须写类型
+    	type:"text",
+    	"val":"test",
+    	focusin:function () {
+    		$(this).val("focus")
+    	},
+    	focusout:function (argument) {
+    		$(this).val("leave") 
+    	}
+    }).appendTo(".firstBox");
+
+    // 3.jQuery(callback)
+    // 相当于$(document).ready() 在dom元素加载完,在浏览器渲染之前执行
+    jQuery(function ($) {
+    	 console.log($) 
+    })
+    console.log(document.getElementsByTagName("li"))
+    console.log($("li"))
+    // 这两个很接近 
+    $("li")[0].innerHTML = "LI";
+    document.getElementsByTagName("li")[1].innerHTML = "LI2";
+
+    // 4.jQuery.each(callback)
+    // 每个元素都执行callback,返回 'false' 将停止循环 (就像在普通的循环中使用 'break')。返回 'true' 跳至下一个循环(就像在普通的循环中使用'continue')。
+    // 默认回调函数两个参数 index,item,顺序不可颠倒
+ 	$("li").each(function(){
+ 		this.className = "eachAdd";
+ 		// 或
+ 		$(this).addClass("each$Add");
+ 	})
+ 	$("input").each(function(index,item){
+ 		// $("选择器") 是普通js dom对象集合 
+ 		item.className = "eachAdd";
+ 		// 或
+ 		$(item).addClass("each$Add");
+ 	})
+ 	// 5.jQuery("selector").size()
+ 	// jQuery("selector").length 都是反映匹配的集合的长度
+ 	console.log(jQuery("li").size())
+ 	console.log(jQuery("li").length)
+
+
+ 	// 6.jQuery(selector).selector  返回选择器的字符串
+ 	console.log(jQuery("li").selector)
+ 	console.log(jQuery(".firstBox").selector)
+
+ 	// 7.jQuery(selector1).index([selector|element])
+ 	// 不传参数,selector1在同辈中的索引,加参数(无论是dom对象 还是jq对象)  返回后者在前者中的索引,后者是集合的话返回匹配的第一个 没有的话返回-1
+ 	// 注意 相当于数组中找数组的感觉  Array.prototype.indexOf(item)
+ 	console.log($("ul").index()) // 注意是同辈
+ 	console.log($("li").index($("li")))
+ 	console.log($("li").index($("li#f1")))
+ 	console.log($("li").index($("li#f2")))
+ 	console.log($("li").index(document.querySelector("#f1")))
+
+
+ 	// 8.jQuery.data([key],[value])
+ 	// key:存储的数据名   value:将要存储的任意数据
+ 	// 有点像 $("p").data = {"name":32 }
+ 	$("p").data("name",32);
+ 	console.log($("p").data("name"))
+ 	console.log($("p"))
+ 	$("div").data("blah", {firstName:"a",lastName:"b"});  
+ 	console.log($("div").data("blah"))
+ 	console.log($("div").data("blah").firstName)
+
+ 	// 9.jQuery.removeData([name|list])
+ 	// 和上面相反
+ 	console.log($("div").removeData("blah"))
+ 	console.log($("div").data("blah"))
+
+
+ 	// 10. jQuery.noConflict()
+ 	// 把$让出来,不会和其他冲突
+ 	// 记得在其他函数执行前执行
+ 	jQuery.noConflict();
+ 	// 报错
+ 	// console.log($("p"))
+ 	(function($){
+ 		console.log($("p"));
+ 	}(jQuery))
+
+ 	// 清除动画的现在不想看....
+
+ 	
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

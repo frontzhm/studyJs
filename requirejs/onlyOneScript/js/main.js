@@ -10,6 +10,9 @@ require.config({
 });
 // 这里是需要加载的库,后面是一一对应的参数,表示这里面函数返回的值,可以是函数 对象 字符串等等
 // 想要用到的函数在别的js文件里,就这样写
-require(["jquery","calu"],function(j,s){
+require(["jquery","calu","unde"],function(j,s,u){
 	console.log($().jquery);
+	console.log(j);
+	console.log(s);
+	console.log(u);
 });
