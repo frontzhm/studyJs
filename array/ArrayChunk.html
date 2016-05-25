@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * 实现数组的拆分
+     * chunk([0,1,2,3,4,5,6,7,8,9],3)
+     * 变成 [[0,1,2],[2,3,4],[5,6,7],[8,9]] 
+     * slice,splice,for
+     */
+    // 简单的demo1,取4,slice
+    var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    var newArr = [];
+    tempArr = arr.slice(0, 4);
+    newArr.push(tempArr);
+    tempArr = arr.slice(4, 8);
+    newArr.push(tempArr);
+    tempArr = arr.slice(8, 12);
+    newArr.push(tempArr);
+    console.log(arr)
+    console.log(newArr)
+
+    // demo2  splice
+    var newArr2 = [];
+    tempArr = arr.splice(0, 4);
+    newArr2.push(tempArr);
+    tempArr = arr.splice(0, 4);
+    newArr2.push(tempArr);
+    tempArr = arr.splice(0, 4);
+    newArr2.push(tempArr);
+    console.log(arr)
+    console.log(newArr2)
+
+    //
+    // var chunk = function(arr, size) {
+    //     var newArr = [],
+    //         tempArr = [];
+    //     // for (var i = 1, l = arr.length;; i++) {
+    //     //     //  [1,2,3]  ,2     第i次开始之前,前面的i-1次总共取了(i-1)*size个数 取的数如果已经大于或者等于数组长度的时候 没必要在进行下一次
+    //     //     if ((i - 1) * size >= l) {
+    //     //         break;
+    //     //     }
+    //     //     tempArr = arr.splice(0, size);
+    //     //     console.log(tempArr);
+    //     //     // push返回的是数组长度
+    //     //     // newArr = newArr.push(tempArr);
+    //     //     newArr.push(tempArr);
+    //     // }
+    //     for (var i = 0, l = arr.length;; i+=size) {
+    //         //  [1,2,3]  ,2     第i次开始之前,前面的i-1次总共取了(i-1)*size个数 取的数如果已经大于或者等于数组长度的时候 没必要在进行下一次
+    //         //  在推进一点 直接把i变成取得数量 >长度的时候 不进行下一次
+    //         if (i > l) {
+    //             break;
+    //         }
+    //         tempArr = arr.splice(0, size);
+           
+    //         // push返回的是数组长度
+    //         // newArr = newArr.push(tempArr);
+    //         newArr.push(tempArr);
+    //     }
+    //     return newArr;
+
+    // }
+    // 最后是这样的
+    var chunk = function(arr, size) {
+        var newArr = [],
+            tempArr = [];
+            // 取的数量小于长度的时候会进行下一次
+            // 等于或者大于长度的时候不进行
+            // 关键在于取的数量和长度的关系
+        for (var i = 0, l = arr.length;i < l; i+=size) {
+            tempArr = arr.splice(0, size);
+            newArr.push(tempArr);
+        }
+        return newArr;
+    }
+
+    console.log(chunk([0, 1, 2, 3, 4], 2))
+    console.log(chunk([0, 1, 2, 3], 2))
+    console.log(chunk([0], 2))
+    </script>
+</body>
+
+</html>
