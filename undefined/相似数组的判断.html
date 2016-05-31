@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /**
+   * 相似数组的条件:
+   * 1.长度相等
+   * 2.数组中的成员类型相同，顺序可以不同。例如[1, true] 与 [false, 2]是相似的。
+   * 3.类型的判断范围，需要区分:String, Boolean, Number, undefined, null, 函数，日期, window.
+   */
+
+  var arraysSimilar = function(arr1, arr2) {
+    var typeDetermine = function(item) {
+      var type = typeof item;
+      // typeof 不能检测object的具体项
+      // number string undefined boolean object
+      if (type === "object") {
+        // Object.prototype.toString().apply() 能检测大部分的对象类型,但ie对null有争议,所以稍微判断下
+        if (item === null) {
+          console.log(null)
+          return "null";
+        } else {
+          console.log({}.toString.apply(item).slice(8, -1).toLowerCase())
+            // [object Null]
+          return {}.toString.apply(item).slice(8, -1).toLowerCase();
+        }
+      } else {
+        console.log(type)
+        return type;
+      }
+    }
+    var typeDetermine2 = function(item) {
+
+      // return {}.toString.apply(item).slice(8, -1).toLowerCase();
+      return {}.toString.apply(item);
+
+    }
+
+
+    if (arr1.length == arr2.length) {
+      var temp1 = arr1.map(function(item) {
+        return typeDetermine2(item);
+      });
+
+      var temp2 = arr2.map(function(item) {
+        return typeDetermine2(item);
+      })
+      console.log(temp1)
+      console.log(temp2)
+      temp1.sort();
+      temp2.sort();
+
+      for (var i = 0, l = arr1.length; i < l; i++) {
+        if (temp1[i] != temp2[i]) {
+          return false;
+        }
+        return true;
+      }
+
+    } else {
+      return false;
+    }
+  }
+
+  var arr1 = [1, 2, "kl", null, undefined, {},
+    [], new Date(), window
+  ];
+  var arr2 = [null, undefined, {},
+    [], new Date(), 1, 2, "kl", window
+  ];
+
+  console.log(arraysSimilar(arr1, arr2));
+  </script>
+</body>
+
+</html>

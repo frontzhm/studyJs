@@ -8,17 +8,17 @@
   <body>
     <div id="example"></div>
     <script type="text/babel">
-      var HelloMessage = React.createClass({
-        render: function() {
-          return <h1>Hello {this.props.name}</h1>;
-        }
-      });
-
-      ReactDOM.render(
-        <HelloMessage name="John" />,
+    ReactDOM.render(
+        <h1>Hello, world!</h1>,
         document.getElementById('example')
       );
+    var helloWorld = React.creatClass(function(){
+      return <h1>Hello, world!{this.props.title}</h1>
+    })
+    ReactDOM.render(<helloWorld title = "en"/>,document.getElementById('example'))
+      
     </script>
-   
+  
   </body>
 </html>
+

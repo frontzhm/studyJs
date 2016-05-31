@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+"use strict";
+// 1. + -
+	console.log("78"-0) //number
+	console.log(78+"") //string
+/*	"78" - 0 这样把78就转换成数字
+78+"" 这样就把78变成字符串*/
+
+// 2. ==
+	console.log("1.23" == 1.23) // 字符串会变成数字,true
+	console.log(0 == false) // true   布尔值转变成数字,1 true ,0 false
+	console.log(undefined == null) // true
+	console.log(new String("hi") == "hi") // true   对象会变成基本类型,然后进行比较
+	console.log(new Object() == new Object()) //false
+	console.log([1,2] == [1,2]) //false
+	// 其他false
+// 3.===
+// 类型和值都一样
+// 特殊的有
+// NaN === NaN  // false ,NaN与任何值都不相等,包括他自己
+// new Object() === new Object()  // false ,object是引用
+console.log(NaN === NaN)
+
+// 4. 包装对象,一般来说只有对象才有属性和方法
+var str = "en";
+var strObj = new String("en");
+console.log(str)
+console.log(strObj)
+// str.t = "t"   // 短暂的转换为对象之后 然后被销毁
+strObj.t = "t"
+
+// console.log(str.t)
+console.log(strObj.t)
+console.log(str.length) // 短暂的转化为字符串对象
+console.log(strObj.length)
+
+
+// 5.检测类型  : typeof instanceof  Object.prototype.toString constructor duck type
+// typeof   返回字符串  "number" "object" "function" "string"  "undefined"   比较特殊的是,null返回的是"object"  ,一般用来判断基本类型
+// instanceof   基于原型链判断,
+console.log(typeof undefined)
+console.log(typeof null)
+console.log(typeof "")
+console.log(typeof 2)
+console.log(typeof false)
+console.log(typeof {})
+console.log(typeof function () {})
+var Person = function  (argument) {};
+var Student = function  () {};
+Student.prototype = new Person();
+Student.prototype.constructor = Student;
+var john = new Student();
+var k = new Person();
+console.log(k instanceof Person)
+console.log(john instanceof Person)
+// Object.prototype.toString.apply()
+
+console.log(Object.prototype.toString.apply([1,2])); // [Object Array]
+console.log(Object.prototype.toString.apply("q")); // [Object String]
+console.log(Object.prototype.toString.apply(1)); // [Object Number]
+console.log(Object.prototype.toString.apply(null)); // [Object Null]
+console.log(Object.prototype.toString.apply(undefined)); // [Object undefined]
+console.log(Object.prototype.toString.apply({i:0})); // [Object Object]
+console.log({}.toString.apply(window).slice(7,-1).toLowerCase()); // [Object Window]
+console.log(Object.prototype.toString.apply(new Date())); // [Object Date]
+
+</script>
+	
+</body>
+</html>
