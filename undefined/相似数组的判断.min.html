@@ -19,6 +19,16 @@
    *  再类型判断.考虑到判断的范围,选择用Object.prototype.toString.apply()判断
    *  若兼容ie6-9则 null undefined 单独列出来,但不想考虑ie10以下
    *  数组每项的类型组成新数组,再对新数组排序,如果一一相等,则相似
+   *
+   *
+   * 思路2:
+   * 先判断长度,不等直接false
+   * arr2的每项类型 组成temp2
+   * arr1从第一项开始与arr3的第一项比较
+   * 结果相同的话,删除arr3的第一项且跳出小循环开始arr1的第二项,
+   * 结果不相同的话,继续循环,如果到arr3的最后一项还是不相同,表示arr2中没有arr1的某类型,也就是返回false
+   * 这样的话比较到arr1的最后一项 ,循环结束,返回true
+   * 
    */
 
   var arraysSimilar = function(arr1, arr2) {
@@ -44,6 +54,38 @@
     }
     return false;
   };
+  var arraysSimilar1 = function (arr1,arr2) {
+    var len = arr1.length,templ = len;
+    if(len === arr2.length){
+
+      // 测类型
+      var ty = function (item) {
+         return  {}.toString.apply(item).slice(8, -1).toLowerCase();
+      }
+      // arr2类型组成的新数组
+      var temp2 = arr2.map(function(item){
+        return ty(item);
+      })
+      // 循环
+      for(var i=0,len;i<len;i++){
+        for(var j=0;j<templ;j++){
+          if(ty(arr1[i]) === temp2[j]){
+            temp2.splice(j,1);
+            templ--;
+            break;
+          }else{
+            if(j==templ-1){
+              return false;
+            }
+          }
+        }
+      }
+      return true;
+      
+    }else{
+      return false
+    }
+  }
   // 实践
   var arr1 = [1, 2, "kl", null, undefined, {},
     [], new Date(), window,
@@ -55,6 +97,7 @@
   ];
 
   console.log(arraysSimilar(arr1, arr2));
+  console.log(arraysSimilar1(arr1, arr2));
   console.log(navigator);
   </script>
 </body>
