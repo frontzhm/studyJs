@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>对象</title>
+</head>
+
+<body>
+</body>
+<script>
+// 1.对象创建-字面量
+var o = {
+    x: 1,
+    k: 2
+  }
+  // 2.对象创建- new /原型链
+function foo() {
+
+}
+// 函数都有prototype的属性
+// 这个属性的值是一个对象,而每个对象都有__proto__的属性
+foo.prototype.z = 4;
+// 每个对象都有自己的原型,也就是所谓的父亲
+// 每个对象访问自己不存在的属性的时候 会找自己的父亲
+// 每个函数有prototype属性,因为自己有可能是一个父亲
+// 一旦自己的孩子需要自己的时候 父亲就可以通过prototype属性来帮助他
+// 而prototype属性也是对象,也有prototype属性,这个指向的是Object,Object.prototype的原型
+// Object是构造函数 所以原型是function(){}
+console.log(Object.__proto__)
+  // Object{..}
+console.log(Object.prototype)
+  // Object已经是最底层的对象,所以没有父亲也就是没有原型
+console.log(Object.prototype.__proto__)
+  // 只有函数对象才有prototype,所以undefined
+console.log(Object.prototype.prototype)
+  // function(){}   因为 var foo = function(){}  也就是 foo是函数的实例 
+console.log(foo.__proto__)
+  // 看你有没有写属性了 没写就是空对象  这里是给实例服务的
+console.log(foo.prototype);
+// foo.prototype是一个对象实例
+console.log(foo.prototype.__proto__);
+var em = new foo();
+// em只是foo的一个实例 是对象 不是函数 所以没有prototype
+console.log(em.prototype);
+// 显然 em是foo的实例,注意并不是foo 所以原型是foo.prototype,也就是一个对象
+// foo.prototype == em.__proto__
+console.log(em.__proto__);
+console.log(foo.prototype == em.__proto__);
+// 想判断 某对象有没有某属性
+// 首先 key in obj 然后obj.hasOwnProperty(key)
+// true  原型链上有
+console.log('z' in em);
+// false
+console.log(em.hasOwnProperty('z'));
+
+
+
+
+
+
+
+// 3.创建对象 - Object.creat({x:1})
+// t的原型 是 {x:1}
+var t = Object.create({
+  x: 1
+});
+console.log(t)
+console.log(t.x)
+console.log(t.__proto__)
+
+// 4.属性读写 .或者[]
+// 需要拼变量的时候用[]
+var r = {
+  x1: 1,
+  x2: 2,
+  x3: 3
+};
+for (var i = 1; i < 4; i++) {
+  console.log(r['x' + i])
+}
+
+// 5.属性读写异常
+// 不能给undefined赋值
+// 没有x4,undefined
+console.log(r.x4)
+  // 报错 Uncaught TypeError: Cannot read property 'x' of undefined
+  // console.log(r.x4.x)
+  // 看某属性在在执行代码
+  // if(obj){
+  // 	if(obj.x){
+  // 		....
+  // 	}
+  // }
+  // 简写  obj && obj.x && obj.x.y
+  // 试着这样理解 && 是 3是true的话会执行后面的  false的话 不执行后面的
+var td = 3 && 5
+console.log(td)
+
+
+
+// 6.属性删除 delete obj.key  如果key不在的话 返回true
+console.log(delete r.x1)
+console.log(r.x1)
+  // Uncaught TypeError: Cannot read property 'x' of undefined
+var des = Object.getOwnPropertyDescriptor(foo, 'prototype');
+
+// Object {value: Object, writable: true, enumerable: false, configurable: false}
+// 可读写 可枚举 可配置
+console.log(des)
+  // 可枚举
+console.log(em.propertyIsEnumerable('z'))
+console.log(foo.propertyIsEnumerable('toString'))
+  // 枚举对象的属性
+var person = {color:'red',age:23,name:'p'}
+for (key in person) {
+	// 过滤掉不是自己的属性
+	if(person.hasOwnProperty(key)){
+		console.log(key)
+	}
+  
+}
+</script>
+
+</html>

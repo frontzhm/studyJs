@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>语句</title>
+</head>
+
+<body>
+</body>
+<script>
+// 1.块语句 {},没有块级作用域,在{}外面依然可以访问
+var arr = [1]
+for (var i = 0; i < arr.length; i++) {
+  console.log(i)
+}
+console.log(i)
+
+// 2.var 
+// 这样 如果b总是全局变量,a可以是局部变量
+var a = b = 1;
+// b=1 没有var的都是全局变量
+// var a = b;
+function e() {
+  var c = d = 1;
+  console.log(c)
+  console.log(d)
+}
+e();
+//  Uncaught ReferenceError: c is not defined
+// console.log(c) 
+console.log(d)
+
+
+
+// 3.try catch finally
+// try catch提供了一种异常捕获的机制。有三种形式，1、try catch 2、try finally 3、try catch finally
+try {
+  alerts(0)
+} catch (ex) {
+  console.log(ex) // test
+} finally {
+  console.log("finally")
+}
+
+
+
+
+// 4. function 也称为函数声明,函数前置
+// 5. for...in  不按顺序 ,受原型限制 不常用
+// 6.switch(val)
+var val = 3
+switch (val) {
+  case 1:
+    console.log(1);
+    break;
+  case 2:
+  case 3:
+    console.log(3);
+    break;
+  default:
+    console.log(1)
+}
+
+
+// 7.while, do..while,for
+// 8.with 严格模式下不可以用
+// 9.严格模式
+"use strict";
+// 可以在文件开头
+// 可以在函数里,这样函数里是严格模式
+// 严格模式下 变量必须声明 
+</script>
+
+</html>
