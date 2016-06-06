@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.form-wrapper .radio, .form-wrapper .checkbox {
+		  position:relative;
+		}
+		.form-wrapper .radio span, .form-wrapper .checkbox span {
+		  width :90%;
+		  text-align:left;
+		  padding-left:1.5em;
+		}
+		.form-wrapper .radio input, .form-wrapper .checkbox input {
+		  position:absolute;
+		  left:0;
+		  top:0;
+		  width:1em;
+		  height:1em;
+		}
+	/* RADIO & CHECKBOX */
+	.light .radio-check-label label {
+	  display:block;
+	  border: 1px solid #cccccc;
+	  border-top-color: #fff;
+	  border-right-color: #fff;
+	  border-radius: 3px;
+	  line-height:1em;
+	  background: #e5e5e5;
+	  cursor:pointer;
+	  overflow:hidden;
+	  margin-bottom:0.5em;
+	}
+	.light .radio-check-label label input {
+	  opacity:0.01
+	}
+	.light .radio-check-label label span {
+	  display:block;
+	  padding: 0.563em 15% 0.563em 1.875em;
+	  transition:background .2s;
+	  border-radius:3px;
+	}
+	.light .radio-check-label label span:before {
+	  content: "";
+	  display:block;
+	  width:12px;
+	  height:12px;
+	  background:#ffffff;
+	  position:absolute;
+	  left:8px;
+	  top:11px;
+	  border:1px solid #b9b9b9;
+	}
+	.light .radio-check-label label.radio span:before {
+	  border-radius:8px;
+	}
+	.light .radio-check-label label.checkbox span:before {
+	  border-radius:2px;
+	}
+	.light .radio-check-label input:checked ~ span:before {
+	  background-color:#424242;
+	  border-color:transparent;
+	}
+	.light .radio-check-label input:checked ~ span { 
+	  background:#FFF;
+	}
+	</style>
+</head>
+<body class="form-wrapper">
+	<div class="radio-check-label">
+	    <span class="label">Do you like this?</span>
+
+	    <div class="input-wrapper">
+	      <label class="radio rel" for="yes">
+	        <input type="radio abs" name="foo" value="yes" id="yes">
+	        <span>Yes, please</span>
+	      </label>
+	    </div>
+
+	    <div class="input-wrapper">
+	      <label class="radio" for="no">
+	        <input type="radio" name="foo" value="no" id="no">
+	        <span>No, thanks</span>
+	      </label>
+	    </div>
+
+	    <div class="input-wrapper">    
+	      <label class="radio" for="maybe">
+	        <input type="radio" name="foo" value="maybe" id="maybe">
+	        <span>Well, maybe</span>
+	      </label>
+	    </div>
+	  </div>
+	    <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+
+	    <!-- <script src="js/index.js"></script> -->
+
+	  </body>
+	 
+</body>
+</html>
