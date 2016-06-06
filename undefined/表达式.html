@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表达式和运算符</title>
+</head>
+<body>
+	表达式分为:原始表达式,初始化表达式,函数表达式,属性访问表达式,调用表达式,对象创建表达式
+	运算符:一元 二元 三元
+	一元:+num
+	二元:s+o
+	三元:c?s:k
+
+</body>
+<script>
+	// 1.条件运算符
+	var w = true?1:2;
+	console.log(w) // 1
+
+	// 2.逗号运算符
+	var q = (2,3,4);
+	console.log(q) // 最右边,了解下
+
+	// 删除运算符
+	// delete obj.x   删除对象某属性
+	var obj1 = {x:1,y:2}
+	delete obj1.x;
+	console.log(obj1.x) //undefined
+	// ie9以后 这样属性不能被删除
+	// Object.defineProperty(obj,'y',{
+	// 	configurable:false,
+	// 	value:3
+	// 
+	// })
+	Object.defineProperty(obj1,"y",{
+		configurable:false,
+		// value:3
+	})
+	delete obj1.y;
+	// 2
+	console.log(obj1.y)
+
+	// 4.in运算符,判断对象有没有某key
+	window.e = 1;
+	// true
+	console.log('e' in window);
+
+	// 5.{} intanceof Object  一般判断原型链
+	// 6.typeof 9  判断基础类型
+	// 7.new
+	function Foo (argument) {
+		  
+	};
+
+	Foo.prototype.x = 1;
+	var obj2 = new Foo();
+	// 1
+	console.log(obj2.x);
+	// 判断是不是自己的属性
+	// false
+	console.log(obj2.hasOwnProperty("x"))
+	// true
+	console.log(obj2.__proto__.hasOwnProperty("x"))
+
+
+
+	// 8.this
+	// 全局指window
+	// 9.void 任何  总是undefined
+	console.log(void 0) 
+	console.log(void 9) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+</script>
+</html>
