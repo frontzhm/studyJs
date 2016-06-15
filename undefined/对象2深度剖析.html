@@ -129,7 +129,7 @@ console.log(parseFloat(dd))
 // 33
 console.log(Number(dd))
 
-// 综合
+// 综合1
 var man= {
   age:null,
   get $age(){
@@ -158,8 +158,19 @@ console.log(man.age)
 /*man.$age = 'o';
 console.log(man.age)*/
 // Uncaught Error: the age can not be 0
-man.$age = 0;
+// man.$age = 0;
 console.log(man.age)
+// 综合2 原型链
+var foo = function (argument) {
+    
+}
+Object.defineProperty(foo.prototype, 'z', {value:9000})
+var foo1 = new foo();
+// 9000
+console.log(foo1.z)
+foo1.z = 2
+// 默认情况下，使用  Object.defineProperty() 增加的属性值是不可改变的。 9000
+console.log(foo1.z)
 
 </script>
 

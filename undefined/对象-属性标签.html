@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>对象 Object.defineProperty()</title>
+</head>
+
+<body>
+</body>
+<script>
+//  Object.defineProperty()方法直接在一个对象上定义一个新属性，或者修改一个已经存在的属性， 并返回这个对象。
+//  语法   Object.defineProperty(obj, prop, descriptor)
+//  描述  一般定义或者修改属性  obj.prop = newVal ,这种方式的属性值可以被修改 
+//  而Object.defineProperty()定义的属性默认不可被修改
+//  对象里目前存在的属性描述符有两种主要形式：数据描述符和存取描述符。数据描述符是一个拥有可写或不可写值的属性。存取描述符是由一对 getter-setter 函数功能来描述的属性。描述符必须是两种形式之一；不能同时是两者。
+//  数据描述符和存取描述符均具有以下可选键值：
+// configurable
+// 当且仅当该属性的 configurable 为 true 时，该属性才能够被改变，也能够被删除。默认为 false。
+// enumerable
+// 当且仅当该属性的 enumerable 为 true 时，该属性才能够出现在对象的枚举属性中。默认为 false。
+// 数据描述符同时具有以下可选键值：
+
+// value
+// 该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。默认为 undefined。
+// writable
+// 当且仅当仅当该属性的writable为 true 时，该属性才能被赋值运算符改变。默认为 false。
+// 存取描述符同时具有以下可选键值：
+
+// get
+// 一个给属性提供 getter 的方法，如果没有 getter 则为 undefined。该方法返回值被用作属性值。默认为undefined。
+// set
+// 一个给属性提供 setter 的方法，如果没有 setter 则为 undefined。该方法将接受唯一参数，并将该参数的新值分配给该属性。默认为undefined。
+// 记住，这些选项不一定是自身属性，如果是继承来的也要考虑。为了确认保留这些默认值，你可能要在这之前冻结Object.prototype，明确指定所有的选项，或者将__proto__属性指向null。
+// 
+// 总结:1. 描述符 = [{数据描述符:[configurable,enumerable,value,writable]},{存取描述符:[cofigurable,enumerable,get,set]}]
+// 2.返回对象自己
+// 3.数据描述符的话默认:Object {value: undefined, writable: false, enumerable: false, configurable: false}
+
+// 1.创建属性
+var obj = {};
+// 定义属性时如果没有get/set/value/writable，那它被归类为数据描述符。
+var objc = Object.defineProperty(obj,"a",{
+   
+})
+// {'a':1}
+console.log(objc)
+// true
+console.log(objc == obj)
+// Object {value: undefined, writable: false, enumerable: false, configurable: false}
+console.log(Object.getOwnPropertyDescriptor(obj, 'a'))
+// configurable: false,一旦修改属性的任何一个描述就会报错
+// Object.defineProperty(obj,"a",{
+//   value:1
+// })
+// 
+// 
+var bb = 33;
+Object.defineProperty(obj, 'b', {get:function () {
+   return bb;
+},set:function (newval) {
+   bb = newval;
+},configurable:true})
+// Object{a:undefined,b:2}
+console.log(obj)
+// Object {get:..,set:...,enumerable: false, configurable: true}
+console.log(Object.getOwnPropertyDescriptor(obj, 'b'))
+
+obj.b = 2;
+console.log(obj)
+console.log(Object.getOwnPropertyDescriptor(obj, 'b'))
+
+
+
+
+
+var foo = function (argument) {
+   
+};
+
+
+
+Object.defineProperty(foo.prototype,"a",{
+  value:2
+  // __proto__: null, // 没有继承的属性,防止继承到原型的属性
+})
+var obj1 = new foo();
+console.log(obj1)
+// 2
+console.log(obj1.a)
+// true
+Object.defineProperty(obj1,"a",{
+})
+console.log(obj1)
+// undefined
+console.log(obj1.a)
+// Object {value: undefined, writable: false, enumerable: false, configurable: false}
+console.log(Object.getOwnPropertyDescriptor(obj1, 'a'))
+
+
+var o = {};
+
+o.a = 1;
+// 等同于 :
+Object.defineProperty(o, "a", {
+  value : 1,
+  writable : true,
+  configurable : true,
+  enumerable : true
+});
+
+
+// 另一方面，
+Object.defineProperty(o, "a", { value : 1 });
+// 等同于 :
+Object.defineProperty(o, "a", {
+  value : 1,
+  writable : false,
+  configurable : false,
+  enumerable : false
+});
+
+
+// 下面的例子说明了如何实现自我存档的对象。当 temperature 属性设置时，archive 数组会得到一个 log。
+
+function Ager () {
+  var age = null;
+  var ages = [];
+    Object.defineProperty(this,"age",{
+      get:function () {
+        console.log('get')
+         return age;
+      },
+      set:function (val) {
+         age = val;
+         ages.push({value:val})
+
+      }
+    })
+    this.ages = ages
+
+}
+
+var ah = new Ager();
+console.log(ah.age)
+ah.age = 0
+console.log(ah.age)
+ah.age = 1
+console.log(ah.age)
+ah.age = 2
+console.log(ah.age)
+console.log(ah.ages)
+
+
+
+// 另外一个例子当一个属性值被改变的时候 就添加另外一个属性值
+var pattern  = {get:function () {
+  return "fir"   
+},set:function (val) {
+   this.second = "sec"  
+}}
+function TestGetSet () {
+   Object.defineProperty(this, 'first', pattern)
+}
+var par = new TestGetSet();
+console.log(par)
+par.first = "fir";
+console.log(par)
+par.first = "firsssss";
+par.second = "dsssssss";
+console.log(par)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var t = {x:1}
+// 1
+console.log(t.x)
+t.x = 2
+// 2
+console.log(t.x)
+
+</script>
+
+</html>
