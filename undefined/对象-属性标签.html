@@ -3,12 +3,53 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>对象 Object.defineProperty()</title>
+  <title>setter,getter,Object.defineProperty()</title>
 </head>
 
 <body>
 </body>
 <script>
+/**
+ *  obj = {get function prop(){return 1},set function prop(val){this.name = val},name:0}
+ *  function obt(){
+ *    Object.defineProperty(this,'prop',{
+ *      get:function(){return 'ini'},
+ *      set:function(val){this.name=val}
+ *      enumerable:true,
+ *      configurable:true
+ *    })
+ *  }
+ *  function ob(){
+ *    Object.defineProperty(this,'prop',{
+ *      value:'ini',
+ *      writable:true,
+ *      enumerable:true,
+ *      configurable:true
+ *    })
+ *  }
+ *
+ *  get的是伪属性,set也是一样 也就是其定义的属性 其值不可以被改变,但可以赋值 只是赋值不会生效而已但会触发set
+ *  set 可以控制别的属性,因为伪属性值的变化对另外的属性做变化
+ *  两种用法 : 一种在定义属性的时候,通常用在创建一个类型的时候
+ *            一种在对象里直接使用,可以实现某些功能
+ *            
+ * Object.defineProperty这个方法在定义属性的时候默认读写,配置,可枚举均为false,value,set,get默认是undefined
+ * 
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //  Object.defineProperty()方法直接在一个对象上定义一个新属性，或者修改一个已经存在的属性， 并返回这个对象。
 //  语法   Object.defineProperty(obj, prop, descriptor)
 //  描述  一般定义或者修改属性  obj.prop = newVal ,这种方式的属性值可以被修改 
@@ -150,6 +191,22 @@ console.log(ah.age)
 ah.age = 2
 console.log(ah.age)
 console.log(ah.ages)
+
+
+
+var o = {
+  set cur(val){
+   this.log.push(val);
+  },
+  log:[]
+}
+
+console.log(o.cur + "   "+ o.log)
+o.cur = 0;
+console.log(o.cur + "   "+ o.log)
+o.cur = 1;
+console.log(o.cur + "   "+ o.log)
+
 
 
 
