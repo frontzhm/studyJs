@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>setter,getter,Object.defineProperty()</title>
+</head>
+
+<body>
+</body>
+<script>
+/**
+ * 标签和序列化
+ * proto class  extensible
+ * 
+ */
+
+ // proto
+ var obj = new Object();
+ console.log(obj.__proto__)
+ console.log(Object.prototype)
+ // null
+ console.log(Object.prototype.__proto__)
+
+
+
+
+ // class
+ var getType = function (param) {
+ 
+    return {}.toString.call(param).slice(8,-1).toLowerCase(); 
+    
+ }
+console.log( getType("o"))
+
+
+// extensible
+var person = {name:"baozi",age:24}
+// 默认是可扩展的 true
+console.log(Object.isExtensible(person))
+Object.preventExtensions(person);
+// 阻止之后是 false
+console.log(Object.isExtensible(person))
+// 但仅仅是可扩展性,其他的都是默认的Object {value: "baozi", writable: true, enumerable: true, configurable: true}
+console.log(Object.getOwnPropertyDescriptor(person, 'name'))
+Object.seal(person)
+// seal 让configurable: false,,,,,,,Object {value: "baozi", writable: true, enumerable: true, configurable: false},仍然可以改变其value
+console.log(Object.getOwnPropertyDescriptor(person, 'name'))
+person.name = "minmin"
+console.log(Object.getOwnPropertyDescriptor(person, 'name'))
+Object.freeze(person)
+person.name = "min"
+// freeze 让 writable: false,Object {value: "minmin", writable: false, enumerable: true, configurable: false}
+console.log(Object.getOwnPropertyDescriptor(person, 'name'))
+console.log(Object.isSealed(person))
+console.log(Object.isFrozen(person))
+
+
+/**
+ * 序列化  JSON.stringify(obj)  将一个普通对象转换成json对象
+ * JSON.parse(jsonObj)  相反
+ */
+
+var animal = {name:"dog",age:4,timo:undefined,dema:NaN,hanbing:Infinity}
+// 注意序列化,undefined的属性会消失,NaN,Infinity的属性变成null
+// {"name":"dog","age":4,"dema":null,"hanbing":null}
+console.log(JSON.stringify(animal))
+
+// 注意json的格式
+var cat = '{"name":"dog","age":4}';
+// {"name":"dog","age":4}
+
+console.log(cat)
+// Object {name: "dog", age: 4}
+console.log(JSON.parse(cat))
+
+var dog = {name:"dog",age:23,toJSON:function () {
+   return 1 
+}}
+// 如果一个被序列化的对象拥有 toJSON 方法，那么该 toJSON 方法就会覆盖该对象默认的序列化行为：不是那个对象被序列化，而是调用 toJSON 方法后的返回值会被序列化
+// "1"
+console.log(JSON.stringify(dog))
+var bao = {name:"bao",age:23,num:{
+  a:1,
+  b:2,
+  toJSON:function () {
+     return 5 
+  }
+}}
+// '{"name":"bao","age":23,"num":5}'
+console.log(JSON.stringify(bao))
+
+/**
+ * 其他对象方法
+ */
+
+var hand = {name:"hand",num:5};
+// 1[object Object]
+console.log("1"+hand)
+// 1[object Object]
+console.log("1"+hand.toString())
+// 可以自定义toString
+hand.toString = function (param) {
+   return this.name+this.num 
+}
+// 1hand5
+console.log("1"+hand)
+
+
+hand.valueOf = function (param) {
+   return "value" 
+}
+// 1value,先执行valueOf,如果已经转成基本类型则直接返回,不再执行toString
+console.log("1"+hand)
+// 1value
+console.log("1"+hand.valueOf())
+// 1hand5
+console.log("1"+hand.toString())
+
+
+</script>
+
+</html>
