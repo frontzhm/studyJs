@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		  /**
+		   * [findValFilter 根据地址栏/user/myWorks/status/2/type/1.html找到想要的status和type的值]
+		   * 参数是想要的关键词  findValFilter("status","type")  不限参数数量
+		   * @return {[type]} [返回一个数组,[{name:"status",value:"2",index:3},{name:"type",value:"1",index:5}]]
+		   */
+		  var findValFilter = function() {
+
+		    // /user/myWorks/status/2/type/1.html
+		    var pathname = location.pathname;
+		    // ["", "user", "myWorks", "status", "2", "type", "1.html"]
+		    // ["", "user", "myWorks", "type", "1.html"]
+		    // ["", "user", "myWorks.html"]
+		    pathname = pathname.split("/");
+		    // 需要的字段 status  type
+
+		    var keys = [];
+		    var len = arguments.length;
+		    for (var i = 0; i < len; i++) {
+		      keys[i] = {};
+		      keys[i].name = arguments[i];
+		      var nameIndex = pathname.indexOf(keys[i].name)
+		      keys[i].index = nameIndex == -1 ? false : nameIndex;
+		      var valIndex = keys[i].index + 1;
+		      keys[i].value = keys[i].index && pathname[valIndex].indexOf("html") == -1 ? pathname[valIndex] : pathname[valIndex].slice(0, -5);
+		    }
+
+		    return keys;
+		  };
+	</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.radio-check-label {
+		  position: relative;
+		}
+
+		.radio-check-label .fa {
+		  position: absolute;
+		  left: 0px;
+		  top: 18px;
+		}
+
+		.radio-check-label input[type="radio"],
+		.radio-check-label input[type="checkbox"] {
+		  opacity: 0.001;
+		}
+
+		.radio-check-label .fa-dot-circle-o,
+		.radio-check-label .fa-check-square {
+		  color: #ff5600;
+		}
+
+		.radio-check-label .fa-circle-o,
+		.radio-check-label .fa-square-o {
+		  color: #ccc;
+		}
+
+		.radio-check-label input[type="radio"] ~ span .fa-dot-circle-o,
+		.radio-check-label input[type="checkbox"] ~ span .fa-check-square {
+		  display: none;
+		}
+
+		.radio-check-label input:checked ~ span .fa-dot-circle-o,
+		.radio-check-label input:checked ~ span .fa-check-square {
+		  display: inline-block;
+		}
+
+		.radio-check-label input:checked ~ span .fa-circle-o,
+		.radio-check-label input:checked ~ span .fa-square-o {
+		  display: none;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="radio-check-label">
+	  <label  id="authorize"  class="lizauthorize">
+	    <input value="1" type="checkbox" name="authorize" id="authorize" checked>
+	    <span class="iconW"><i class="icon fa fa-square-o"></i><i class="icon fa fa-check-square"></i>禁止商业和个人使用</span>
+	  </label>
+	</div>
+</body>
+</html>
