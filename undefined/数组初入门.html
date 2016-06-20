@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var arr = ["a","b","c"];
+		arr.join("_");
+		console.log(arr.join("_"))
+		function repeatString (str,times) {
+			 var arr = new Array(times);
+			 for(var i=0;i<times;i++){
+			 	arr[i] = str
+			 }
+			 return arr.join("") 
+		}
+		function repeatString2 (str,times) {
+			var sum = "";
+			 for(var i=0;i<times;i++){
+			 	sum+=str;
+			 }
+			 return sum;
+		}
+		function repeatString3 (str,times) {
+			// 因为str是连接符,相当于逗号,数组的逗号=数组的长度-1,所以数组的长度=数组的逗号个数+1
+			return new Array(times+1).join(str);
+		}
+		console.log(repeatString("hello",3))
+		console.log(repeatString2("hello",3))
+		console.log(repeatString3("hello",3))
+
+		// reverse()反排序 改变原数组且返回新数组
+		// sort()  function(a,b){return a-b}  a-b>0,则调用a,b顺序,也就是从小到大排列
+		var persons = [{age:10,s:1},{age:1909,s:1},{age:160,s:1},{age:100,s:1}];
+		var t = persons.sort(function(a,b){
+			console.log(persons)
+			return a.age-b.age
+
+		})
+
+		console.log(persons)
+
+
+		// concat(value1, value2)
+		var door = ["circle","square"];
+		var lump = ["m","n"];
+		var concat = door.concat(lump);
+		// concat不会改变原数组
+		// ["circle", "square"]
+		console.log(door)
+		// ["m", "n"]
+		console.log(lump)
+		// ["circle", "square", "m", "n"]
+		console.log(concat)
+		// 需要注意如果直接传数组,最外面-层会被撕掉,所以想要传数组,[[1,2]]
+		// ["circle", "square", "m", "n", 0, 0, 0, [1,2]]
+		console.log(concat.concat(0,[0,0],[[1,2]]))
+		// 用push的话不会被撕掉 按需求来,但push返回的是新数组的长度,并且改变原数组
+		console.log(concat.push(0,[0,0],[[1,2]]))
+		console.log(concat)
+
+		// slice(startIndex,endIndex)  从原数组中取出部分数组,但不改变原数组,取出的规则和slice不一样,第二个表示索引
+		var k = [1,2]
+		// [1,2]
+		console.log(k.slice(-3))
+		// splice(startIndex,needNum,addItem)  从原数组中取出部分数组,且改变原数组,取出的规则和slice不一样,第二个表示取出的个数不是索引
+		// [1,2]
+		console.log(k.splice(-3))
+		var ke = [1,2,3]
+		// [2,3]
+		console.log(ke.splice(1,2,"a"))
+		// [1,"a"]
+		console.log(ke)
+
+
+		// forEach,无返回值
+		var hi = ['a',"b","c","d"];
+		var hiB = hi.forEach(function (item,index,arr) {
+			 console.log(item) 
+			 console.log(index) 
+			 hi[hi.length] = index
+			 console.log(arr) 
+		})
+		console.log(hi)
+		console.log(hiB)
+		// map 每项的返回值组成新数组
+		var jk = [34,6,7,8,45,90];
+		var jkB = jk.map(function (item,index,arr) {
+			 jk[jk.length] = index;
+			 return item+1;
+		})
+		console.log(jk)
+		console.log(jkB)
+
+		// filter 每项的返回值是true的就留下
+		var jkM = jk.filter(function (item,index,arr) {
+			 return item>67;
+		})
+		console.log(jkM)
+
+
+		// every some  数组判断
+		var jkMe = jk.every(function (item,index,arr) {
+			 return item>67;
+		})
+		console.log(jkMe)
+
+		// reduce  递归 第一个数和第二个数因为某种关系返回一个值,然后值再和第三个....一直到数组结束
+		var vb = [5,1,2,3,4];
+		var dg = vb.reduce(function (prev,next) {
+			 return prev+next; 
+		},10);
+		// 求最小值
+		var dgg = vb.reduce(function (prev,next) {
+			 return prev>next?next:prev; 
+		},10);
+		console.log(dg)
+		console.log(dgg)
+
+
+		// indexOf
+		// 判断是否为数组
+		console.log(Array.isArray([1,23]))
+		console.log({}.toString.call([1,23]))
+		console.log([1,23].constructor === Array)
+
+
+
+		// 字符串和数组 字符串算是类数组
+		var ko = "qwert"
+		console.log([].join.call(ko,"_"))
+		console.log(ko[0])
+
+
+	</script>
+</body>
+</html>
