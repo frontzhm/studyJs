@@ -1,160 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
+
 <body>
-	<script>
-/*		函数的调用四种方式:
-		1.直接调用 foo()
-		2.对象的方法调用  obj.foo()
-		3.构造器 new Foo()
-		4.call/apply/bind   foo.call()
+  <script>
+  /*		函数的调用四种方式:
+  		1.直接调用 foo()
+  		2.对象的方法调用  obj.foo()
+  		3.构造器 new Foo()
+  		4.call/apply/bind   foo.call()
 
-		函数声明:function add(){}
-		函数表达式:
-			1. var add = function(){}
-			2. (function(){}())   [immediately executed function]
-			3. return function(){}
-			4.var add = function foo(){} [named function expression]
+  		函数声明:function add(){}
+  		函数表达式:
+  			1. var add = function(){}
+  			2. (function(){}())   [immediately executed function]
+  			3. return function(){}
+  			4.var add = function foo(){} [named function expression]
 
-		函数声明会被前置 但表达式不会   !!!!!!!!!!!!!!!!!!!!!!
-
-
-
-		*/
-	var qw = new Function('a','b',"console.log(a+b)")
-	// 相当于 function qw(a,b){console.log(a+b)}
-	console.log(qw)
-
-	// this
-	"use strict"
-	console.log(this)
-
-	// 构造器函数 没有返回对象的话 默认返回this,,,,注意必须是对象 
-	// 有返回对象的话 用返回的对象 
-	function Fg(){
-		this.l = 1
-		return 3;
-	}
-	console.log((new Fg()).l)
-
-	function Fgg(){
-		this.l = 1
-		return {
-			l:2
-		}
-	}
-	// 2
-	console.log((new Fgg()).l)
-	// undefined
-	console.log((new Fgg()).k)
-
-
-	function whatType (param) {
-		 return Object.prototype.toString.call(param).slice(8,-1).toLowerCase();
-	}
-	console.log(whatType([]))
-	function whatType2 () {
-		// this 相当于特殊的参数,可以传入
-		return Object.prototype.toString.call(this).slice(8,-1).toLowerCase();
-	}
-	console.log(whatType2.apply([]))
-
-
-	// bind  bind会将this指向第一个参数,生成新函数,这样很多时候避免this的域问题
-	var o = {f:function () {
-		 return this.a +this.b
-
-	}}
-	// 相当于t.__proto__ = o
-	var t = Object.create(o);
-	t.a = 10;
-	t.b = 15;
-	// 25
-	console.log(t.f())
-
-
-	var op = {
-		t:2,
-		f:1,
-		get hua () {
-			return this.t+this.f
-		}
-	}
-	function gh () {
-		 return 2 
-	}
-	Object.defineProperty(op,'mo',{
-		get:gh,configurable:true,enumerable:true
-	})
-	// 3
-	console.log(op.hua)
+  		函数声明会被前置 但表达式不会   !!!!!!!!!!!!!!!!!!!!!!
 
 
 
-	// 如果构造函数有返回对象的话 那么构造对象的原型指向的就是这个返回对象
-	function myClass () {
-		// 这里面是这个对象自己的属性
-		 this.a = 22; 
+  		*/
+  var qw = new Function('a', 'b', "console.log(a+b)")
+    // 相当于 function qw(a,b){console.log(a+b)}
+  console.log(qw)
 
-		 return this.b
-	}
-	// 这个是 不是这个对象的自己属性,但是可以继承的属性
-	myClass.prototype = {
-		r:45
-	}
-	var myobj = new myClass()
-	// myClass {a: 22,__proto__:{r:45}}
-	console.log(myobj)
+  // this
+  "use strict"
+  console.log(this)
 
-	var g = myClass.bind({b:"test"})
-	console.log(g())
+  // 构造器函数 没有返回对象的话 默认返回this,,,,注意必须是对象 
+  // 有返回对象的话 用返回的对象 
+  function Fg() {
+    this.l = 1
+    return 3;
+  }
+  console.log((new Fg()).l)
 
-	function yourclass () {
-		 this.a = 45;
-		 return {a:67} 
-	}
-	var youobj = new yourclass()
-	// Object {a: 67}
-	console.log(youobj)
-
-
-	function add (a,b,c) {
-		"use strict";
-		 console.log(arguments)
-
-		 arguments[0] =99 
-		 return a || b || c
-	}
-
-	add(2)
-	add(2,3)
-	add(2,3,4)
+  function Fgg() {
+    this.l = 1
+    return {
+      l: 2
+    }
+  }
+  // 2
+  console.log((new Fgg()).l)
+    // undefined
+  console.log((new Fgg()).k)
 
 
+  function whatType(param) {
+    return Object.prototype.toString.call(param).slice(8, -1).toLowerCase();
+  }
+  console.log(whatType([]))
 
-	var a = 9000;
-	var th = {
-		a:78,
-		f:function () {
-			 return this.a 
-		}
-	}
-	var thd = {
-		a:78677,
-		f:function () {
-			 return this.a 
-		}
-	}
-	console.log(th.f())
-	var fc = th.f;
-	// 只有在调用的时候 this才会根据环境赋值
-	console.log(fc())
-	// bind只是把this的值换了 但没有执行函数
-	console.log(th.f.bind(thd))
-	console.log(th.f.bind(thd)())
-	</script>
+  function whatType2() {
+    // this 相当于特殊的参数,可以传入
+    return Object.prototype.toString.call(this).slice(8, -1).toLowerCase();
+  }
+  console.log(whatType2.apply([]))
+
+
+  // bind  bind会将this指向第一个参数,生成新函数,这样很多时候避免this的域问题
+  var o = {
+      f: function() {
+        return this.a + this.b
+
+      }
+    }
+    // 相当于t.__proto__ = o
+  var t = Object.create(o);
+  t.a = 10;
+  t.b = 15;
+  // 25
+  console.log(t.f())
+
+
+  var op = {
+    t: 2,
+    f: 1,
+    get hua() {
+      return this.t + this.f
+    }
+  }
+
+  function gh() {
+    return 2
+  }
+  Object.defineProperty(op, 'mo', {
+      get: gh,
+      configurable: true,
+      enumerable: true
+    })
+    // 3
+  console.log(op.hua)
+
+
+
+  // 如果构造函数有返回对象的话 那么构造对象的原型指向的就是这个返回对象
+  function myClass() {
+    // 这里面是这个对象自己的属性
+    this.a = 22;
+
+    return this.b
+  }
+  // 这个是 不是这个对象的自己属性,但是可以继承的属性
+  myClass.prototype = {
+    r: 45
+  }
+  var myobj = new myClass()
+    // myClass {a: 22,__proto__:{r:45}}
+  console.log(myobj)
+
+  var g = myClass.bind({
+    b: "test"
+  })
+  console.log(g())
+
+  function yourclass() {
+    this.a = 45;
+    return {
+      a: 67
+    }
+  }
+  var youobj = new yourclass()
+    // Object {a: 67}
+  console.log(youobj)
+
+
+  function add(a, b, c) {
+    "use strict";
+    console.log(arguments)
+
+    arguments[0] = 99
+    return a || b || c
+  }
+
+  add(2)
+  add(2, 3)
+  add(2, 3, 4)
+
+
+
+  var a = 9000;
+  var th = {
+    a: 78,
+    f: function() {
+      return this.a
+    }
+  }
+  var thd = {
+    a: 78677,
+    f: function() {
+      return this.a
+    }
+  }
+  console.log(th.f())
+  var fc = th.f;
+  // 只有在调用的时候 this才会根据环境赋值
+  console.log(fc())
+    // bind只是把this的值换了 但没有执行函数
+  console.log(th.f.bind(thd))
+  console.log(th.f.bind(thd)())
+
+
+  function list(a) {
+    return Array.prototype.slice.call(arguments);
+    // return a
+  }
+  var list1 = list(1,23,4);
+  // undefined是指this的值 也就是不指定this的值,90表示第一个参数的值,45表示第二个参数的值 ,以此类推
+  var listFn2 = list.bind(undefined,90,45);
+  console.log(listFn2);
+  var list2 = listFn2(1,23,4)
+  console.log(list2)
+  // undefined是指this的值 也就是不指定this的值,90表示第一个参数的值,45表示第二个参数的值 ,900是第三个参数的值,.....   也就是listFn2确定的的参数值会继承到下一个
+  var listFn3 = listFn2.bind(undefined,900,455);
+  var list3 = listFn3(1,23,4)
+  console.log(list3)
+  </script>
 </body>
+
 </html>

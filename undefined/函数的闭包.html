@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 简单的闭包 这样局部变量就可以在全局访问
+  function out() {
+    var local = 5;
+    return function() {
+      return local
+    }
+  }
+
+  var q = out();
+  console.log(q())
+  console.log(out()())
+
+
+  // 循环闭包
+  document.body.innerHTML = '<div id="div1">aaa</div><div id="div2">bbb</div><div id="div3">ccc</div>';
+  // 误区循环,i会直接循环完,每次点击都是4
+ /* for (var i = 1; i < 4; i++) {
+  	console.log(i)  
+    document.getElementById('div' + i).addEventListener('click', function() {
+      alert(i)
+    });
+  }*/
+  // 正解
+  for (var i = 1; i < 4; i++) {
+  	// console.log(i)
+    (function(i){
+    	console.log(i)
+    document.getElementById('div' + i).addEventListener('click', function() {
+      alert(i)
+    });
+    }(i))
+   
+    
+
+  }
+
+
+  for(var item in {a:1,b:2}){
+  	console.log(item)
+  }
+console.log(item)
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
