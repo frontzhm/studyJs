@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		
+		// 变量对象:用于存储上下文的   函数参数,函数声明,变量
+		// 存储有两个阶段:
+		// 	1.初始化阶段: 函数参数的传入,函数声明(如果和函数参数冲突,取函数声明),变量声明(只是声明,值为undefined,若和参数或函数声明冲突,则自己被忽略)
+		// 	2.初始化之后开始执行,执行阶段才开始赋值,
+		
+
+		 /**
+		  * function x (a) {
+			 console.log(a) 
+		}
+		  */
+		console.log(x);
+		var x=1;
+		// 1
+		console.log(x);
+		function x (a) {
+			 console.log(a) 
+			 var a=1;
+			 console.log(a)
+		}
+		function y (a) {
+			 console.log(a) 
+			 var a=1;
+			 console.log(a)
+		}
+
+
+		if(true){
+			var a=1;
+		}else{
+			var b=1
+		}
+		// 1
+		console.log(a)
+		// undefined
+		console.log(b)
+		// 2,1,undefined
+		console.log(y(2))
+
+		// 首先 寻找函数声明:
+		// vo = {
+		// 	x:function(){}
+		// }
+		// 然后寻找 变量声明,找到x,a,b,因为x冲突了,所以被忽略
+		// vo = {
+		// 	x:function(a){...},
+		// 	y:function(a){...},
+		// 	a:undefined,
+		// 	b:undefined
+		// }
+		// 初始化阶段结束
+		// 开始执行阶段
+		// 1.x已经是function(){}
+		// 2.x=1,1赋值给了x
+		// vo = {
+		// 	x:1,
+		// 	y:function(a){...},
+		// 	a:undefined,
+		// 	b:undefined
+		// }
+		// 3.执行if的时候,
+		// vo = {
+		// 	x:1,
+		// 	y:function(a){...},
+		// 	a:1,
+		// 	b:undefined
+		// }
+		// b仍然是undefined
+		// 4.y(2) 变量对象切换到函数里面
+		// 重新初始化和赋值
+		// 初始化首先(函数参数)a=2,(无函数声明),变量声明a和参数冲突被忽略
+		// vo= {
+		// 	a:2
+		// }
+		// 到执行阶段
+		// 第一行是a=2
+		// 第二行a重新被赋值,是1
+		// vo={
+		// 	a:1
+		// }
+		// 所以第三行是1
+		// 执行完之后vo切换到全局
+		// 也就是回到
+		// vo = {
+		// 	x:1,
+		// 	y:function(a){...},
+		// 	a:undefined,
+		// 	b:undefined
+		// }
+	</script>
+</body>
+</html>

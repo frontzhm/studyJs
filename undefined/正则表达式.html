@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 只要后面的字符串中存在前面的规则就是true
+  //  /d是数字
+  //  [a~z]{4} 重复四次
+  //  字面  /\d\d/   或者 new RegExp("\d\d")
+  console.log(/\d\d/.test(23))
+  console.log(new RegExp("\d\d").test(23))
+    /**
+     *  . 任意字符除\n,\r,\u2028,\u2029
+     */
+    // true
+  console.log(/.../.test("&@#W"))
+    // false
+  console.log(/.../.test("&\n#"))
+    /**
+     *   \d表示数字0-9
+     */
+    // true
+  console.log(/\d\d/.test(78899))
+    /**
+     * /D 表示非数字
+     */
+    // false
+  console.log(/\D\d/.test('3ps'))
+    // true
+  console.log(/\D\d/.test('3p4s'))
+    /**
+     * \w表示0-9或a-z或A-Z或下划线
+     */
+    // false
+  console.log(/\w\d\D/.test("_@3f"))
+    // true
+  console.log(/\w\d\D/.test("_3f"))
+    /**
+     * [..]字符范围
+     */
+    // false
+  console.log(/[a-d]/.test("f"))
+    // true
+  console.log(/[a-d]/.test("d"))
+  /**
+   * [^..]字符以外
+   */
+  // false
+  console.log(/[^a-d]/.test("d"))
+  // true
+  console.log(/[^ab]/.test("d"))
+
+  /**
+   * ^行首
+   */
+  // true
+  console.log(/^[a-d]/.test("d"))
+  // false
+  console.log(/^[a-d]/.test("xd"))
+  /**
+   * $行尾
+   */
+  // true
+  console.log(/[a-d]$/.test("d"))
+  // false
+  console.log(/[a-d]$/.test("xd"))
+  /**
+   * (abc)分组
+   */
+  // false
+  console.log(/(ab)\1/.test("xd"))
+  // true
+  console.log(/(ab)\1/.test("ababd"))
+  // true
+  console.log(/(ab)\1\1/.test("abababd"))
+  /**
+   * (?:abc)仅分组
+   */
+  // false
+  console.log(/(?:ab)\1/.test("xd"))
+  // false
+  console.log(/(?:ab)\1/.test("ababd"))
+  // false
+  console.log(/(?:ab)\1\1/.test("abababd"))
+  // true
+  console.log(/(?:ab)\1\1/.test("ab\1\1"))
+  /**
+   * {m,n}表示重复m-n次
+   * 
+   */
+  // false
+  console.log(/ad{2,4}/.test("adad"))
+  // true
+  console.log(/ad{2,4}/.test("add"))
+  // false
+  console.log(/a{2}/.test("a"))
+  /**
+   * x*表示重复次数>=0
+   * x+表示重复次数>0
+   * x*?表示重复次数=0,也就是不存在
+   * x+?表示重复次数=1
+   * x?出现0或1次
+   */
+  /**
+   * /g表示全局匹配
+   * /i表示不分大小写
+   */
+  </script>
+</body>
+
+</html>

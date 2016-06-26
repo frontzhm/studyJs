@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // oop:object-oritented programming  面向对象编程
+  // 继承 封装 多态 抽象
+  // 基于原型的继承
+  function Foo(){
+  	
+  }
+  /**
+   * Object{
+   * 	constructor:Foo(){},
+   * 	__proto__:Object.prototype
+   * }
+   */
+  // Foo.__proto__ == Object.protype
+  console.log(Foo.prototype);
+// de是Foo的一个实例,继承Foo.prototype的属性,也就是Foo.prototype为所有的实例共享属性
+// Foo是Object的一个实例.,继承Object.prototype的属性
+// 
+  var de = new Foo();
+  // de.__proto == Foo.prototype
+  console.log(de.__proto__);
+
+  // 实现类继承
+  function Person(name,age){
+  	// 每个实例的name和age
+  	this.name = name;
+  	this.age = age;
+  }
+  Person.prototype.hi = function () {
+  	 console.log("Hi,my name is "+this.name+" , i am "+this.age+" years old.") 
+  }
+  Person.prototype.ARMS_NUM = 2;
+  Person.prototype.LEGS_NUM = 2;
+
+  function Student(name,age,className){
+  	// Person(name,age);是普通调用函数,这样Person里面的this指向的是window全局对象,
+  	// 也就是在函数外面也能访问到
+  	// 这里把Person的this由指向window改为指向student里面所指的对象
+  	Person.call(this,name,age);
+  	this.className = className;
+  }
+  console.log(window)
+ 
+  // Student.prototype = Person.prototype;会让引用指向同一个,也就是增加Student.prototype对象的属性也就增加了Person.prototype的属性
+  // 
+  // 所以Object.create新建了一个空对象,空对象的原型指向Person.prototype
+  // student.prototype = {_proto__:Person.prototype}
+  // 这样就是实现了原型继承,哦,这句也相当于student.prototype.__proto__ = Person.prototype;
+  Student.prototype = Object.create(Person.prototype);
+  // function Person(..){},这样prototype是		Person创建的
+  console.log(Student.prototype.constructor)
+  // 所以需要指定他本身
+  Student.prototype.constructor = Student;
+
+  var o = new Student("k",20,"1班");
+  console.log(o)
+  Student.prototype.x = 1;
+  
+  Student.prototype = {y:2};
+  // undefined  改变原型是不会改变已经存在实例的原型,但新创建的实例会受到影响
+  console.log(o.y)
+  // 1
+  console.log(o.x)
+  
+
+
+  var oo = new Student("k",20,"1班");
+  // 2
+  console.log(oo.y)
+  // undefined
+  console.log(oo.x)
+
+  Object.prototype.y = 1
+  // 这种写法可以防止枚举的时候 
+  Object.defineProperty(Object.prototype,"x",{writable:false,enumerable:false})
+  var nn = {};
+  for(key in nn){
+  	console.log(key)
+  } 
+  // hasOwnProperty来判断有没有y这个属性是不是自己的
+  console.log(nn.hasOwnProperty('y'))
+  console.log(nn.y);
+
+
+  // a instanceof A    instanceof右边是构造函数,若a的__proto__是A.prototype的话就是true,或者在原型链上    
+  // true
+  console.log([1] instanceof Array)
+  // false
+  console.log({} instanceof Array)
+  
+
+
+  </script>
+</body>
+
+</html>

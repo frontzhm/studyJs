@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /**
+   * 探测器
+   * 基本探测器
+   * 容器探测器
+   * 链接探测器
+   */
+  (function(window) {
+  	// 基本类
+    function DetectorBase(configs) {
+      if (!this instanceof DetectorBase) {
+      	// 只能new调用
+        throw new Error("Do not invoke without new")
+      }
+      this.configs = configs;
+      // this.analyze();
+
+    };
+    DetectorBase.prototype.detect = function() {
+      throw new Error("Not implemented")
+    };
+    DetectorBase.prototype.analyze = function() {
+      console.log("analyzing....");
+      this.data = "####data####";
+    };
+
+    function DetectorLink(links) {
+      if (!this instanceof DetectorLink) {
+        throw new Error("Do not invoke without new")
+      }
+      DetectorBase.apply(this,arguments)
+      this.links = links;
+
+    }
+    function DetectorContainer(containers) {
+      if (!this instanceof DetectorContainer) {
+        throw new Error("Do not invoke without new")
+      }
+      DetectorBase.apply(this,arguments)
+      this.containers = containers;
+
+    }
+
+    function inherit(subclass,baseclass){
+    	subclass.protptype = Object.create(baseclass.prototype);
+    	subclass.protptype.constructor = subclass;
+    }
+
+    inherit(DetectorLink,DetectorBase);
+    inherit(DetectorContainer,DetectorBase);
+    // 拓展
+    DetectorLink.prototype.detect = function(){
+    	console.log("Loading data "+this.data);
+    	console.log("Link detect starts");
+    	console.log("Scaning these links "+this.links);
+    }
+    DetectorContainer.prototype.detect = function(){
+    	console.log("Loading data "+this.data);
+    	console.log("container detect starts");
+    	console.log("Scaning these containers "+this.containers);
+    }
+    // 阻止被改变
+    Object.freeze(DetectorBase);
+    Object.freeze(DetectorBase.prototype);
+    Object.freeze(DetectorLink);
+    Object.freeze(DetectorLink.prototype);
+    Object.freeze(DetectorContainer);
+    Object.freeze(DetectorContainer.prototype);
+    // 向外输出window对象
+    Object.defineProperties(window, {
+    	DetectorLink:{value:DetectorLink},
+    	DetectorContainer:{value:DetectorContainer},
+    	DetectorBase:{value:DetectorBase},
+    })
+  }(this))
+  var cd = new DetectorContainer("#a#b#c");
+  var ld = new DetectorContainer("www.baidu.com www.sina.com");
+  cd.detect()
+  ld.detect()
+  </script>
+</body>
+
+</html>

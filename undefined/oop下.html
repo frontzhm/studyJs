@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /**
+   * 重载:函数名相同,函数的参数列表不同(包括参数个数和参数类型)，至于返回类型可同可不同
+   * 模拟重载
+   * 
+   */
+  // 可以传入对象 也可以传入别的
+  function Person() {
+    var args = arguments;
+    // typeof 可以检测出string,number,boolean,undefined,object(null也返回这个),为排除null就这样
+    if (typeof args[0] == "object" && args[0]) {
+      if (args[0].name) {
+        this.name = args[0].name;
+      }
+      if (args[0].age) {
+        this.age = args[0].age;
+      }
+
+    } else {
+      if (args[0]) {
+        this.name = args[0];
+      }
+      if (args[1]) {
+        this.age = args[1];
+      }
+
+    }
+
+  }
+  Person.prototype.toString = function() {
+    return "name is " + this.name + " , age is " + this.age;
+  }
+  var qq = new Person({
+    name: "qq",
+    age: 24
+  });
+  var ww = new Person("ww", 244);
+  console.log(qq.toString())
+  console.log(ww.toString())
+
+  // 子类调用 init
+  Student.prototype.init = function(){
+  	Person.prototype.init=function(){
+  		.
+  	}
+  }
+  // 链式调用 方法中返回this
+  // ..
+  // 抽象类
+  // 模块化
+  
+  </script>
+</body>
+
+</html>
