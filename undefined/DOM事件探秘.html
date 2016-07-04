@@ -3,13 +3,73 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style>
+	/*拖拽的面板必须是定位的*/
+		.panel{
+			width: 300px;
+			height: 300px;
+			position: absolute;
+			left: 300px;
+			top: 100px;
+			background-color: #e5e5e5;
+		}
+		h1{
+			height: 50px;
+			background-color: #f66;
+			margin-top: 20px;
+		}
+	</style>
 </head>
 <body>
+
+		<div class="panel" id="panel">
+			<h1>
+				
+			</h1>
+		</div>
+
+<div id="pa">
+	<p class="e"></p>
+	<span class="e"></span>
+</div>
 	 <script>
 	 	/**
 	 	 * 不同事件类型
 	 	 * 	鼠标事件 键盘事件
+	 	 * 	综合实践:拖拽面板
 	 	 */
+	 	// getElementsByClassName(names)  ie10以下不支持
+	 	// parentId可选
+	 	 function getEleByClass(clsname,parentId){
+	 	 	// 父元素
+	 	 	var oParent = parent?document.getElementById(parentId):document,
+	 	 	// 结果是一个数组
+	 	 	results = [],
+	 	 	// 父元素下所有的元素 遍历出符合条件的元素
+	 	 	eles =  oParent.getElementsByTagName("*");
+	 	 	for(var i=0,l=eles.length;i<l;i++){
+	 	 		if(eles[i].className == clsname){
+	 	 			results.push(eles[i]);
+	 	 		}
+	 	 	}
+	 	 	// es5 的filter
+	 	 	// 节点转换成数组   [].slice.call(eles)      Array.prototype.slice([start,[end]])  start省略表示从0开始 end省略表示结束 slice浅复制所选的内容到新数组中
+	 	 	/*results = [].slice.call(eles).filter(function(item){
+	 	 		return item.className == clsname;
+	 	 	});*/
+	 	 	return results;
+
+	 	 }
+	 	 console.log(getEleByClass('e',"pa"))
+
+	 	 window.onload = drag;
+	 	 function drag () {
+	 	 	  // 第一步 在标题区域按下鼠标
+	 	 	  // 第二步 在页面移动
+	 	 	  // 第三部 释放鼠标时停止移动 
+	 	 }
+
+
 	 </script>
 </body>
 </html>
