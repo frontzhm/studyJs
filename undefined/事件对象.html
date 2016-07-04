@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件</title>
+</head>
+<body>
+<button id="btn1">点击1</button>
+<button id="btn2">点击2</button>
+<a href="http://www.baidu.com" id="link">去百度</a>
+<script src="function.js"></script>
+<script>
+
+	// 事件对象 事件触发的时候产生一个事件对象event
+	// 1.DOM的事件对象(括号里是ie)
+	// 最重要的属性  type,target(srcElement),stopPropagation()(cancelBubble = true),preventDefault()(returnVal=false)
+	
+	var btn1 = document.getElementById("btn1");
+	var link = document.getElementById("link");
+	var body = document.body;
+	function al (event) {
+		alert("点击btn");
+		// 兼容ie低版本
+		event = event || window.event
+		// 阻止冒泡
+		// event.stopPropagation();
+		 console.log(event);
+		 
+		 // type是事件类型
+		 console.log(event.type);
+		 // target用于获取事件目标 DOM对象
+		 console.log(event.target); 
+		 // ie是srcElement
+		 console.log(event.srcElement); 
+		 // stopPropagation 阻止冒泡的事件  事件冒泡就是 我点击了按钮 --  相当于点击了他的各种长辈,换言之会触发他长辈身上的点击事件,想要不触发长辈身上的事件就是阻止冒泡
+		 console.log(event.stopPropagation); 
+		 // 阻止事件的默认行为 最典型的是阻止点击a的跳转
+		 console.log(event.preventDefault); 
+		 // x,y是鼠标在浏览器中的位置
+		 // screenX,screenY是鼠标在屏幕的位置
+		 console.log(event.x); 
+		 console.log(event.y); 
+	}
+	function notgo (event) {
+		 alert("不走");
+		 event.stopPropagation();
+		 event.preventDefault();
+		 console.log(event)
+	}
+	eventUtil.addHandle(btn1,'click',al)
+	eventUtil.addHandle(body,'click',function(){alert("我是点击body 发生的")})
+	eventUtil.addHandle(link,'click',notgo)
+
+	// 2.ie中的事件对象
+	// type可以
+	// target 在ie中相当于 srcElement 为了兼容   event.target || event.srcElement
+	// event在ie8之前 window.event 所以必须 event = event || window.event
+	
+
+</script>
+</body>
+</html>

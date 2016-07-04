@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件</title>
+</head>
+<body>
+<button id="btn1">点击1</button>
+<button id="btn2">点击2</button>
+<a href="http://www.baidu.com" id="link">去百度</a>
+<script src="function.js"></script>
+<script>
+window.onload = function () {
+	 var body = document.body; 
+	 var btn1 = document.getElementById('btn1'); 
+	 var btn2 = document.getElementById('btn2');
+	 var link = document.getElementById('link');
+	 eventUtil.addHandle(body,"click",function () {
+	 	 alert("body") 
+	 })
+	 eventUtil.addHandle(link,"click",function (e) {
+	 	// e = eventUtil.getEvent(e);
+	 	e = e || window.event;
+	 	console.log(eventUtil.getElement(e))
+	 	eventUtil.stopPropagation(e);
+	 	eventUtil.preventDefault(e);
+	 })
+}
+</script>
+</body>
+</html>
