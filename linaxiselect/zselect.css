@@ -1,0 +1,44 @@
+.box{
+	width: 1000px;
+	margin:50px auto;
+}
+ul{list-style: none;padding: 0;margin: 0;}
+.zselect{
+	position: relative;
+	/*自定义*/
+	width: 200px;
+	font:14px/30px "microsoft yahei",Arial;
+	line-height: 30px;
+	font-family:"microsoft yahei";
+	/*font-style,font-variant,font-weight,font-size/line-height ,font-family;*/
+
+}
+.zselect .fa-angle-down{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.zselectTxt{
+	border: 1px solid #ccc;
+	padding-left: 10px;
+}
+.zselectList{
+	position: absolute;
+	width: 100%;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	box-sizing: border-box;
+	display: none;
+	/*防止透*/
+	z-index:1;
+	background-color: #fff;
+}
+.zoption{
+	border-bottom: 1px solid #ccc;
+	padding-left: 10px;
+	box-sizing: border-box;
+}
+.zselect.expanded .zselectList{
+	/*自定义  可以辅助写样式 这里就是个范例*/
+	box-shadow: 0 0 2px #666;
+}

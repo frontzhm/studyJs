@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+	<script>
+		$(function(){
+			$.each($(":checkbox"),function(){
+
+				console.log($(this).val())
+				if($(this).val() ==0){
+					
+				  $(this).attr("checked",false)
+				  console.log($(this).attr("checked"))
+				}
+			})
+			
+			$("#t").change(function(){
+				console.log($(this).attr("chekcked"))
+			})
+
+		})
+	</script>
+</head>
+<body>
+<div id="p">fffffffffffffffffffffffffff</div>
+<input type="checkbox" value="0" name="" id="t" checked><label for="t">hahahah</label>
+	<script>
+
+		/**
+		 * 正则的元字符: 
+		 * () 组 
+		 * [] 范围
+		 * {}	重复
+		 * ^	非或开头
+		 * $  结尾
+		 * |  或
+		 * ?  0-1次
+		 * +  >=1
+		 * *  >=0
+		 * +? =1(+表示>=1 ?表示0或1 则交集是1  )
+		 * *? =0(?表示>=0 ?表示0或1 则交集是0  )
+		 * .  任意字符除了转行符之类的
+		 *
+		 *
+		 *
+		 * 
+		 * 正则对象的属性:
+		 * global 是否标志了全局
+		 * ignoreCase	是否标志了忽略大小写
+		 * multiline	是否标志了多行
+		 * source 输出字符串模式的正则表达式
+		 *
+		 *
+		 *
+		 *
+		 * 正则对象的方法:
+		 * reg.exec(str)   返回一个数组 且数组有两个特别的属性index,input
+		 * index表示 第一个匹配项在字符串的位置 
+		 * input表示 字符串
+		 *
+		 * reg.test(str) 是否有匹配值
+		 */
+		var re = null,i;
+		for(i=0;i<3;i++){
+			// re = new RegExp("cat\\d","g")
+			// 字符串先转移\在用\d的规则
+			re = /cat\d/g;
+			console.log(re.test("cat3sdt"))
+			// cat\d
+			console.log(re.source)
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+  <link rel="stylesheet" href="combo.select.css">
+  <script src="jquery.combo.select.js"></script>
+</head>
+
+<body>
+  <div class="dowebok">
+      <select>
+          <option value="">月份</option>
+          <option value="一月">一月</option>
+          <option value="二月">二月</option>
+          <option value="三月">三月</option>
+          ...
+      </select>
+      <select>
+          <option value="">月份</option>
+          <option value="一月">一月</option>
+          <option value="二月">二月</option>
+          <option value="三月">三月</option>
+          ...
+      </select>
+  </div>
+
+  <script>
+  $(function() {
+      $('select').comboSelect();
+  });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <label for="1">
+    <input type="checkbox" name="e" id="1" checked>嘻嘻
+  </label>
+  <label for="2">
+    <input type="checkbox" name="e" id="2">哈哈
+  </label>
+  <button id="btn">改变check</button>
+  <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+  <script>
+  $(function() {
+  	// key   和 fun  函数返回的值就是对应的选择器的key的值  遍历
+  	$("input").prop("name", function(index, attr) {
+  	  return index;
+  	})
+  	
+    $("#btn").click(function() {
+      if ($("#1").prop("checked")) {
+      
+        // 多个键值对的时候
+        $("#1").prop({
+            "checked": false,
+            value: 3
+          })
+    
+      } else {
+      	// 一个键值对的时候
+      	$("#1").prop("checked",true)
+ 
+      }
+
+    })
+
+  })
+  </script>
+</body>
+
+</html>

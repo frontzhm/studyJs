@@ -28,13 +28,9 @@ $(function() {
           for (m = 0; m < ml; m++) {
             // if (selects.eq(1).val() == one[i]) {
             if (selects.eq(1).val() == two[m].n) {
-            	console.log(selects.eq(1).val())
-            	console.log(two[m].n)
-            	console.log(two[m].s)
-              insertOptionIntoSelect(gatherAttrValueIntoArr(two[m].s, 'n'), selects.eq(2));
+              insertOptionIntoSelect(two[m].s, selects.eq(2));
             }
           }
-
         })
       }
     }

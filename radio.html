@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+  body{
+  	font-family:"microsoft yahei";
+  	font-size:14px;
+  }
+  
+  /*单选框开始*/
+  input[type="radio"] {
+    /*本身隐藏*/
+    display: none;
+  }
+  
+  input[type="radio"] + label:before {
+    font-family: FontAwesome;
+    display: inline-block;
+    /*图标和label的距离*/
+    letter-spacing: 3px;
+    /*自定义*/
+    font-size: inherit;
+    color: #999;
+    /*未选中时的图标*/
+    content: "\f10c";
+    /*下面两个可有可无,文字渲染更加优化 火狐和谷歌支持*/
+    text-rendering: auto;
+    /*字更加平滑*/
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  input[type="radio"]:checked + label:before {
+    content: "\f192";
+    /*自定义*/
+    color: #96f;
+  }
+  /*单选框结束*/
+
+  /*复选框开始*/
+  input[type="checkbox"]{
+  	/*本身隐藏*/
+  	display: none;
+  	margin-right: 10px;
+  }
+  input[type="checkbox"]+label:before{
+  	font-family:FontAwesome;
+  	display: inline-block;
+  	letter-spacing: 3px;
+  	/*自定义*/
+  	font-size: inherit;
+  	color: #999;
+  	/*防止图标长度不一样*/
+  	width: 14px;
+  	/*未选中的图标*/
+  	content:"\f096";
+  }
+  input[type="checkbox"]:checked+label:before{
+  	/*选中时的图标*/
+  	content:"\f14a";
+  	color:blue;
+  }
+  /*复选框结束*/
+  </style>
+</head>
+
+<body>
+  <div>
+    <span for="">性别</span>
+    <input type="radio" name="gender" id="male">
+    <label for="male" class="radioLabel">男的ff</label>
+    <input type="radio" name="gender" id="female">
+    <label for="female" class="radioLabel">女</label>
+  </div>
+  <br>
+  <br>
+  <div>
+    <span>兴趣</span>
+    <input type="checkbox" name="hobby" id="draw">
+    <label for="draw">画画</label>
+    <input type="checkbox" name="hobby" id="read">
+    <label for="read">读书</label>
+    <input type="checkbox" name="hobby" id="swim">
+    <label for="swim">游泳</label>
+  </div>
+  <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+  <script>
+  </script>
+</body>
+
+</html>
