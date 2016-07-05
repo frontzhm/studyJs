@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .panel{
+      position: absolute;
+      left: 100px;
+      top: 100px;
+      width: 300px;
+      height: 300px;
+      background-color: #f8f8f8;
+    }
+    .title{
+      line-height: 100px;
+      background-color: #e5e5e5;
+      text-align: center;
+    }
+  </style>
+  <script>
+    /**
+     * 1.拖拽:盒子随鼠标移动而移动(相对位置)
+     * 2.拖拽:mousedown  mousemove  mouseup
+     * 3.拖拽: 边缘  和 释放的问题
+     */
+    
+    window.onload = drag;
+    function drag () {
+      var otitle = document.getElementById("title");
+      otitle.onmousedown = fndown;
+      
+
+    }
+    function fndown (e) {
+      var opanel = document.getElementById("panel");
+       e = e || window.event;
+       // 鼠标在标题上按下时 获得盒子相对于鼠标的相对坐标,
+       var relx = e.clientX - opanel.offsetLeft,
+           rely = e.clientY - opanel.offsetTop;
+        // 鼠标在页面移动的时候 盒子的位置就是鼠标的相对位置,但是位置有个限度 也就是left top的值有最大和最小的值
+        
+        document.onmousemove = function(e){
+          e = e || window.event;
+          fnmove(e,relx,rely);
+        };
+        document.onmouseup = function () {
+           document.onmousemove = null; 
+           document.onmouseup = null; 
+        }
+    }
+    function fnmove(e,relx,rely){
+      var opanel = document.getElementById("panel");
+      // 一般情况下
+      var l = e.clientX - relx,
+          t = e.clientY - rely,
+          // width是clientWidth
+          maxw = (document.documentElement.clientWidth || document.body.clientWidth) - opanel.offsetWidth,
+          maxh = (document.documentElement.clientHeight || document.body.clientHeight) - opanel.offsetHeight;
+      // 但是特殊情况  0<l<maxw
+      l<0 && (l = 0);
+      l>maxw && (l=maxw);
+      t<0 && (t = 0);
+      t>maxh && (t=maxh);
+      opanel.style.left = l+"px";
+      opanel.style.top = t+"px";
+    }
+    
+  </script>
+</head>
+<body>
+  <div id="panel" class="panel">
+    <h1 class="title" id="title">这里拖拽</h1>
+
+  </div>
+</body>
+</html>

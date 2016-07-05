@@ -75,7 +75,8 @@
       e = e || window.event;
       var relX = e.clientX - oPanel.offsetLeft,
         relY = e.clientY - oPanel.offsetTop;
-      oPanel.onmousemove = function(){
+      oPanel.onmousemove = function(e){
+        e = e || window.event;
       	fnMove(e,relX, relY);
       }
     }
@@ -92,7 +93,7 @@
       l < 0 && (l = 0);
       l > maxW && (l = maxW);
       t < 0 && (t = 0);
-      t > maxW && (t = maxH);
+      t > maxH && (t = maxH);
       oPanel.style.left = l + "px";
       oPanel.style.top = t + "px";
 
