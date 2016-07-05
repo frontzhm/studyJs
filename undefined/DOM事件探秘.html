@@ -1,75 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<style>
-	/*拖拽的面板必须是定位的*/
-		.panel{
-			width: 300px;
-			height: 300px;
-			position: absolute;
-			left: 300px;
-			top: 100px;
-			background-color: #e5e5e5;
-		}
-		h1{
-			height: 50px;
-			background-color: #f66;
-			margin-top: 20px;
-		}
-	</style>
-</head>
-<body>
 
-		<div class="panel" id="panel">
-			<h1>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  /*拖拽的面板必须是定位的*/
+  
+  .panel {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 300px;
+    top: 100px;
+    background-color: #e5e5e5;
+  }
+  
+  h1 {
+    height: 50px;
+    background-color: #f66;
+    margin-top: 20px;
+  }
+  
+  .panelIn {
+    position: relative;
+  }
+  
+  .close {
+    position: absolute;
+    right: -10px;
+    top: -30px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="panel" id="panel">
+    <div class="panelIn">
+      <h1 class="panelhead">
 				
 			</h1>
-		</div>
+      <span class="close" id="close">关闭</span>
+    </div>
+  </div>
+  <div id="pa">
+    <p class="e"></p>
+    <span class="e"></span>
+  </div>
+  <script>
+  /**
+   * 不同事件类型
+   * 	鼠标事件 键盘事件
+   * 	综合实践:拖拽面板
+   */
+  // getElementsByClassName(names)  ie10以下不支持
+  // parentId可选
+  function getEleByClass(clsname, parentId) {
+    // 父元素
+    var oParent = parent ? document.getElementById(parentId) : document,
+      // 结果是一个数组
+      results = [],
+      // 父元素下所有的元素 遍历出符合条件的元素
+      eles = oParent.getElementsByTagName("*");
+    for (var i = 0, l = eles.length; i < l; i++) {
+      if (eles[i].className == clsname) {
+        results.push(eles[i]);
+      }
+    }
+    // es5 的filter
+    // 节点转换成数组   [].slice.call(eles)      Array.prototype.slice([start,[end]])  start省略表示从0开始 end省略表示结束 slice浅复制所选的内容到新数组中
+    /*results = [].slice.call(eles).filter(function(item){
+    	return item.className == clsname;
+    });*/
+    return results;
 
-<div id="pa">
-	<p class="e"></p>
-	<span class="e"></span>
-</div>
-	 <script>
-	 	/**
-	 	 * 不同事件类型
-	 	 * 	鼠标事件 键盘事件
-	 	 * 	综合实践:拖拽面板
-	 	 */
-	 	// getElementsByClassName(names)  ie10以下不支持
-	 	// parentId可选
-	 	 function getEleByClass(clsname,parentId){
-	 	 	// 父元素
-	 	 	var oParent = parent?document.getElementById(parentId):document,
-	 	 	// 结果是一个数组
-	 	 	results = [],
-	 	 	// 父元素下所有的元素 遍历出符合条件的元素
-	 	 	eles =  oParent.getElementsByTagName("*");
-	 	 	for(var i=0,l=eles.length;i<l;i++){
-	 	 		if(eles[i].className == clsname){
-	 	 			results.push(eles[i]);
-	 	 		}
-	 	 	}
-	 	 	// es5 的filter
-	 	 	// 节点转换成数组   [].slice.call(eles)      Array.prototype.slice([start,[end]])  start省略表示从0开始 end省略表示结束 slice浅复制所选的内容到新数组中
-	 	 	/*results = [].slice.call(eles).filter(function(item){
-	 	 		return item.className == clsname;
-	 	 	});*/
-	 	 	return results;
+  }
+  console.log(getEleByClass('e', "pa"))
 
-	 	 }
-	 	 console.log(getEleByClass('e',"pa"))
+  window.onload = drag;
 
-	 	 window.onload = drag;
-	 	 function drag () {
-	 	 	  // 第一步 在标题区域按下鼠标
-	 	 	  // 第二步 在页面移动
-	 	 	  // 第三部 释放鼠标时停止移动 
-	 	 }
+  function drag() {
+    // 第一步 在标题区域按下鼠标 // 第二步 在页面移动
+    // 第三部 释放鼠标时停止移动 
+    var oTitle = getEleByClass("panelhead", "panel")[0];
+    // 拖曳
+    oTitle.onmousedown = fnDown;
+    // 关闭
+    var oClose = document.getElementById("close");
+    oClose.onclick = function(){
+    	document.getElementById("panel").style.display = "none";
+    }
+   
+  }
 
+  function fnDown(e) {
+    // 鼠标跟随  就是跟随光标
+    // 鼠标事件都是在浏览器窗口中特定的位置上发生的,这个位置信息保存在事件对象的clientX clientY属性中所有的浏览器都支持这个属性,它们的值表示事件发生时鼠标指针在视口中的水平和垂直坐标 不包括页面滚动距离
+    // 鼠标按下 在整个页面中移动  onmousemove当鼠标指针在元素内部移动时重复的触发
+    e = e || window.event;
 
-	 </script>
+    var oDrag = document.getElementById("panel"),
+      // 光标按下的时候  光标和面板的距离
+      disX = e.clientX - oDrag.offsetLeft,
+      disY = e.clientY - oDrag.offsetTop;
+
+    // 移动
+    document.onmousemove = function(e) {
+      e = e || window.event;
+      fnMove(e, disX, disY)
+    }
+    // 释放鼠标 mouseup  释放鼠标触发
+    document.onmouseup = function(){
+    	document.onmousemove = null;
+    	document.onmouseup = null;
+    }
+
+    function fnMove(e, disX, disY) {
+      var oDrag = document.getElementById("panel"),
+        l = e.clientX - disX,
+        t = e.clientY - disY,
+        winW = document.documentElement.clientWidth || document.body.clientWidth,
+        winH = document.documentElement.clientHeight || document.body.clientHeight,
+        maxW = winW - oDrag.offsetWidth,
+        maxH = winH - oDrag.offsetHeight;
+      l < 0 && (l = 0)
+      l > maxW && (l = maxW-10)
+      t < 0 && (t = 10);
+      t > maxH && (t = maxH);
+      oDrag.style.left = l + "px";
+      oDrag.style.top = t + "px";
+    }
+
+// 所有的拖动 就是鼠标在哪盒子在哪 (注意相对位置);
+// 所有的拖动  边缘问题 鼠标按下和释放
+  }
+  </script>
 </body>
+
 </html>

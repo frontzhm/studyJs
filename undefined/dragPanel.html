@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>拖拽</title>
+  <link href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+  .panel {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    width: 430px;
+  }
+  
+  .panelHead {
+    position: relative;
+    height: 180px;
+    background-color: #005690;
+  }
+  
+  h1 {
+    color: #fff;
+    line-height: 180px;
+    text-align: center;
+  }
+  
+  .closeMin {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    font-size: 30px;
+  }
+  
+  .closeMin a {
+    color: #f00;
+    background-color: #fff;
+  }
+  
+  .panelBody {
+    height: 150px;
+    background-color: #ebf2f9;
+  }
+  </style>
+  <script>
+  /**
+   * [getByClass 通过类名获得元素]
+   * @param  {[type]} clsname  [类名]
+   * @param  {[type]} parentid [可以写父元素的id]
+   * @return {[type]}          [符合类名的元素的数组]
+   */
+  function getByClass(clsname, parentid) {
+    var oParent = parentid ? document.getElementById(parentid) : document,
+      // sons不是数组
+      sons = oParent.getElementsByTagName("*");
+    var results = Array.prototype.slice.call(sons).filter(function(item, index, arr) {
+      return item.className == clsname;
+    })
+    return results;
+  };
+  window.onload = drag;
+   function drag() {
+    
+    // 鼠标在标题栏上按下,鼠标在浏览器窗口里移动 ,盒子的left top就是移动鼠标的坐标-相对距离 + px, 但left和top有边缘值,再然后就是松开鼠标 鼠标移动事件移除且自身事件移除
+    // 1.标题栏
+    // 2.相对距离 = 鼠标按下的clientX - 盒子的offsetLeft
+    // 3.边缘值 left 最小是0  最大是
+    // 这里是一个数组,必须加参数
+    var oTitle = getByClass("panelHead", "panel")[0];
+    var oPanel = document.getElementById("panel");
+    oTitle.onmousedown = fnDown;
+
+    function fnDown(e) {
+      var oPanel = document.getElementById("panel");
+      e = e || window.event;
+      var relX = e.clientX - oPanel.offsetLeft,
+        relY = e.clientY - oPanel.offsetTop;
+      oPanel.onmousemove = function(){
+      	fnMove(e,relX, relY);
+      }
+    }
+
+    function fnMove(e, relX, relY) {
+      var oPanel = document.getElementById("panel");
+      e = e || window.event;
+      var l = e.clientX - relX,
+        t = e.clientY - relY,
+        winW = document.documentElement.clientWidth || document.body.clientWidth,
+        winH = document.documentElement.clientHeight || document.body.clientHeight,
+        maxW = winW - oPanel.offsetWidth,
+        maxH = winH - oPanel.offsetHeight;
+      l < 0 && (l = 0);
+      l > maxW && (l = maxW);
+      t < 0 && (t = 0);
+      t > maxW && (t = maxH);
+      oPanel.style.left = l + "px";
+      oPanel.style.top = t + "px";
+
+      document.onmouseup = function(){
+      	fnUp()
+      }
+    }
+
+    function fnUp() {
+    	var oPanel = document.getElementById("panel");
+      oPanel.onmousemove = null;
+      oPanel.onmouseup = null;
+    }
+
+  }
+  </script>
+</head>
+
+<body>
+  <div class="panel" id="panel">
+    <div class="panelHead">
+      <h1>QQ</h1>
+      <div class="closeMin">
+        <a href="javascript:;" class="close" id="close"><i class="fa fa-times-circle"></i></a>
+      </div>
+    </div>
+    <div class="panelBody">
+    </div>
+  </div>
+</body>
+
+</html>
