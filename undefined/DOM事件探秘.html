@@ -54,7 +54,7 @@
   // parentId可选
   function getEleByClass(clsname, parentId) {
     // 父元素
-    var oParent = parent ? document.getElementById(parentId) : document,
+    var oParent = parentId ? document.getElementById(parentId) : document,
       // 结果是一个数组
       results = [],
       // 父元素下所有的元素 遍历出符合条件的元素
@@ -73,7 +73,7 @@
 
   }
 
-  window.onload = drag;
+/*  window.onload = drag;
 
   function drag() {
     // 第一步 在标题区域按下鼠标 // 第二步 在页面移动
@@ -129,7 +129,7 @@
 
 // 所有的拖动 就是鼠标在哪盒子在哪 (注意相对位置);
 // 所有的拖动  边缘问题 鼠标按下和释放
-  }
+  }*/
   </script>
 </body>
 

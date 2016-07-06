@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.panel{
+			position: absolute;
+			left: 100px;
+			top: 100px;
+			width: 500px;
+			height: 500px;
+			background-color: #f8f8f8;
+		}
+		.title{
+			line-height: 100px;
+			text-align: center;
+			background-color: #e5e5e5;
+		}
+	</style>
+	<script>
+	function getclass(clsname,parentid) {
+		var oparent = parentid?document.getElementById(parentid):document,
+				results = [],
+				sons =  oparent.getElementsByTagName("*");
+		for(var i=0,l=sons.length;i<l;i++){
+			// className  必须大写N
+			if(sons[i].className == clsname){
+				results.push(sons[i]);
+			}
+		}
+		return results;
+
+	}
+
+		window.onload = drag;
+		
+		
+		
+		function drag() {
+			var otitle = getclass("title","panel")[0];
+
+			otitle.onmousedown = fndown;
+		}
+		function fndown(e) {
+			var opanel = getclass("panel")[0];
+			e = e || window.event;
+			var relx = e.clientX - opanel.offsetLeft,
+					rely = e.clientY - opanel.offsetTop;
+			document.onmousemove = function(e){
+				e = e || window.event;
+				fnmove(e,relx,rely);
+			}
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				document.onmouseup = null;
+			}
+		}
+		function fnmove(e,relx,rely) {
+			var opanel = getclass("panel")[0];
+			var l = e.clientX - relx,
+					t = e.clientY - rely,
+					winw = document.documentElement.clientWidth || document.body.clientWidth,
+					winh = document.documentElement.clientHeight || document.body.clientHeight,
+					maxw = winw - opanel.offsetWidth,
+					maxh = winh - opanel.offsetHeight;
+					l<0 && (l=0);
+					l>maxw && (l=maxw);
+					t<0 && (t=0);
+					t>maxh && (t=maxh);
+					opanel.style.left = l+"px";
+					opanel.style.top = t+"px";
+		}
+	</script>
+</head>
+<body>
+	<div id="panel" class="panel">
+		<h1 class="title" id="title">这里拖拽</h1>
+	</div>
+
+</body>
+</html>
