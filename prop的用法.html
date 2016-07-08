@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+</head>
+<body>
+<ul>
+	<li class="w1" def = "def" data-t = "t" data-u="u">1</li>
+	<li class="w2 w">2</li>
+	<li class="w2">3</li>
+	<li class="w2">4</li>
+	<li class="w2">5</li>
+	<li class="w2">6</li>
+</ul>
+	<script>
+		function c(str) {
+			console.log(str);
+		}
+		/*
+		jquery中attr和prop的区别
+				对于HTML元素本身就带有的固有属性，在处理时，使用prop方法。
+				对于HTML元素我们自己自定义的DOM属性，在处理时，使用attr方法。
+				.prop()方法是一种简便的设置值得方式，特别是多属性、使用函数返回值或者一次性在多个elements中设置数值。在设置 selectedIndex ,  tagName ,  nodeName ,  nodeType ,  ownerDocument ,  defaultChecked , 或者 defaultSelected时应该使用本方法
+				attr() 只能返回字符串 但.prop()可以返回任意一种类型
+				prop()基本可以完成attr()完成的功能,也就是 可以实现替换
+		 */
+		
+		// 用法和attr基本一样不赘述
+		
+
+		// 固有属性
+		// w1
+		 c($("li").attr("class"));
+		 // w1
+		 c($("li").prop("class"));
+
+		// 自定义属性
+		// t
+		c($("li").attr("data-t"));
+		// undefined 
+		c($("li").prop("data-t"));
+		c($("li").data());
+	
+
+	</script>
+</body>
+</html>

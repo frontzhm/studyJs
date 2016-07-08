@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+</head>
+<body>
+<ul>
+	<li class="w">1</li>
+	<li class="w2">2</li>
+	<li class="w2">2</li>
+	<li class="w2">2</li>
+	<li class="w2">2</li>
+	<li class="w2">2</li>
+</ul>
+	<script>
+		function c(str) {
+			console.log(str);
+		}
+	// 可以一次加好几个class名
+	$("li").addClass('add1 add2');
+	// 同理也可以一次删好几个class名
+	$("li").removeClass('add1 add2');
+	// 最帅的是 addClass(function(curIndex,curClass){})  函数返回值就是增加的class
+	$("li").addClass(function(curIndex,curClass){
+		return curIndex+curClass + " hua"
+	})
+	// 突然想起来 可以群设置id
+	$("li").attr("id",function(curIndex,curAttr){
+		return "li"+curIndex
+	})
+	/**
+	 * 总结addClass():
+	 * 	1.可以加一个类名 或者用空格隔开加多个类名   addClass("hua hua2")
+	 * 	2.恩 函数的方法加  也可以同时加多个类名  特别是类名和索引有关系的时候很好加
+	 */
+
+	</script>
+</body>
+</html>

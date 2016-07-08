@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+
+</head>
+<body>
+	<select name="" id="select" class="formitem">
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+	</select>
+	<label for="checkbox"><input type="checkbox" name="c" id="checkbox"  class="formitem" value="1">n</label>
+	<label for="radio"><input type="radio" name="r" id="radio"  class="formitem">dd</label>
+	<input type="text" id="text" class="formitem">
+	<input type="text" id="text" class="formitem">
+	<textarea name="" id="area" cols="30" rows="10" class="formitem"></textarea>
+	<p></p>
+	<script>
+		function c(str) {
+			console.log(str);
+		}
+
+		function cval(selector){
+			var html="";
+			$.each(selector,function(index,item){
+				html=html+this.id+ " : "+ this.value+", ";
+			})
+			$("p").html(html);
+		}
+
+		cval($(".formitem"));
+		// change 需要blur
+		$(".formitem").change(function(){
+			cval($(".formitem"))
+		})
+		// 边输入边显示值
+		$(".formitem").keyup(function () {
+			cval($(".formitem"))
+		})
+		// blur
+		$("#text").blur(function(){
+			$(this).val(function(index,oldval){
+				return oldval.toUpperCase();
+				// return oldval+index;
+			})
+		})
+		// 函数
+		$("option").val(function(curindex){
+			return curindex+1;
+		})
+		$("input[type='checkbox']").val(1)
+
+/* 注意: 通过 .val() 方法从 textarea 元素中取得的值是不含有回车（\r）字符的。但是如果该值是通过 XHR 传递给服务器的，回车（\r）字符会被保留（或者是被浏览器添加的，但是在原始数据中并不包含回车（\r））。可以使用下面的 valHook 方法解决这个问题：
+*/
+
+		$.valHooks.textarea = {
+		  get: function( elem ) {
+		    return elem.value.replace( /\r?\n/g, "\r\n" );
+		  }
+		};
+
+		 
+
+
+
+
+	</script>
+</body>
+</html>
