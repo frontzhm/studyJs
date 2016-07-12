@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+	<style>
+	li,div,p,dl{
+		height: 100px;
+		background-color: #f8f8f8;
+		margin-top: 10px;
+	}
+
+	.cur{
+			background-color:#f69;
+		}
+	</style>
+</head>
+<body>
+<ul>
+	<li class="w1" def = "def" data-t = "t" data-u="u">1</li>
+	<li class="w2 w">2</li>
+	<li class="w2">3</li>
+	<li class="w2">4</li>
+	<li class="w2">5</li>
+	<li class="w2">6</li>
+</ul>
+<div>
+	true  只能加类名 不能删类名
+</div>
+<p>
+	false  只能删类名 不能加类名
+</p>
+<button>function(curIndex,curClass,bool){}</button>
+<dl class="dl"></dl>
+<dl class="dl"></dl>
+	<script>
+		function c(str) {
+			console.log(str);
+		}
+
+		$("li").click(function() {
+			$(this).toggleClass('cur');
+		});
+		$("div").click(function() {
+			$(this).toggleClass('cur',true);
+		});
+		$("p").click(function() {
+			$(this).toggleClass('cur',false);
+		});
+		$("button").click(function() {
+			$("dl").toggleClass(function(curIndex,curClass){
+				// 可以玩下 会有累加的效果 ,一般不轻易用curClass
+				return curIndex + curClass+"p"
+			});
+		});
+
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+</head>
+<body>
+<ul>
+	<li class="w1">1</li>
+	<li class="w2 w">2</li>
+	<li class="w2">2</li>
+	<li class="w2">2</li>
+	<li class="w2">2</li>
+	<li class="w2">2</li>
+</ul>
+	<script>
+		function c(str) {
+			console.log(str);
+		}
+		// 只要匹配的元素有一个符合条件就返回true,也可以匹配多类名,但是顺序要和html的一致
+	c($("li").hasClass('w2 w'))
+	// 不一致的话就是false
+	c($("li").hasClass('w w2'))
+
+	</script>
+</body>
+</html>

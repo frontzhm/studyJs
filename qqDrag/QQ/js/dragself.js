@@ -25,12 +25,16 @@ function drag(){
  
   // 点击状态 显示列表 鼠标放在列表项上背景变化 点击列表项列表消失且状态的文字变成点击的那行 图像 类名
   var stg= document.getElementById("loginState");
+  var show = document.getElementById("loginStateShow");
   var slst=document.getElementById("loginStatePanel");
   var items = slst.getElementsByTagName("li");
   var stxt = document.getElementById("login2qq_state_txt");
   var cls = "";
-  stg.onclick = function () {
+  stg.onclick = function (e) {
+    e = e|| window.event;
      slst.style.display = "block"; 
+     e.stopPropagation?e.stopPropagation():(e.cancelBubble = true);
+     // 和下面点击文档让list消失矛盾  所以要阻止冒泡
   }
 
   for (var i = 0,l = items.length; i < l; i++) {
@@ -46,10 +50,18 @@ function drag(){
       cls = this.id;
       stxt.innerHTML = getByClass("stateSelect_text",cls)[0].innerHTML;
       slst.style.display = "none";
-      e.stopPropagation?e.stopPropagation():(e.bubbles = false);
+      e.stopPropagation?e.stopPropagation():(e.cancelBubble = true);
+      show.className = "login-state-show "+cls;
+
+
     }
   }
+  document.onclick = function(){
+    if(slst.style.display == "block"){
+    slst.style.display = "none";
 
+    }
+  }
 
   
  
@@ -94,3 +106,8 @@ function fnMove(e,posX,posY){
   oDrag.style.left=l+'px';
   oDrag.style.top=t+'px';
 }
+
+
+
+// e/propagation cancelBubble preventDefault return Default 
+// document.documentElement.clientHeight offsetTop   x.offsetWidth

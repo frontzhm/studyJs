@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+</head>
+<body>
+<ul>
+	<li class="w1">1</li>
+	<li class="w2 w">2</li>
+	<li class="w2">3</li>
+	<li class="w2">4</li>
+	<li class="w2">5</li>
+	<li class="w2">6</li>
+</ul>
+	<script>
+		function c(str) {
+			console.log(str);
+		}
+		// 只是读数据的时候  只是读第一个匹配元素的值
+		c($("li").html())
+		// 设置的时候 群设置  html("xx")  或者 html(function(curIndex,curHtml){}) 返回值即是新的html
+		$("li").html("新加的<b>hua</b>")
+		$("li").html(function(curIndex,curHtml){
+			return curIndex + " hua "+ curHtml
+		}).addClass('huahua');
+
+		/**
+		 * 总结html():
+		 * 	1.只是读html的时候,只匹配第一个元素  且返回字符串   $("li").html()
+		 * 	2.设置html的时候,群设置 且两种方式 如上所示 且返回jquery的对象
+		 */
+
+c($("li").attr("title"))
+
+	</script>
+</body>
+</html>

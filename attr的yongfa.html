@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+</head>
+<body>
+<ul>
+	<li class="w">1</li>
+	<li class="w2">2</li>
+</ul>
+	<script>
+		function c(str) {
+			console.log(str);
+		}
+		// w   读属性的时候只匹配第一个元素
+		c($("li").attr("class"))
+		// 设置属性的时候 都设置  且可以设置多属性
+		$("li").attr({
+			class:"hua",
+			title:"hua"
+		})
+		// 设置单属性的时候 可以用到函数(自带索引和 原来的属性值,返回的值是新值)
+		
+		$("li").attr("title",function(curindex,curOldAttrValue){
+			return curindex+curOldAttrValue;
+		})
+		// $("li").attr("title","u")
+
+		/**
+		 * 总结attr():
+		 * 	1.仅仅是读属性的时候,只能读匹配元素的第一个元素,且只能读一个属性,attr("title")
+		 * 	2.设置单属性的时候,匹配的元素都会被设置,且三种方式   attr("title","datou")   attr({title:"datou"}) attr("title",function(curindex,curvalue){return curindex+curvalue})
+		 * 	3.设置多属性的时候,匹配的元素都会被设置 attr({title:"hua",class:"hua"})
+		 * 	
+		 */
+	</script>
+</body>
+</html>
