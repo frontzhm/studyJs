@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  #aniwrap p {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    background-color: #f69;
+  }
+  
+  #aniwrap p.cur {
+    background-color: #69f;
+  }
+  </style>
+  <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+</head>
+
+<body>
+  <div id="hua">
+    <p>dsa</p>
+    <p>dsafdsafds</p>
+  </div>
+  <div id="aniwrap">
+    <p></p>
+    <p id="moving"></p>
+    <p></p>
+    <br>
+    <button id="btn">点击我 只改动画颜色</button>
+  </div>
+  <ul id="filter">
+  	<li class="fi1"></li>
+  	<li class="fi2tiwe"></li>
+  	<li class="fi3fi"></li>
+  </ul>
+  <ul>
+  	<li class="fi1"></li>
+  	<li class="fi2tiwe"></li>
+  	<li class="fi3fi"></li>
+  </ul>
+  <script>
+  // 1.*   将会包括所有的html标签(html,body,head,meta)  可以在某个范围下查找其所有的子元素
+  // var c = $("*").css({"border":"1px solid #ccc","width":"35px"}).length;
+  var d = $("#hua").find("*").css({
+    "color": "#ff5600"
+  }).length;
+  // 2.:animated 选择所有正在执行动画效果的元素.
+  // 注意:因为animated 是一个 jQuery 延伸出来的选择器，并不是的CSS规范的一部分，使用:animated 查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。为了当使用:animated 的时候在现代浏览器上获得更佳的性能，首先使用纯CSS选择器选择元素，然后使用.filter(":animated").
+  function slideIt() {
+    $("#moving").fadeToggle(1800, "swing", slideIt);
+  }
+  slideIt();
+  $("#btn").click(function() {
+      $("#aniwrap p").filter(":animated").toggleClass('cur')
+    })
+    // slideToggle(速度的参数,运动加速度的参数,运动完执行的函数)  上面的相当于执行完动作之后又执行循环往复
+    // 3.属性选择[name$=value](以什么结尾),[name^=value](以什么开头),[name*=value](有这个字符串),[name=value](等于这个字符串),[name!=value](不等于这个字符串$("your-pure-css-selector").not('[name="value"]'))
+    // 先#filter是一个整体 这个之后再找符合条件li[class^='fi']
+   $("#filter li[class^='fi']").css("color","green");
+   $("#filter li[class$='fi']").css("background-color","#ccc");
+   $("#filter li[class*='ti']").css("border","1px dotted pink");
+
+   // 4.表单选择 $("各种").filter(":button")  :button  :checkbox :file  :checked  :focus
+  </script>
+</body>
+
+</html>
