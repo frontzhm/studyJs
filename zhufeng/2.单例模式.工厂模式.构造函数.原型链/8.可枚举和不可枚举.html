@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>enumerable</title>
+</head>
+<body>
+<script>
+Object.prototype.a = function(){}
+var obj = {name:"hua",age:12}
+
+for(var key in obj){
+	console.log(obj[key])
+	console.log(key)
+}
+obj.propertyIsEnumerable("a")
+</script>
+	
+</body>
+</html>

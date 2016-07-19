@@ -5,7 +5,9 @@
 	<title>Document</title>
 </head>
 <body>
+<script src="../usefulFn.js"></script>
 <script>
+console.log(ztypeof(new Number(0)))
 // 原型模式中,this.xx =xx ,this是当前实例
 // 某一个方法中的this ->看执行时候的主体
 // 1)先确定this的指向
@@ -38,7 +40,7 @@
 	f.__proto__.getY() // 300
 
 	// 在内置类的原型上扩展方法(数组去重)
-	Array.prototype.my = function () {
+	Array.prototype.unique = function () {
 		var obj = {};
 		for(var i=0;i<this.length;i++){
 			var cur =this[i];
@@ -50,11 +52,13 @@
 			}
 			obj[cur] =cur;
 		}
-		obj = null
+		obj = null;
+		return this; // 目的是链式写法
+
 	}
 	var arr = [12,3,12,421,89,12,90,993];
-	arr.my()  // this指arr
-	// Array.prototype.my() // this指Array.prototype
+	// arr.unique()  // this指arr
+	// Array.prototype.unique() // this指Array.prototype
 	console.log(arr)
 	// 链式写法:执行数组的一个方法可以紧接着执行下一个方法
 	// 原理:
@@ -62,10 +66,29 @@
 	// sort执行完成的返回值是一个排序后的数组,数组可以再使用公有方法
 	// reverse执行完成返回值是一个数组,,可以再继续使用公有方法
 	// pop返回的值是被删除的元素,不是一个数组
-	arr.sort(function(a,b){
-		return a-b;
-	}).reverse().pop();
+	// 
+	// arr.sort(function(a,b){
+	// 	return a-b;
+	// }).reverse().pop();
+	arr.unique().sort(function(a,b){
+		return a-b
+	});
+	// 思考题:
+	// 在数组的原型上有个方法叫slice,首先实现mySlice,要求和原来的slice功能一样
+	// 考虑的情况 slice() slice(m) slice(m,n)  负数  m<n  n和m超过数组的长度 n和m不是有效数字...
+	// 不能使用数组内置方法
+	// 如push但可以arr[length]=...
+	// 链式写法
+	// 面试题:
+	// 实现一个需求
+	// (5).plus(10).reduce(2)   5+10-2
+	// Number.prototype.plus = function(num){
+	// }
+	// Number.prototype.reduce = function(num){
+	// }
+	Array.prototype.mySlice = function(){
 
+	}
 
 
 
