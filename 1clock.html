@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!-- <div id="clock"></div> -->
+
+  <div id="clockdiv">
+      Days: <span id="days"></span><br>
+      Hours: <span id="hours"></span><br>
+      Minutes: <span id="minutes"></span><br>
+      Seconds: <span id="seconds"></span>
+  </div>
+  <script>
+  // 首先:
+  // milliseconds = days*24*60*60*1000+
+  // 										hours*60*60*1000+
+  // 											minutes*60*1000+
+  // 												seconds*1000
+  // 通过取余数的方法,一层一层甩出
+  // 20/3/3 === 20/(3*3)
+  // seconds = milliseconds/1000 %60
+  // minutes = milliseconds/(1000*60) %60
+  // hours = milliseconds/(1000*60*60) %24
+  // days = milliseconds/(1000*60*60)/24
+  // 
+  // 
+  // 毫秒除以1000转换为秒：(t / 1000)
+  // 总秒除以60，获取余数——你不想要所有的秒，只是(t / 1000)%60之后的分钟剩余的秒数
+  // 将它取整，因为你想要完整的秒，而不是分数秒：Math.floor((t / 1000)% 60)
+  // 重复这个逻辑将秒转换为分钟、小时、天
+
+  var endtime = "2016-07-22T06:30:00";
+  // var endtime = "31/12/2015";
+  // var endtime = "December 31 2015";
+  // var endtime = "December 31 2015 23:59:59 GTM+02:00";
+  // 这个函数 输入是结束时间 输出是当前时间到结束时间的距离(天时分秒)
+  function getTimeRemaining(endtime) {
+    var t = Date.parse(endtime) - Date.parse(new Date()),
+      seconds = Math.floor((t / 1000) % 60),
+      minutes = Math.floor(t / (1000 * 60) % 60),
+      hours = Math.floor(t / (1000 * 60 * 60) % 24),
+      days = Math.floor(t / (1000 * 60 * 60) / 24);
+    return {
+      days: days,
+      hours: hours,
+      minutes: minutes,
+      seconds: seconds,
+      total: t
+    }
+  }
+  console.log(getTimeRemaining(endtime));
+  // 这样一开始就会等待一秒钟
+  // function initializeClock(id, endtime) {
+  //   var clock = document.getElementById(id);
+  //   var timeinterval = setInterval(fn, 1000);
+  //   function fn() {
+  //     var t = getTimeRemaining(endtime);
+  //     clock.innerHTML = "days: " +t.days+"<br>"+
+  //     										"hours: "+t.hours+"<br>"+
+  //     										"minutes: "+t.minutes+"<br>"+
+  //     										"seconds: "+t.seconds+"<br>";
+  //     if (t.total == 0) {
+  //       clearInterval(timeinterval);
+  //     }
+  //   }
+  // }
+  // initializeClock("clock", endtime)
+  // function updateClock(){
+  //   var t = getTimeRemaining(endtime);
+  //   clock.innerHTML = 'days: ' + t.days + '&lt;br&gt;' +
+  //                     'hours: '+ t.hours + '&lt;br&gt;' +
+  //                     'minutes: ' + t.minutes + '&lt;br&gt;' +
+  //                     'seconds: ' + t.seconds;
+  //   if(t.total<=0){
+  //     clearInterval(timeinterval);
+  //   }
+  // }
+   
+  // updateClock(); // run function once at first to avoid delay
+  // var timeinterval = setInterval(updateClock,1000);
+
+  // 让时钟脚本更有效率，我们希望只更新时钟的数据，而不是每一秒重建整个时钟。实现这一目标的方法是，把每个数字嵌入到span标签内，只更新这些span的内容。
+  var clock = document.getElementById("clock");
+  var days = document.getElementById("days");
+  var hours = document.getElementById("hours");
+  var minutes = document.getElementById("minutes");
+  var seconds = document.getElementById("seconds");
+  // function updateClock(){
+  // 	var t = getTimeRemaining(endtime);
+  // 	days.innerHTML = t.days;
+  // 	hours.innerHTML = t.hours;
+  // 	minutes.innerHTML = t.minutes;
+  // 	seconds.innerHTML = t.seconds;
+  // }
+  // updateClock();
+  // setInterval(updateClock,1000);
+// 现在时钟更新数据，而不是每一秒重建，我们还有一件事要做：添加前导零。例如，时钟显示7秒时，让它显示07。一个简单的方法是在数字的开始处添加一个字符串“0”，然后获取最后两位数。
+function updateClock(){
+	function two(str){
+		return ("0"+str).slice(-2);
+	}
+	var t = getTimeRemaining(endtime);
+	days.innerHTML = two(t.days)
+	hours.innerHTML = two(t.hours);
+	minutes.innerHTML = two(t.minutes);
+	seconds.innerHTML = two(t.seconds);
+}
+updateClock();
+setInterval(updateClock,1000);
+  
+  </script>
+</body>
+
+</html>
