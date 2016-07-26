@@ -24,5 +24,8 @@ window.onload=function(){
 	ofontSize.onchange = populateStorage;
 	ocolor.onchange = populateStorage;
 
-	
+	window.addEventListener("storage", function(){
+	  location.reload();
+	  alert(0)
+	})
 }
