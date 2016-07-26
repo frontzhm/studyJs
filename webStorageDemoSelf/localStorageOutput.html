@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <p class="para">
+    1、上传作品：上传一组作品（非活动），通过审核后，获得10个波波币 2、接受订单：完成订单后，获得波波币数=（订单金额／100）× 客户评分 3、发布订单：发布订单后，获得波波币数=订单金额/100 4、投票：投票一次获得1个波波币 5、评论：评论一次获得5个波波币 6、转发：转发一次获得10个波波币 7、PK站： A.通过选拨或邀请成为导师，即可获得1000个波波币 B.报名参加活动，即可获得10个波波币 C.通过审核，进入导师大区，即可获得100个波波币 D.通过人物设定关卡，即可获得200个波波币 E.通过八格漫画关卡，即可获得500个波波币 F.通过故事脚本关卡，即可获得1000个波波币 G.通过工业设计关卡，即可获得5000个波波币
+  </p>
+  <label for="bgcolor">背景色</label>
+
+  <script>
+  var para = document.querySelector(".para"); 
+  function setStyle(){
+    para.style.backgroundColor = localStorage.getItem("bgcolor");
+    para.style.fontSize = localStorage.getItem("fontSize");
+    para.style.color = localStorage.getItem("color");
+  }
+  setStyle();
+  </script>
+</body>
+
+</html>

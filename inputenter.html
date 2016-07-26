@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text">
+  <input type="text">
+  <button type="submit" id="btn">提交</button>
+  <script>
+  var btn = document.getElementById("btn");
+  btn.onclick = function() {
+    alert(0)
+  }
+
+
+  function checkInput() {
+    var inputData = new Data().getInput();
+    if (!inputData) {
+      return;
+    }
+    $(".popMsg").css("display") == "none" &&  login(inputData);
+  }
+  </script>
+</body>
+
+</html>
