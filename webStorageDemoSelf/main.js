@@ -3,6 +3,7 @@ window.onload=function(){
 			ofontSize = document.getElementById("fontSize"),
 			ocolor = document.getElementById("color"),
 			para = document.querySelector(".para"); 
+			
 
 	function populateStorage(){
 		var bgcolor = obgcolor.value,
@@ -24,5 +25,5 @@ window.onload=function(){
 	ofontSize.onchange = populateStorage;
 	ocolor.onchange = populateStorage;
 
-	
+
 }
