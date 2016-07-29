@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  /*必要的样式 ul相对定位 li绝对定位 有个过渡效果transition*/
+  
+  .slides {
+    position: relative;
+    height: 400px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .slide {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  
+  .showing {
+    opacity: 1;
+    z-index: 2;
+  }
+  /*不必要的样式 仅仅为了美观*/
+  
+  .slide {
+    font-size: 40px;
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .slide:nth-of-type(1) {
+    background-color: #f69;
+  }
+  
+  .slide:nth-of-type(2) {
+    background-color: #6f9;
+  }
+  
+  .slide:nth-of-type(3) {
+    background-color: #69f;
+  }
+  
+  .slide:nth-of-type(4) {
+    background-color: #e69;
+  }
+  
+  .slide:nth-of-type(5) {
+    background-color: #6e9;
+  }
+  /*js不成功的时候 隐藏控件 也不绝对定位*/
+  
+  .slide {
+    position: static;
+  }
+  
+  .controls {
+    display: none;
+  }
+  </style>
+</head>
+
+<body>
+  <ul id="slides" class="slides">
+    <li class="slide showing"></li>
+    <li class="slide"></li>
+    <li class="slide"></li>
+    <li class="slide"></li>
+    <li class="slide"></li>
+  </ul>
+  <!-- 为了增强友好性 增加停止/播放按钮 -->
+  <button class="controls" id="pause">Pause</button>
+  <!-- 增加上一张和下一张的功能 -->
+  <button class="controls" id="prev">Prev</button>
+  <button class="controls" id="next">Next</button>
+  <!-- 增加小索引 -->
+  <div class="controls" id="pagination">
+  </div>
+  <script>
+  // 让当前项消失  下一张显示
+  var slides = document.querySelectorAll("#slides .slide");
+  var currentSlide = 0;
+  var slideInterval = setInterval(nextSlide, 2000);
+  // function nextSlide(){
+  // 	// 首先改变当前项的类 让其消失
+  // 	slides[currentSlide].className = "slide";
+  // 	// 然后改变currentSlide让其加1且值始终在0-4之间  1%5=1, 2%5=2, 3%5=3, 4%5=4, and 5%5=0.
+  // 	currentSlide = (currentSlide+1)%slides.length;
+  // 	// 最后改变下一张的类 让其显示
+  // 	slides[currentSlide].className = "slide showing";
+  // }
+  // 停止/播放的功能开始
+  // 设置一个变量表明播放与否的状态
+  var playing = true;
+  var pauseButton = document.getElementById("pause");
+  // 停止播放的功能
+  function pauseSlideShow() {
+    pauseButton.innerHTML = "Play";
+    playing = false;
+    clearInterval(slideInterval);
+    slideInterval = null;
+  }
+  // 播放的功能
+  function playSlideShow() {
+    pauseButton.innerHTML = "Pause";
+    playing = true;
+    slideInterval = setInterval(nextSlide, 2000);
+  }
+  pauseButton.onclick = function() {
+      if (playing) {
+        pauseSlideShow()
+      } else {
+        playSlideShow()
+      }
+    }
+    // 停止播放功能介绍
+    // 上一张下一张的开始
+  function goToSlide(n) {
+    // 首先改变当前项的类 让其消失
+    slides[currentSlide].className = "slide";
+    // 然后改变currentSlide让其加n且值始终在0-4之间  1%5=1, 2%5=2, 3%5=3, 4%5=4, and 5%5=0.
+    // currentSlide = (currentSlide+1)%slides.length;
+    // 因为有-1的存在 所以在个自身长度 变成正数
+    currentSlide = (n + slides.length) % slides.length;
+    // 最后改变下一张的类 让其显示
+    slides[currentSlide].className = "slide showing";
+  }
+
+  function nextSlide() {
+    goToSlide(currentSlide + 1)
+  }
+
+  function prevSlide() {
+    goToSlide(currentSlide - 1)
+  }
+  var prev = document.getElementById("prev");
+  var next = document.getElementById("next");
+  prev.onclick = function() {
+    prevSlide();
+  }
+  next.onclick = function() {
+      nextSlide();
+    }
+    // 上一张下一张的结束
+    // 为了更加的友好 当js没加载成功的时候 隐藏控件 展示所有的图片
+  var controls = document.querySelectorAll(".controls");
+  for (var i = 0, l = controls.length; i < l; i++) {
+    controls[i].style.display = "inline-block";
+  }
+  for (var i = 0, l = slides.length; i < l; i++) {
+    slides[i].style.position = "absolute";
+  }
+  // 小索引
+  (function() {
+    var p = document.getElementById('pagination');
+
+    var phtml = '';
+
+    for (var i = 0; i < slides.length; i++) {
+      phtml += '<button>' + (i + 1) + '</button>';
+    }
+
+    p.innerHTML = phtml;
+
+    var pbuttons = p.querySelectorAll('button');
+
+    for (var i = 0; i < pbuttons.length; i++) {
+      pbuttons[i].onclick = (function(n){
+        return function(){
+          // pauseSlideshow();
+          goToSlide(n);
+        };
+      })(i);
+    }
+
+  })();
+  </script>
+</body>
+
+</html>
