@@ -129,12 +129,69 @@
     }
     bind();
     // 各行变色
-    function changeBg () {
-         for(var i=0,l=orows.length;i<l;i++){
-            orows[i].className = i%2===1?"bge":null;
-         } 
+    function changeBg() {
+        for (var i = 0, l = orows.length; i < l; i++) {
+            orows[i].className = i % 2 === 1 ? "bge" : null;
+        }
     }
-    changeBg()
+    changeBg();
+    // 4.编写表格排序的方法 年龄 由小到大排序
+   /* function sort() {
+        // 把存储所有行的类数组转换成数组
+        var ary = utils.zlistToArray(orows);
+        // 给数组进行排序,按照每一行的第二列的内容从小到大进行排序
+        oThs[1].flag*=-1;
+        // 每次执行sort 先让flag的值*-1 所以默认的第一次flag值=-1
+        ary.sort(function(a, b) {
+            return ((+a.cells[1].innerHTML) - (+b.cells[1].innerHTML))*oThs[1].flag
+        });
+        // 按照ary中的最新顺序,每一行重新添加到tbody中
+        for (var i = 0, l = ary.length; i < l; i++) {
+            frg.appendChild(ary[i]);
+        }
+        tbody.appendChild(frg);
+        frg = null;
+    }*/
+       function sort(n) { // n是哪一列
+        var that = this;
+        // 把存储所有行的类数组转换成数组
+        var ary = utils.zlistToArray(orows);
+        // 给数组进行排序,按照每一行的第二列的内容从小到大进行排序
+        that.flag*=-1;
+        // 每次执行sort 先让flag的值*-1 所以默认的第一次flag值=-1
+        ary.sort(function(a, b) {
+            // 这里的this是window 为防止这样的情况把this赋给变量
+            return ((+a.cells[n].innerHTML) - (+b.cells[n].innerHTML))*that.flag
+        });
+        // 按照ary中的最新顺序,每一行重新添加到tbody中
+        for (var i = 0, l = ary.length; i < l; i++) {
+            frg.appendChild(ary[i]);
+        }
+        tbody.appendChild(frg);
+        frg = null;
+    }
+    
+
+  /*  // 5.点击年龄 升序降序排列
+    oThs[1].flag = 1;
+    oths[1].onclick = function() {
+        // this->oths[1]
+        // sort.call(oths[1]);
+        sort.call(this);
+        // sort里主体是oths[1] 可以想法换成this
+        // 重新变色
+        changeBg()
+    }*/
+    // 5.点击排序 所有的cursor升序降序排列
+    oThs[1].flag = 1;
+    oths[1].onclick = function() {
+        // this->oths[1]
+        // sort.call(oths[1]);
+        sort.call(this);
+        // sort里主体是oths[1] 可以想法换成this
+        // 重新变色
+        changeBg()
+    }
     </script>
 </body>
 
