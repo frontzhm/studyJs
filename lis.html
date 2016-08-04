@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		li{
+			width: 100px;
+			height: 100px;
+			background-color: #ccc;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+<ul>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+</ul>
+	<script>
+		var lis = document.getElementsByTagName("li");
+		// for(var i=0,l=lis.length;i<l;i++){
+		// 	lis[i].onclick = function(){
+		// 		alert(i)
+		// 	}
+		// }
+		for(var i=0,l=lis.length;i<l;i++){
+			lis[i].onclick = (function(n){
+				return function(){alert(n)}
+			}(i));
+		}
+		// for (var i = 0; i < pbuttons.length; i++) {
+		//   pbuttons[i].onclick = (function(n){
+		//     return function(){
+		//       // pauseSlideshow();
+		//       goToSlide(n);
+		//     };
+		//   })(i);
+		// }
+	</script>
+</body>
+</html>
