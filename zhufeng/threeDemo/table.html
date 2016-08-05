@@ -56,7 +56,7 @@
         <table id="tab" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
-                    <th>性别</th>
+                    <th class="cursor">姓名</th>
                     <th class="cursor">年龄</th>
                     <th class="cursor">武力值</th>
                     <th>性别</th>
@@ -156,14 +156,27 @@
         var that = this;
         // 把存储所有行的类数组转换成数组
         var ary = utils.zlistToArray(orows);
-        // 给数组进行排序,按照每一行的第二列的内容从小到大进行排序
+        // 给数组进行排序,按照每一行的第二列的内容从小到大进行排序需要让其他的列flag的值回归到-1,这样在点击其他列的话 就是升序
+        for(var k=0;k<oths.length;k++){
+            oths[k]!==this &&(oths[k].flag=-1);
+        }
+        // 点击当前列 
         that.flag*=-1;
         // 每次执行sort 先让flag的值*-1 所以默认的第一次flag值=-1
         ary.sort(function(a, b) {
+            var curInn = a.cells[n].innerHTML;
+            var nextInn = b.cells[n].innerHTML;
+            var curInnNum = parseFloat(curInn);
+            var nextInnNum = parseFloat(nextInn);
+            if(isNaN(curInnNum)||isNaN(nextInnNum)){
+                // if里如果有return的话 下面的就不用else 因为走不到下面的了
+            return (curInn.localeCompare(nextInn))*that.flag
+            }
             // 这里的this是window 为防止这样的情况把this赋给变量
-            return ((+a.cells[n].innerHTML) - (+b.cells[n].innerHTML))*that.flag
+            return (curInnNum-nextInnNum)*that.flag
         });
         // 按照ary中的最新顺序,每一行重新添加到tbody中
+        var frg = document.createDocumentFragment();
         for (var i = 0, l = ary.length; i < l; i++) {
             frg.appendChild(ary[i]);
         }
@@ -183,15 +196,18 @@
         changeBg()
     }*/
     // 5.点击排序 所有的cursor升序降序排列
-    oThs[1].flag = 1;
-    oths[1].onclick = function() {
-        // this->oths[1]
-        // sort.call(oths[1]);
-        sort.call(this);
-        // sort里主体是oths[1] 可以想法换成this
-        // 重新变色
-        changeBg()
+   for(var i=0,l=oths.length;i<l;i++){
+    var cur= oths[i];
+    if(cur.className ==="cursor"){
+        cur.index = i;
+        cur.flag = -1;
+        cur.onclick = function(){
+            sort.call(this,this.index)
+        }
     }
+
+   }
+   changeBg();
     </script>
 </body>
 

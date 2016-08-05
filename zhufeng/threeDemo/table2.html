@@ -27,7 +27,8 @@
     text-align: center;
     line-height: 50px;
   }
-  .bgf8{
+  
+  .bgf8 {
     background-color: #f8f8f8;
   }
   </style>
@@ -85,22 +86,22 @@
   // var oTds = oRows[0].cells; 某一行的单元格 cell
   // 2.向表格添加数据
   // data = utils.zjsonParse(data); // 转换成js对象
-  /*	function addData(){
-  		var frg = document.createDocumentFragment();
-  		// 数据的个数和行数是一一对应
-  		for(var i=0,l=data.length;i<l;i++){
-  			var cur = data[i];
-  			var addtr = document.createElement("tr");
-  			// 数据每项的属性个数和每行的单元格一一对应 属性值就是单元格的内容
-  			for(var key in cur){
-  				var addtd = document.createElement("td");
-  				addtd.innerHTML = cur[key];
-  				addtr.appendChild(addtd);
-  			}
-  			frg.appendChild(addtr);
-  		}
-  		oTbody.appendChild(frg);
-  	}*/
+  /*  function addData(){
+      var frg = document.createDocumentFragment();
+      // 数据的个数和行数是一一对应
+      for(var i=0,l=data.length;i<l;i++){
+        var cur = data[i];
+        var addtr = document.createElement("tr");
+        // 数据每项的属性个数和每行的单元格一一对应 属性值就是单元格的内容
+        for(var key in cur){
+          var addtd = document.createElement("td");
+          addtd.innerHTML = cur[key];
+          addtr.appendChild(addtd);
+        }
+        frg.appendChild(addtr);
+      }
+      oTbody.appendChild(frg);
+    }*/
 
   function addData() {
     var html = "";
@@ -114,10 +115,10 @@
   }
   addData();
   // 3.隔行变色
-  function changeBg(){
-    for(var i=0,l=oRows.length;i<l;i++){
+  function changeBg() {
+    for (var i = 0, l = oRows.length; i < l; i++) {
       var cur = oRows[i];
-      cur.className = (i%2===1)?"bgf8":null;
+      cur.className = (i % 2 === 1) ? "bgf8" : null;
     }
   }
   changeBg();
@@ -125,49 +126,96 @@
   /*var rows = utils.zlistToArray(oRows);
   function zsort(){
     var frg = document.createDocumentFragment();
-  	// a,b相当于每个row
-  	rows.sort(function(a,b){
+    // a,b相当于每个row
+    rows.sort(function(a,b){
       // return a.cells[1]- b.cells[1]; 别写成这样 这样是<td>24</td>
-  		return a.cells[1].innerHTML- b.cells[1].innerHTML;
-  	})
-  	for(var i=0,l=rows.length;i<l;i++){
-  		var cur = rows[i];
-  		frg.appendChild(cur);
-  	}
-  	oTbody.appendChild(frg);
+      return a.cells[1].innerHTML- b.cells[1].innerHTML;
+    })
+    for(var i=0,l=rows.length;i<l;i++){
+      var cur = rows[i];
+      frg.appendChild(cur);
+    }
+    oTbody.appendChild(frg);
   }
   oThs[1].onclick = function(){
-  	zsort();
-    // 重新排序一次 重新执行变色 
+    zsort();
+    // 重新排序一次 重新执行变色
     changeBg();
   }*/
   // 5.按年龄降序排序
   // return a.cells[1].innerHTML- b.cells[1].innerHTML; 变成return b.cells[1].innerHTML- a.cells[1].innerHTML;
   // 相当于return (a.cells[1].innerHTML- b.cells[1].innerHTML)*(-1)
   // 6.按年龄升降序切换排序(切换什么的都需要一个状态值,根据状态值执行相应的状态,也就是状态值和状态一一对应)
-   var rows = utils.zlistToArray(oRows);
-   // oThs[1].upsortflag = true;
-   // 因为这里乘以(-1),也就是取相反数的特殊情况,flag可以和这个联系起来 因为第一次点击是升序 所以这个是(-1)
-   oThs[1].upsortflag = -1;
-   function zsort(){
-     var frg = document.createDocumentFragment();
+  var rows = utils.zlistToArray(oRows);
+  // oThs[1].upsortflag = true;
+  // 因为这里乘以(-1),也就是取相反数的特殊情况,flag可以和这个联系起来 因为第一次点击是升序 所以这个是(-1)
+  /*function zsort() {
+    var frg = document.createDocumentFragment();
     // a,b相当于每个row
-    rows.sort(function(a,b){
-       // return a.cells[1]- b.cells[1]; 别写成这样 这样是<td>24</td>
+    rows.sort(function(a, b) {
+      // return a.cells[1]- b.cells[1]; 别写成这样 这样是<td>24</td>
       // return oThs[1].upsortflag?a.cells[1].innerHTML- b.cells[1].innerHTML:(a.cells[1].innerHTML- b.cells[1].innerHTML)*(-1);
-      return (a.cells[1].innerHTML- b.cells[1].innerHTML)*(-1);
-    for(var i=0,l=rows.length;i<l;i++){
+      return (a.cells[1].innerHTML - b.cells[1].innerHTML) * oThs[1].upsortflag;
+    })
+    for (var i = 0, l = rows.length; i < l; i++) {
       var cur = rows[i];
       frg.appendChild(cur);
     }
     oTbody.appendChild(frg);
-   }
-   oThs[1].onclick = function(){
+  }
+  oThs[1].upsortflag = -1;
+  oThs[1].onclick = function() {
     zsort();
-     // 重新排序一次 重新执行变色 
-     changeBg();
-      oThs[1].upsortflag = !oThs[1].upsortflag;
-   }
+    oThs[1].upsortflag*=(-1);
+    // 重新排序一次 重新执行变色
+    changeBg();
+  }*/
+  // 7.oThs[1]换this oThs[1],oThs[2],oThs[3]
+  function zsort(index) {
+    // this 值看情况变
+    var _this = this;
+    var frg = document.createDocumentFragment();
+    console.log(index)
+    rows.sort(function(a, b) {
+      console.log(a)
+      console.log(index)
+      console.log(a.cells[index])
+      var curTxt = a.cells[index].innerHTML;
+      var nextTxt = b.cells[index].innerHTML;
+      var curNum = parseFloat(curTxt);
+      var nextNum = parseFloat(nextTxt);
+      // 汉字比较
+      if (isNaN(curNum) || isNaN(nextNum)) {
+        return curTxt.localCompare(nextTxt) * _this.upsortflag;
+      }
+      return (curNum - nextNum) * _this.upsortflag;
+    })
+    for (var i = 0, l = rows.length; i < l; i++) {
+      var cur = rows[i];
+      frg.appendChild(cur);
+    }
+    oTbody.appendChild(frg);
+  }
+  // oThs[1].upsortflag = -1;
+  // oThs[1].onclick = function() {
+  //   zsort.call(this);
+  //   this.upsortflag *= (-1);
+  //   changeBg();
+  // }
+
+  // 点击任意一列的情况
+  for(var i=0,l=oThs.length;i<l;i++){
+    console.log(i)
+    var cur = oThs[i];
+    cur.upsortflag = -1;
+    console.log(i)
+    cur.onclick = function() {
+      console.log(i)
+      zsort.call(this,i);
+      this.upsortflag *= (-1);
+      changeBg();
+    }
+  }
   </script>
 </body>
 
