@@ -1,4 +1,28 @@
 var utils = {
+  // 数组之间一一替换
+  zfindAndReplace:function zfindAndReplace(str, reg, oldarr, newarr) {
+      str = str.replace(reg, function() {
+        try {
+          return newarr[oldarr.indexOf(arguments[0])];
+        } catch (e) {
+          Array.prototype.zindexOf = function(findStr) {
+            for (var i = 0, l = this.length; i < l; i++) {
+              if (this[i] === findStr) {
+                return i;
+              }
+            }
+          }
+          return newarr[oldarr.zindexOf(arguments[0])];
+        }
+      })
+      return str;
+    }
+    /**
+    var oldarr = ["A", "B", "C", "D", "E"];
+    var newarr = ["a", "b", "c", "d", "e"];
+    var str = "ABCDADEC";
+    console.log(findAndReplace(str, /\w/g, oldarr, newarr)) // abcdadec
+     */
   // 实现将类数组转化为数组
   zlistToArray: function(likeArray) {
     var arr = [];
