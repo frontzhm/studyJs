@@ -67,7 +67,7 @@
     "wuli": 96,
     "gender": "1"
   }, {
-    "name": "moon",
+    "name": "月亮女神",
     "age": 1000,
     "wuli": 86,
     "gender": "0"
@@ -174,19 +174,21 @@
   function zsort(index) {
     // this 值看情况变
     var _this = this;
+    // 每次排序的时候 就会取反
+    this.upsortflag *= (-1);
+    // 每次除了排序的那列 其他列恢复初始值
+    for(var j=0;j<oThs.length;j++){
+      oThs[j]!==this&&(oThs[j].upsortflag = -1);
+    }
     var frg = document.createDocumentFragment();
-    console.log(index)
     rows.sort(function(a, b) {
-      console.log(a)
-      console.log(index)
-      console.log(a.cells[index])
       var curTxt = a.cells[index].innerHTML;
       var nextTxt = b.cells[index].innerHTML;
       var curNum = parseFloat(curTxt);
       var nextNum = parseFloat(nextTxt);
       // 汉字比较
       if (isNaN(curNum) || isNaN(nextNum)) {
-        return curTxt.localCompare(nextTxt) * _this.upsortflag;
+        return curTxt.localeCompare(nextTxt) * _this.upsortflag;
       }
       return (curNum - nextNum) * _this.upsortflag;
     })
@@ -205,14 +207,13 @@
 
   // 点击任意一列的情况
   for(var i=0,l=oThs.length;i<l;i++){
-    console.log(i)
     var cur = oThs[i];
+    // 因为i会变
+    cur.index = i;
     cur.upsortflag = -1;
-    console.log(i)
     cur.onclick = function() {
-      console.log(i)
-      zsort.call(this,i);
-      this.upsortflag *= (-1);
+      // this->cur
+      zsort.call(this,this.index);
       changeBg();
     }
   }
