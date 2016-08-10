@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div id="box" name="huahua" index="0" class="hua"></div>
+	<script>
+	function c(str){
+		return console.log(str)
+	}
+		// 1.js盒子模型:通过js中提供的一系列属性和方法,获取页面中元素的样式信息值
+		var box = document.getElementById("box");
+		// #box有很多自己私有属性 -> HTMLDivElement.prototype ->HTMLElement.prototype  ->Element.prototype  ->Node.prototype  ->EventTarget.prototype  ->Object.prototype
+		// attributes ->NamedNodeMap.prototype// 属性集合
+		c(box.attributes) // NamedNodeMap {0: id, 1: name, 2: index, length: 3}
+		c(box.attributes.getNamedItem("name")) // name="huahua"
+		c(box.attributes.getNamedItem("index")) // index="0"
+		c(box.attributes.item(0)) //id="box" 
+		c(box.attributes.item(2)) //index="0"
+		// classList -> DOMTokenList.prototype
+		c(box.classList)
+		c(box.classList.add("hua1"))
+		c(box.classList.remove("hua"))
+		c(box.classList)
+
+		// 内容的宽高:我们设置的width height这两个样式,如果没有设置height值,容器的高度会根据内容自适应,这样获取的值是真实内容的高,如果设置固定的高度,那么高度就是设定的高度,与内容真实高度无关
+		// 真实内容宽高:实际内容的宽高(和我们设置的height没有关系).eg:设置高度200px,如果内容有溢出,那么真实内容的高度就是把溢出的内容的高度加进来
+		// 
+		// client系列(当前元素的私有属性) clientHeight /clientWidth 内容宽高+padding(看上面 设置宽高的话就是设置的  不是设置的就是自适应的)
+		// 						clientLeft,clientTop 左,上边框的高
+		c(box.clientHeight)
+		c(box.contentEditable)
+		c(box.contentEditable)
+	</script>
+</body>
+</html>

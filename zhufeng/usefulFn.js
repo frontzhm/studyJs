@@ -112,4 +112,16 @@ var utils = {
     return Object.prototype.toString.call(para).slice(8, -1).toLowerCase();
   }
 
-
+// 时间字符串格式化  "2015-6-7 12:13:4".zformatTime() -> 2015年06月07日 12:14:04
+// 0,1,2,3,4,5分分表示年月日 时分秒
+  String.prototype.zformatTime = function zformatTime(formatStr){
+    var reg = /^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})\s+(\d{1,2}):(\d{1,2}):(\d{1,2})$/;
+    var arr = reg.exec(this).slice(1); // reg.exec(this)的最后的index和input不是数组的项
+    // arr = ["2015", "7", "9", "13", "9", "10"]
+    formatStr = formatStr || "{0}年{1}月{2}日 {3}:{4}:{5}";
+    formatStr = formatStr.replace(/{([\d]+)}/g,function(){
+      var val= arr[arguments[1]];
+      return val.length===1?"0"+val:val;
+    })
+    return formatStr;
+  }
