@@ -125,3 +125,15 @@ var utils = {
     })
     return formatStr;
   }
+  // 返回浏览器的一屏幕的宽高 clientWidth
+  // 返回浏览器的所有屏幕的宽高 scrollWidth
+  // 
+  function win(attr,value){
+    if(typeof value === "undefined" ){
+      return document.documentElement[attr] || document.body[attr]; 
+    }
+    document.documentElement[attr] = value;
+    document.body[attr] = value;
+
+
+  }
