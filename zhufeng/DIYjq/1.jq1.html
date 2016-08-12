@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div id="box">hua</div>
+	<script>
+		// 1.免new实现
+		// 这种便捷的形式依赖了工厂模式，其实现非常简单，把 new 封装在库内即可，让每次调用 jQuery() 时自行在内部进行一次实例化：
+		var date = new Date;
+		// var $div = $(".div");
+		// var $div = new $(".div");
+			var A=function(name){
+				this.name=name;
+			}
+			// 这就是封装函数
+			var AA = function(name){
+				return new A(name);
+			}
+			console.log(AA("hu"));
+			function jQuery(selector){
+				return document.querySelector(selector)
+			}
+			function f(selector){
+				return new jQuery(selector);
+			}
+			console.dir(f("#box"))
+			// 标准写法
+			!function(){
+				var _jQuery = window.jQuery,
+						_$ = window.$;
+				var version = "0.0.1",
+				// 这里的jQuery随便写名字
+						jQuery = function(selector){
+							console.log(document.querySelector(selector))
+						};
+				jQuery.prototype = {
+					version:version,
+					constructor:jQuery
+				};
+				window.$ = window.jQuery = function(selector){
+					return new jQuery(selector);
+				}
+
+				// 简单玩下
+				var box = $("#box");
+				// 别忘了后续我们还希望能通过 $.extend / $.fn.extend 来扩展 JQ 的静态方法和原型方法，我们把出口方法抽出来增加这个 extend 的API：
+				function Factory(selector){ //抽出构造函数
+					return new jQuery(selector)
+				}
+				Factory.fn = jQuery.prototype;
+				Factory.extend = Factory.fn.extand = function(){
+					console.log(this)
+				}
+				window.$ = window.jQuery = init;
+			}();
+
+
+
+
+	</script>
+</body>
+</html>
