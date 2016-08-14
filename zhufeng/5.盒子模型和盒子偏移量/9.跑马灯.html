@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    #box {
+        width: 1000px;
+        margin: 100px auto;
+        padding: 0 10px;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid lightgreen;
+        background-color: #f8f8f8;
+    }
+    
+    #conBegin {
+        height: inherit;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    span{display: inline-block;}
+    </style>
+</head>
+
+<body>
+    <div id='box'>
+        <div id="conBegin">
+            <span id="start">  <em>************通知:</em>W3C TPAC w3ctech WebReBuild HTML5研究小组 阿里技术嘉年华 京/沪JS 前端圈 HTML5梦工场 无障碍联盟 国内综合 前端观察 阮一峰 W3CPLUS W3CFUNS 大前端 </span>
+            <span id="end">  <em>************通知:</em>W3C TPAC w3ctech WebReBuild HTML5研究小组 阿里技术嘉年华 京/沪JS 前端圈 HTML5梦工场 无障碍联盟 国内综合 前端观察 阮一峰 W3CPLUS W3CFUNS 大前端 W3HELP W3SCHOOL HTML5中国 前端乱炖 F2E社区  </span>
+        </div>
+    </div>
+    <script>
+    // ! function() {
+        var box = document.getElementById("box");
+        var start = document.getElementById("start");
+        var startWidth = getCss(start, "width");
+        var end = document.getElementById("end");
+        var wraper = document.getElementById("wraper");
+        var begin = document.getElementById("conBegin");
+
+        function move() {
+
+            begin.scrollLeft++;
+            var newLeft = begin.scrollLeft;
+            // 利用scrollLeft是存在最大值的思想 在累加1之前的值和累加1之后的值如果相等则说明到达最大值
+            if (begin.scrollLeft >= startWidth) {
+                // clearInterval(timer)
+                // 虽然从头开始 但是有切换的效果
+                begin.scrollLeft = 0;
+            }
+        }
+        var timer = setInterval(move, 10)
+        box.onmouseover = function() {
+            clearInterval(timer);
+        }
+        box.onmouseout = function() {
+            timer = setInterval(move, 10)
+        }
+
+
+
+        function getCss(curEle, attr) {
+            var val = null,
+                reg = null;
+            val = "getComputedStyle" in window ? window.getComputedStyle(curEle, null)[attr] : curEle.currentStyle[attr];
+            reg = /^(-?\d+(\.\d+)?)(px|pt|rem|em)?$/i;
+            return reg.test(val) ? parseFloat(val) : val;
+        }
+
+
+    // }()
+    // 练习:跑马灯拓展 www.szyc.com 实现职场中的跑马灯效果
+    </script>
+</body>
+
+</html>

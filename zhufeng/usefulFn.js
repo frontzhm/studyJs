@@ -142,14 +142,12 @@ function win(attr, value) {
 
 
 // 获取css的具体样式
+// 只有符合"数字+单位/数字"才能使用parseFloat
 function getCss(curEle, attr) {
-  // if("getComputedStyle" in window){
-  if (window.getComputedStyle) {
-    // true表示存在
-    return window.getComputedStyle(curEle, null)[attr];
-
-  }
-  return curEle.currentStyle[attr];
+  var val= null,reg=null;
+  val =  "getComputedStyle" in window?window.getComputedStyle(curEle, null)[attr]:curEle.currentStyle[attr];
+  reg = /^(-?\d+(\.\d+)?)(px|pt|rem|em)?$/i;
+  return reg.test(val)?parseFloat(val):val;
 }
 // 精准检测不同浏览器 Detecting browsers by ducktyping:
 function detectNavigator() {
@@ -192,5 +190,32 @@ function getBrowser() {
   } else {
     return "浏览器不是ie firefox opera chrome safari"
   }
+}
+
+// offset()等同于jQuery的offset(),求任意元素离body的偏移,左偏移上偏移(不管当前元素的父级参照物是谁) 
+// 获取的结果是一个对象 left距离body的左偏移 top..
+// 在标准的ie8浏览器中 我们使用offsetLeft就已经把父级的边框算进去了,就不需要我们自己加边框
+function offset (ele) {
+   var left = null,top = null,par = ele.offsetParent;
+   left+=ele.offsetLeft;
+   top+=ele.offsetTop;
+   // 只要没有找到body 我们就把父级参照物的边框和偏移进行累加
+   while(par){
+    if(navigator.userAgent.indexOf("MSIE 8.0") === -1){
+      // 父级参照物的边框
+      left+=par.clientLeft;
+      top+=par.clientTop;
+    }else{
+      // 父级参照物本身的偏移
+      left+=par.offsetLeft;
+      top+=par.offsetTop;
+      par = par.offsetParent;
+    }
+     
+   }
+   return {
+     left:left,
+     top:top
+   }; 
 }
 
