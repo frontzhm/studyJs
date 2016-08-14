@@ -16,7 +16,7 @@ var utils = {
         }
       })
       return str;
-    }
+    },
     /**
     var oldarr = ["A", "B", "C", "D", "E"];
     var newarr = ["a", "b", "c", "d", "e"];

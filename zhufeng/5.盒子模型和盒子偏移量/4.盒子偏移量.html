@@ -84,7 +84,7 @@ function offset (ele) {
    top+=ele.offsetTop;
    // 只要没有找到body 我们就把父级参照物的边框和偏移进行累加
    while(par){
-    if(navigator.userAgent.indexOf("MSIE 8.0") === -1){
+    if(navigator.userAgent.indexOf("MSIE 8.0") !== -1){
       // 父级参照物的边框
       left+=par.clientLeft;
       top+=par.clientTop;
@@ -101,6 +101,7 @@ function offset (ele) {
      top:top
    }; 
 }
+console.log(offset(inner))
 
 
 
