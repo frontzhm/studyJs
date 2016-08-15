@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  #gotop {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: none;
+  }
+  
+  html,
+  body {
+    height: 300%;
+    background: -webkit-linear-gradient(top, #fcc, #9cf);
+    background: linear-gradient(top, #fcc, #9cf);
+  }
+  </style>
+</head>
+
+<body>
+  <a href="javascript:;" id="gotop">顶部</a>
+  <script>
+  function win(attr, value) {
+    // 只有scrollTop scrollLeft可以设置 其他的值不能设置
+    if (typeof value === "undefined") {
+      return document.documentElement[attr] || document.body[attr];
+    }
+    document.documentElement[attr] = value;
+    document.body[attr] = value;
+  }
+  // 精准控制:
+  // 确定:回到顶部的总时间totalDuration 500ms
+  // 总距离totalDistance是不确定的 但是=第一次的win("scrollTop")
+  // 于是速度velocity=totalDistance/totalDuration
+  // scrollTop是均匀减少的 假设每10ms是一个节点(这个时间越大越卡顿 所以尽量小) 那么每次win("scrollTop")就会减少10*velocity
+  // 直到scrollTop=0
+  function returnTop() {
+    var totalDuration = 500,
+      totalDistance = win("scrollTop"),
+      velocity = totalDistance / totalDuration,
+      step = 10 * velocity;
+    // var a = new Date;
+    var timer = setInterval(function() {
+      if (win("scrollTop") === 0) {
+        // console.log(new Date-a) //(只是大约500ms)
+        clearInterval(timer);
+      } else {
+        win("scrollTop", win("scrollTop") - step);
+      }
+    }, 10)
+  }
+  var gotop = document.getElementById("gotop");
+  gotop.onclick = function() {
+      // 不精准控制的话 这样
+      // var timer = setInterval(function(){
+
+      //  if(win("scrollTop")===0){
+      //   console.log(win("scrollTop"))
+      //    clearInterval(timer)
+      //  }else{
+      //   win("scrollTop",win("scrollTop")-50)
+      //  }
+
+      // },1)
+
+      // var a = new Date;
+      // var totalDuration = 500,totalDistance=win("scrollTop"),velocity=totalDistance/totalDuration;
+      // var timer = setInterval(function(){
+      //   if(win("scrollTop")===0){
+      //     // console.log(new Date-a) //(只是大约500ms)
+      //     clearInterval(timer);
+      //   }else{
+      //     win("scrollTop",win("scrollTop")-10*velocity);
+      //   }
+      // },10)
+      // window.onscroll = null;
+      // gotop.style.display = "none";
+      returnTop();
+
+    }
+    // gostop开始是隐藏的 只有滚动的距离超过一屏幕的时候才出现
+    // 点击的时候立刻消失 然后页面慢慢回到顶部
+  window.onscroll = function() {
+    console.log(1)
+    if (win("scrollTop") > win("clientHeight")) {
+      gotop.style.display = "block";
+    } else {
+      gotop.style.display = "none";
+    }
+  }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  * {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-family: "Microsoft Yahei";
+  }
+  #inner{
+  	margin: 100px;
+  	padding: 100px;
+  	border: 180px solid #000;
+  }
+  #center {
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    border: 5px solid #999;
+    margin: 50px;
+    overflow: auto;
+    opacity:0.99;
+    filter: alpha(opacity=99);
+  }
+  #center:after{
+  	background-color: #ccc;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="outer">
+    <div id="inner">
+      <div id="center">
+        臭臭猫 当前版权方:李双 查看版权证书:臭臭猫版权证书 受众群体 :儿童 少年 青年 成人 IP简介 : 姓名：臭臭猫 生日：2008年5月9日 星座：金牛座 性别：男宝宝 籍贯：中国北京 座右铭：幸福，就是一种感觉！ 创作团队简介 : 李双 (臭儿）：臭臭系列卡通动漫形象原创设计师、漫画家；腾讯微博特约时事漫画家。《中版集团中华动漫资源库》签约漫画家；中国荒诞画派艺术联盟成员；中版集团数字传媒《漫像》认证画家。 去购买授权
+      </div>
+    </div>
+  </div>
+  <script>
+  var outer = document.getElementById("outer");
+  var inner = document.getElementById("inner");
+  var center = document.getElementById("center");
+  var arr = ["clientWidth", "clientHeight", "clientTop", "clientLeft", "offsetWidth", "offsetHeight", "offsetTop", "offsetLeft", "offsetParent", "scrollWidth", "scrollHeight", "scrollTop", "scrollLeft"]
+  // arr.map(function(item, index, oldarr) {
+  //     console.log(center[item]) // 220 120 5 5 230 130 50 50 220 120 0 0
+  //   })
+    // 只读  设置的话用style属性
+  function getCss(selector, attr) {
+  	// 100px变成100 负数的情况
+  	var val=null,reg=/^-?\d+?(?:px|pt|em|rem)$/;
+    if(attr==="opacity"){
+    	// ie:filter:alpha(opacity=sqlN),sqlN的值域为[0, 100] 小数点的情况
+    	val = "getComputedStyle" in window?getComputedStyle(selector, null).opacity:/^alpha\(opacity=(\d+(?:\.\d+)?)\)$/.exec(selector.currentStyle.filter)[1]/100;
+    }else{
+    	val = "getComputedStyle" in window?getComputedStyle(selector, null)[attr]:selector.currentStyle[attr];
+    	val = reg.test(val)?parseFloat(val):val;
+    }
+    
+    return val;
+  }
+
+  console.log(getCss(center, "borderWidth"))
+  // ie不支持符合属性 需要的话拆开写 borderWidth....
+  console.log(getCss(center, "border"))
+  console.log(getCss(center, "width"))
+  console.log(getCss(center, "opacity"))
+  // 伪类
+  console.log(getComputedStyle(center, "after").backgroundColor)
+
+
+// 1.如果不定位的话 那么offsetParent 永远是body body的offsetParent是null
+console.log(center.offsetParent);
+center.style.position = "absolute"
+console.log(center.offsetParent);
+console.log(inner.offsetParent);
+center.style.position = "fixed"
+console.log(center.offsetParent); //null
+console.log(inner.offsetParent);
+center.style.position = "relative"
+console.log(center.offsetParent);
+console.log(inner.offsetParent);
+
+console.log(center.offsetParent);
+inner.style.position = "absolute"
+console.log(center.offsetParent); // inner
+console.log(inner.offsetParent); // body
+inner.style.position = "fixed"
+inner.style.left = "30px"
+console.log(center.offsetParent); //inner
+console.log(inner.offsetParent); //null
+console.log(inner.offsetTop); //等于top
+console.log(inner.offsetLeft); //等于left
+inner.style.position = "relative"
+console.log(center.offsetParent); //inner
+console.log(inner.offsetParent); //body
+// 2.如果定位的话
+// 谁定位absolute ,relative fixed,其子元素的offsetParent会变成谁
+// 特殊情况:谁定位fixed ,其offsetParent会变成null 其他的都是上级(比如body)
+
+
+
+
+  function offset(selector){
+  	var par = selector.offsetParent,
+  			top = selector.offsetTop,
+  			left = selector.offsetLeft;
+  	while (par !== null) {
+  		// top+=par.clientTop+par.offsetTop;
+  		// left+=par.clientLeft+par.offsetLeft;
+  		
+  		// 考虑ie8的offsetTop是已经加了par.clientTop的 
+  		// 所以分开加 不是ie8的时候 加上边框
+  		if(navigator.userAgent.indexOf("MSIE 8.0")===-1){
+  			top+=par.clientTop;
+  			left+=par.clientLeft;
+  		}
+  		top+=par.offsetTop;
+  		left+=par.offsetLeft;
+  		par = par.offsetParent;
+  	}
+  	return {
+  		top:top,
+  		left:left
+  	}
+
+
+
+
+  	// var par = selector.offsetParent;
+ 		// var top = selector.offsetTop
+ 		// 		// 自身的偏移 
+ 		// 		// 有父偏移的话
+ 		// 		// +父偏移的边框+父偏移的偏移 +....直到
+ 		// 		// 无父偏移的话 就没了
+ 		// 		top+=par.clientTop+par.offsetTop
+ 		// 		par = par.offsetParent;
+ 		// 		top+=par.clientTop+par.offsetTop;
+ 		// 		// 		par = par.offsetParent;
+ 		// 		...
+  }
+  console.log(offset(center))
+
+
+  function win(attr,val){
+  	if(typeof val ==="undefined"){
+  		return document.documentElement[attr] ||document.body[attr];
+  	}
+  	document.documentElement[attr] = val;
+  	document.body[attr] = val;
+
+  }
+  win("offsetTop")
+  // win("offsetTop",0)
+  
+  </script>
+</body>
+
+</html>
