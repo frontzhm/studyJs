@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  * {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-family: "Microsoft Yahei"
+  }
+  
+  ol {
+    list-style: none;
+  }
+  
+  .box {
+    width: 1215px;
+    margin: 0 auto;
+  }
+  
+  img {
+    width: 100%;
+  }
+  
+  #order {
+    position: fixed;
+    left: 50px;
+    top: 50%;
+    transform: translate(0, 50%);
+    line-height: 40px;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    display: none;
+  }
+  
+  #order li.cur {
+    background-color: #f99;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <header id="header">
+      <img src="img/header.png" alt="">
+    </header>
+    <section id="1f">
+      <img src="img/1f.png" alt="">
+    </section>
+    <section id="2f">
+      <img src="img/2f.png" alt="">
+    </section>
+    <section id="3f">
+      <img src="img/3f.png" alt="">
+    </section>
+    <section id="4f">
+      <img src="img/4f.png" alt="">
+    </section>
+    <footer id="footer">
+      <img src="img/footer.png" alt="">
+    </footer>
+  </div>
+  <div id="order">
+    <ol>
+      <li><a href="">1f</a></li>
+      <li><a href="">2f</a></li>
+      <li><a href="">3f</a></li>
+      <li><a href="">4f</a></li>
+    </ol>
+  </div>
+  <script>
+  // 1.练习:针对于回到顶部的功能扩展 (jd左侧的楼层导航)
+  // 刚开始没有导航 只有一楼出现在视野中的时候才显示反之隐藏
+  // 随着页面继续滚动 每一个楼层 到达某个某个楼层 相应项选中
+  // 点击楼层某一项 实现简单的动画到具体的楼层
+  function offset(selector) {
+    var par = selector.offsetParent,
+      top = selector.offsetTop,
+      left = selector.offsetLeft;
+    while (par !== null) {
+      if (navigator.userAgent.indexOf("MSIE 8.0") === -1) {
+        top += par.clientTop;
+        left += par.clientLeft;
+      }
+      top += par.offsetTop;
+      left += par.offsetLeft;
+      par = par.offsetParent;
+    }
+    return {
+      top: top,
+      left: left
+    }
+  }
+
+    function win(attr, value) {
+      // 只有scrollTop scrollLeft可以设置 其他的值不能设置
+      if (typeof value === "undefined") {
+        return document.documentElement[attr] || document.body[attr];
+      }
+      document.documentElement[attr] = value;
+      document.body[attr] = value;
+
+
+    }
+
+    var af = document.getElementById("1f");
+    var bf = document.getElementById("2f");
+    var cf = document.getElementById("3f");
+    var df = document.getElementById("4f");
+    var order = document.getElementById("order");
+    var lis = order.getElementsByTagName("li");
+
+   window.onscroll = function(){
+     if (offset(af).top < win("clientHeight")+win("scrollTop")) {
+       order.style.display = "block";
+     } else {
+       order.style.display = "none";
+     }
+     if (offset(af).top < win("clientHeight")+win("scrollTop")<offset(bf).top ) {
+       for(var i=0;i<order.length;i++){
+        lis[i].className = ""
+       }
+       lis[0].className="cur";
+     }
+     if (offset(bf).top < win("clientHeight")+win("scrollTop")<offset(cf).top) {
+       for(var i=0;i<order.length;i++){
+        lis[i].className = ""
+       }
+       lis[1].className="cur"
+     }
+     if (offset(cf).top < win("clientHeight")+win("scrollTop")<offset(df).top) {
+       for(var i=0;i<order.length;i++){
+        lis[i].className = ""
+       }
+       lis[2].className="cur"
+     }
+     if (offset(df).top < win("clientHeight")+win("scrollTop")) {
+       for(var i=0;i<order.length;i++){
+        lis[i].className = ""
+       }
+       lis[3].className="cur"
+     }
+     
+   }
+  </script>
+</body>
+
+</html>
