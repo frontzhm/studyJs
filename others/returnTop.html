@@ -16,7 +16,7 @@
   body {
     height: 300%;
     background: -webkit-linear-gradient(top, #fcc, #9cf);
-    background: linear-gradient(top, #fcc, #9cf);
+    /*background: linear-gradient(top, #fcc, #9cf);*/
   }
   </style>
 </head>
@@ -48,6 +48,7 @@
       if (win("scrollTop") === 0) {
         // console.log(new Date-a) //(只是大约500ms)
         clearInterval(timer);
+        window.onscroll = display;
       } else {
         win("scrollTop", win("scrollTop") - step);
       }
@@ -78,20 +79,25 @@
       //   }
       // },10)
       // window.onscroll = null;
-      // gotop.style.display = "none";
+      this.style.display = "none";
+      window.onscroll = null;
       returnTop();
-
+      // 不能在定时器外面 不然会在定时器执行前执行
+      // window.onscroll = display;
+      // window.onscroll = null;
+      // gotop.style.display = "block";
     }
-    // gostop开始是隐藏的 只有滚动的距离超过一屏幕的时候才出现
-    // 点击的时候立刻消失 然后页面慢慢回到顶部
-  window.onscroll = function() {
-    console.log(1)
-    if (win("scrollTop") > win("clientHeight")) {
-      gotop.style.display = "block";
-    } else {
-      gotop.style.display = "none";
+    // 1.gostop开始是隐藏的,只有滚动的距离超过一屏幕的时候才出现
+   // 2.点击的时候立刻消失,滚动也不需要在监听,然后页面回到顶部
+  window.onscroll = display;
+  function display(){
+      console.log(1)
+      if (win("scrollTop") > win("clientHeight")) {
+        gotop.style.display = "block";
+      } else {
+        gotop.style.display = "none";
+      }
     }
-  }
   </script>
 </body>
 
