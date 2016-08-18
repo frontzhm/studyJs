@@ -31,9 +31,12 @@
     top: 50%;
     transform: translate(0, 50%);
     line-height: 40px;
-    padding: 10px;
     border: 1px dashed #ccc;
     display: none;
+  }
+  
+  #order li {
+    padding: 10px 20px;
   }
   
   #order li.cur {
@@ -65,10 +68,10 @@
   </div>
   <div id="order">
     <ol>
-      <li><a href="">1f</a></li>
-      <li><a href="">2f</a></li>
-      <li><a href="">3f</a></li>
-      <li><a href="">4f</a></li>
+      <li><a href="javascript:;">1f</a></li>
+      <li><a href="javascript:;">2f</a></li>
+      <li><a href="javascript:;">3f</a></li>
+      <li><a href="javascript:;">4f</a></li>
     </ol>
   </div>
   <script>
@@ -95,56 +98,80 @@
     }
   }
 
-    function win(attr, value) {
-      // 只有scrollTop scrollLeft可以设置 其他的值不能设置
-      if (typeof value === "undefined") {
-        return document.documentElement[attr] || document.body[attr];
-      }
-      document.documentElement[attr] = value;
-      document.body[attr] = value;
+  function win(attr, value) {
+    // 只有scrollTop scrollLeft可以设置 其他的值不能设置
+    if (typeof value === "undefined") {
+      return document.documentElement[attr] || document.body[attr];
+    }
+    document.documentElement[attr] = value;
+    document.body[attr] = value;
 
 
+  }
+
+  var af = document.getElementById("1f");
+  var bf = document.getElementById("2f");
+  var cf = document.getElementById("3f");
+  var df = document.getElementById("4f");
+  var order = document.getElementById("order");
+  var lis = order.getElementsByTagName("li");
+  var floors = document.getElementsByTagName("section");
+  var winh = win("clientHeight");
+
+  for (var i = 0, l = lis.length; i < l; i++) {
+    floors[i].index = i;
+    lis[i].index = i;
+    floors[i].top = offset(floors[i]).top;
+    console.log(floors[i].top)
+  }
+
+  window.onscroll = function() {
+    if (offset(af).top < winh + win("scrollTop")) {
+      order.style.display = "block";
+    } else {
+      order.style.display = "none";
+    }
+    if (offset(af).top < winh + win("scrollTop") && winh + win("scrollTop") < offset(bf).top) {
+      lis[af.index].className = "cur";
+
+    } else {
+      lis[af.index].className = "";
+    }
+    if (offset(bf).top < winh + win("scrollTop") && winh + win("scrollTop") < offset(cf).top) {
+      lis[bf.index].className = "cur";
+
+    } else {
+      lis[bf.index].className = "";
     }
 
-    var af = document.getElementById("1f");
-    var bf = document.getElementById("2f");
-    var cf = document.getElementById("3f");
-    var df = document.getElementById("4f");
-    var order = document.getElementById("order");
-    var lis = order.getElementsByTagName("li");
+    if (offset(cf).top < winh + win("scrollTop") && winh + win("scrollTop") < offset(df).top) {
+      lis[cf.index].className = "cur";
 
-   window.onscroll = function(){
-     if (offset(af).top < win("clientHeight")+win("scrollTop")) {
-       order.style.display = "block";
-     } else {
-       order.style.display = "none";
-     }
-     if (offset(af).top < win("clientHeight")+win("scrollTop")<offset(bf).top ) {
-       for(var i=0;i<order.length;i++){
-        lis[i].className = ""
-       }
-       lis[0].className="cur";
-     }
-     if (offset(bf).top < win("clientHeight")+win("scrollTop")<offset(cf).top) {
-       for(var i=0;i<order.length;i++){
-        lis[i].className = ""
-       }
-       lis[1].className="cur"
-     }
-     if (offset(cf).top < win("clientHeight")+win("scrollTop")<offset(df).top) {
-       for(var i=0;i<order.length;i++){
-        lis[i].className = ""
-       }
-       lis[2].className="cur"
-     }
-     if (offset(df).top < win("clientHeight")+win("scrollTop")) {
-       for(var i=0;i<order.length;i++){
-        lis[i].className = ""
-       }
-       lis[3].className="cur"
-     }
-     
-   }
+    } else {
+      lis[cf.index].className = "";
+    }
+
+    if (offset(df).top < winh + win("scrollTop") && winh + win("scrollTop")) {
+      lis[df.index].className = "cur";
+
+    } else {
+      lis[df.index].className = "";
+    }
+
+  }
+
+  lis[0].onclick = function(){
+    win("scrollTop",offset(floors[this.index]).top-winh+300);
+  }
+  lis[1].onclick = function(){
+    win("scrollTop",offset(floors[this.index]).top-winh+300);
+  }
+  lis[2].onclick = function(){
+    win("scrollTop",offset(floors[this.index]).top-winh+300);
+  }
+  lis[3].onclick = function(){
+    win("scrollTop",offset(floors[this.index]).top-winh+300);
+  }
   </script>
 </body>
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    .box{
+      width: 200px;
+      height: 200px;
+      background: url(default.png) no-repeat;
+      background-size: 100%;
+      margin-top: 1500px;
+    }
+    img{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="box">
+    <img id="img" src="" trueImg="jd.png" alt="">
+  </div>
+  <script>
+  function win(attr,val){
+    if(typeof val==="undefined"){
+      return document.documentElement[attr]||document.body[attr];
+    }
+    document.documentElement[attr] = val;
+    document.body[attr] = val;
+  }
+    // var timer = setTimeout(function(){
+    //   var pic = new Image;
+    //   pic.src =  img.getAttribute("trueImg");
+    //   pic.onload = function(){
+    //     // 自定义属性,只能getAttribute获取,不能直接.
+    //     img.src = this.src;
+    //     img.style.display = 'block';
+    //     clearTimeout(timer);
+    //   }
+    // },500)
+    window.onscroll = function(){
+     if(box.offsetTop+box.clientHeight<=win("scrollTop")+win("clientHeight")) {
+        var pic = new Image;
+        pic.src =  img.getAttribute("trueImg");
+        pic.onload = function(){
+          // 自定义属性,只能getAttribute获取,不能直接.
+          img.src = this.src;
+          img.style.display = 'block';
+          pic = null;
+        }
+        // 一旦加载就不需要滚动事件
+        window.onscroll = null;
+     }
+     console.log(1)
+    }
+  </script>
+</body>
+</html>
