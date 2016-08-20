@@ -133,8 +133,8 @@
       oImg.src = im.getAttribute("trueImg");
       oImg.onload = function(){
         im.src = this.src;
-        // im.style.display = "block";
-        fadeIn(im);
+        im.style.display = "block";
+        // fadeIn(im);
         oImg=null;
       }
       im.isLoad=true;
