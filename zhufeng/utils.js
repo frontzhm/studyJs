@@ -4,51 +4,7 @@ var utils = (function() {
     var flag = "getComputedStyle" in window;
     // flag true是现代浏览器 不是是ie6-8的低级浏览器
     // 方法可以在外面写 里面有返回值即可
-    function children(curEle, tagName) {
-        // 首先获取所有的子节点(childNode)
-        // 然后筛选出元素节点 nodeType===1
-        var arr = [];
-        // ie6-8下
-        if (/MSIE [678]/i.test(navigator.userAgent)) {
-            var nodelist = curEle.childNodes;
-            for (var i = 0, l = nodelist.length; i < l; i++) {
-                var cur = nodelist[i];
-                if (cur.nodeType === 1) {
-                    arr[arr.length] = cur // arr.push(/)
-                }
-            }
-            nodelist = null;
-        } else {
-            // 现代浏览器的children是类数组 转换为数组
-            arr = Array.prototype.slice.call(curEle.children);
-        }
-        // 二次筛选
-        // if(typeof tagName==="string"){
-        //  var arr2 = [];
-        //  for (i = 0,l=arr.length; i < l; i++) {
-        //    cur=arr[i];
-        //    if(cur.tagName.toLowerCase()===tagName.toLowerCase()){
-        //      arr2[arr2.length]=cur;
-        //    }
-        //  }
-        //  arr = arr2;
-        // }
-        if (typeof tagName === "string") {
-            for (i = 0; i < arr.length; i++) {
-                cur = arr[i];
-                // 不等于 表示不是我想要的标签
-                if (cur.nodeName.toLowerCase() !== tagName.toLowerCase()) {
-                    // 删除的时候记得索引减1
-                    arr.splice(i, 1);
-                    i--;
-                }
 
-            }
-        }
-
-
-        return arr;
-    }
 
     function zfindAndReplace(str, reg, oldarr, newarr) {
         str = str.replace(reg, function() {
@@ -219,6 +175,242 @@ var utils = (function() {
 
 
     }
+    // children:获取所有子节点或者指定标签名的子节点
+    // ->轻松得出firstChild,lastChild
+    function children(curEle, tagName) {
+        // 首先获取所有的子节点(childNode)
+        // 然后筛选出元素节点 nodeType===1
+        var arr = [];
+        // ie6-8下
+        if (/MSIE [678]/i.test(navigator.userAgent)) {
+            var nodelist = curEle.childNodes;
+            for (var i = 0, l = nodelist.length; i < l; i++) {
+                var cur = nodelist[i];
+                if (cur.nodeType === 1) {
+                    arr[arr.length] = cur // arr.push(/)
+                }
+            }
+            nodelist = null;
+        } else {
+            // 现代浏览器的children是类数组 转换为数组
+            arr = Array.prototype.slice.call(curEle.children);
+        }
+        // 二次筛选
+        // if(typeof tagName==="string"){
+        //  var arr2 = [];
+        //  for (i = 0,l=arr.length; i < l; i++) {
+        //    cur=arr[i];
+        //    if(cur.tagName.toLowerCase()===tagName.toLowerCase()){
+        //      arr2[arr2.length]=cur;
+        //    }
+        //  }
+        //  arr = arr2;
+        // }
+        if (typeof tagName === "string") {
+            for (i = 0; i < arr.length; i++) {
+                cur = arr[i];
+                // 不等于 表示不是我想要的标签
+                if (cur.nodeName.toLowerCase() !== tagName.toLowerCase()) {
+                    // 删除的时候记得索引减1
+                    arr.splice(i, 1);
+                    i--;
+                }
+
+            }
+        }
+
+
+        return arr;
+    }
+    // firstChild:获取第一个元素子节点
+    function firstChild(curEle) {
+        var kids = this.children(curEle);
+        return kids.length ? kids[0] : null
+    }
+
+    function lastChild(curEle) {
+        var kids = this.children(curEle);
+        return kids.length ? kids[length - 1] : null
+    }
+    // prev:获取上一个哥哥节点
+    // ->轻松得出 next prevAll nextAll sibling siblings index
+    // ->低耦合 高内聚
+    function prev(curEle) {
+        if (flag) {
+            return curEle.previousElementSibling;
+        } else {
+            // 低版本的话 获取上一个节点 判断是否为元素节点,不是一直往前找 直到找到元素节点,找不到的话null
+            var pre = curEle.previousSibling;
+            // while里是循环的条件
+            while (pre && pre.nodeType !== 1) {
+                pre = pre.previousSibling;
+            }
+            return pre
+        }
+    }
+
+    function next(curEle) {
+        if (flag) {
+            return curEle.nextElementSibling;
+        } else {
+            // 低版本的话 获取上一个节点 判断是否为元素节点,不是一直往前找 直到找到元素节点,找不到的话null
+            var nex = curEle.nextSibling;
+            // while里是循环的条件
+            while (nex && nex.nodeType !== 1) {
+                nex = nex.nextSibling;
+            }
+            return nex;
+        }
+    }
+    // 获取所有的哥哥元素节点
+    function prevAll(curEle) {
+        var arr = [];
+        var pre = this.prev(curEle);
+        while (pre) {
+            // 注意这里的顺序
+            arr.unshift(pre);
+            pre = this.prev(pre);
+        }
+        return arr;
+    }
+
+    function nextAll(curEle) {
+        var arr = [];
+        var nex = this.next(curEle);
+        while (nex) {
+            // 注意这里的顺序
+            arr.push(nex);
+            nex = this.next(nex);
+        }
+        return arr;
+    }
+    // sibling 获取相邻的两个元素节点
+    function sibling(curEle) {
+        var arr = [];
+        var pre = prev(curEle);
+        var nex = next(curEle);
+        if (pre) {
+            arr.push(pre)
+        }
+        if (nex) {
+            arr.push(nex)
+        }
+    }
+    // siblings 获取所有的兄弟节点
+    function siblings(curEle) {
+        return this.prevAll(curEle).concat(this.nextAll(curEle))
+    }
+    // index 获取当前元素的索引
+    function index(curEle) {
+        return this.prevAll(curEle).length
+    }
+    // append 向指定容器末尾追加元素
+    function append(newEle, container) {
+        container.appendChild(newEle);
+    }
+    // 原生的只提供 appendChild insertBefore
+    // 向容器末尾追加元素
+    // container.appendChild(newEle)
+    // oldEle.parentNode.appendChild(newEle)
+    // 向容器内指定元素前面追加元素
+    // oldEle.parentNode.insertBefore(newEle,oldEle)
+    // 于是思路跟着这两个拓展
+    // 
+    // 
+    // prepend 向指定容器开头追加元素 
+    // 把新的元素添加到容器中第一个子元素节点的前面
+    // 如果一个子元素都没有 那么放在末尾即可
+    function prepend(newEle, container) {
+        // children(container).unshift(newEle)
+        var fir = this.firstChild(container);
+        if (fir) {
+            container.insertBefore(newEle,fir);
+            return;
+        }
+        container.appendChild(newEle)
+    }
+    // insertBefore 把新元素追加到指定元素前面
+    function insertBefore(newEle,oldEle) {
+       oldEle.parentNode.insertBefore(newEle,oldEle);
+    }
+    // insertAfter 把新元素追加到指定元素后面
+    // 相当于把新元素追加到指定元素下一个元素的前面
+    // 如果指定元素的下一个元素不存在的话 相当于指定元素就是最后一个元素
+    function insertAfter (newEle,oldEle) {
+      var nex = this.next(oldEle);
+      if(nex){
+        oldEle.parentNode.insertBefore(newEle,oldEle);
+        return;
+      }
+      oldEle.parentNode.appendChild(newEle)
+    }
+// 判断类名的有无 
+// -> addClass removeClass
+    function hasClass(curEle, className) {
+        var oldClass = curEle.className;
+        // oldClass假设是"box bg border"
+        // bg: / +bg +/
+        // box:/^box +/
+        // border:/ +border$/
+        // var reg = new RegExp("\\b" + className + "\\b");
+        var reg = new RegExp("(^| +)" + className + "($| +)");
+        return reg.test(oldClass)
+    }
+
+    function addClass(curEle, className) {
+        // 为了防止classname包含多个类名 我们把传递进来的字符串按照一或多个空格拆分成每一项
+        var arr = className.split(/ +/g);
+        // var arr = className.split(/ +/); 测试了下没g也行
+        // 循环数组,一项项验证增加
+        for (var i = 0, l = arr.length; i < l; i++) {
+            var cur = arr[i];
+            if (!this.hasClass(curEle, cur)) {
+                curEle.className += " " + cur;
+            }
+        }
+
+    }
+    function removeClass (curEle, className) {
+      var arr = className.split(/ +/g);
+      for (var i = 0, l = arr.length; i < l; i++) {
+          var cur = arr[i];
+          if (this.hasClass(curEle, cur)) {
+            var reg = new RegExp("(^| +)"+cur+"( +|$)","g");
+            curEle.className  = curEle.className.replace(reg, " ")
+          }
+      }
+    }
+    function getElementsByClass (strClass,context) {
+         context = context || document;
+         if(flag){
+            return Array.prototype.slice.call(context.getElementsByClassName(strClass));
+         }else{
+            // ie6-8
+            var ary=[];
+            // 首尾去掉空格 然后以空格分组
+            var strClassAry = strClass.replace(/(^ +| +$)/, '').split(/ +/g);
+            var nodeList = context.getElementsByTagName("*");
+            for (var i = 0,l=nodeList.length; i <l ; i++) {
+                var cur = nodeList[i];
+                // 假设都存在
+                var isOk = true;
+                for (var k = 0; k < strClassAry.length; k++) {
+                    var curStrClass = strClassAry[k];
+                    var reg = new RegExp("(^| +)"+curStrClass+"( +|$)");
+                    if(!reg.test(cur.className)){
+                        isOk = false;
+                        break;
+                    }
+                }
+                if(isOk){
+                    ary[ary.length] = cur;
+                }
+            }
+            return ary;
+
+         }
+    }
+
     return {
         // 数组之间一一替换
         zfindAndReplace: zfindAndReplace,
@@ -235,13 +427,30 @@ var utils = (function() {
         // 获取css的具体样式
         // 只有符合"数字+单位/数字"才能使用parseFloat
         getCss: getCss,
+
+        // window的一些读写属性
+        win: win,
+        // 偏移
+        offset: offset,
+        prev: prev,
+        next: next,
+        prevAll: prevAll,
+        nextAll: nextAll,
+        sibling: sibling,
+        siblings: siblings,
+        index: index,
         // 获取子元素
         children: children,
-        // window的一些读写属性
-        win:win,
-        // 偏移
-        offset:offset
-
+        firstChild: firstChild,
+        lastChild: lastChild,
+        append:append,
+        prepend:prepend,
+        insertBefore:insertBefore,
+        insertAfter:insertAfter,
+        hasClass:hasClass,
+        addClass:addClass,
+        removeClass:removeClass,
+        getElementsByClass:getElementsByClass
         // 这里end
     }
 }())
@@ -308,10 +517,3 @@ function getBrowser() {
         return "浏览器不是ie firefox opera chrome safari"
     }
 }
-
-
-
-
-
-
-
