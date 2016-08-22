@@ -128,20 +128,9 @@
     var lis = document.getElementsByTagName("li");
     // 3.图片延迟加载
     // 实现单张图片的延迟加载
-    function lazyImg(im){
-      var oImg = new Image;
-      oImg.src = im.getAttribute("trueImg");
-      oImg.onload = function(){
-        im.src = this.src;
-        im.style.display = "block";
-        // fadeIn(im);
-        oImg=null;
-      }
-      im.isLoad=true;
-    }
     function fadeIn(curImg){
       var duration = 500,interval=10,target=1;
-      var step = target/duration*interval;
+      var step = (target-0)/duration*interval;
 
       var timer = setInterval(function(){
         var curOpacity = getComputedStyle(curImg,null).opacity;
@@ -150,11 +139,24 @@
           clearInterval(timer);
           return;
         }
-        curOpacity +=step;
+        // 这里的opacity是字符串
+        curOpacity =curOpacity-0+step;
         curImg.style.opacity =curOpacity;
       },interval);
 
     }
+    function lazyImg(im){
+      var oImg = new Image;
+      oImg.src = im.getAttribute("trueImg");
+      oImg.onload = function(){
+        im.src = this.src;
+        im.style.display = "block";
+        fadeIn(im);
+        oImg=null;
+      }
+      im.isLoad=true;
+    }
+    
     // 循环处理每张图片
     function handleAllImg(){
       for (var i = 0; i < lis.length; i++) {
@@ -167,7 +169,7 @@
         var curPar = cur.parentNode;
         var a = offset(curPar).top+curPar.offsetHeight;
         var b = win("clientHeight")+win("scrollTop");
-        if(a<b){
+        if(a<=b){
           lazyImg(cur)
         }
       }

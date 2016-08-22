@@ -98,6 +98,29 @@ var utils = (function() {
   }
 
 
+  // 获取css的具体样式
+  // 只有符合"数字+单位/数字"才能使用parseFloat
+  function getCss(curEle, attr) {
+    var val = null,
+      reg = null;
+    if (flag) { //现代浏览器
+      val = window.getComputedStyle(curEle, null)[attr];
+    } else { // ie6-8
+      // 遇到opacity filter:alpha(opacity=90.5)
+      if (attr === "opacity") {
+        val = curEle.currentStyle[filter]; // filter:alpha(opacity=10) 把获取到的结果进行剖析,获得里面的数字 让数字除以100才和标准浏览器一致
+        reg = /^alpha\(opacity=(\d+(?:\.\d+)?)\)$/i;
+        // 先检测是否存在 存在的话才取值
+        val = reg.test(val) ? reg.exec(val)[1] / 100 : 1;
+      } else {
+        val = curEle.currentStyle[attr];
+      }
+    }
+    // 如果遇到margin-top:-10px变成-10;
+    reg = /^(-?\d+(\.\d+)?)(px|pt|rem|em)?$/i;
+    return reg.test(val) ? parseFloat(val) : val;
+  }
+
 
   // 在标准的ie8浏览器中 我们使用offsetLeft就已经把父级的边框算进去了,就不需要我们自己加边框
   // 1.如果不定位的话 那么offsetParent 永远是body body的offsetParent是null
@@ -395,47 +418,23 @@ var utils = (function() {
 
     }
   }
-
-  // 获取css的具体样式
-  // 只有符合"数字+单位/数字"才能使用parseFloat
-  function getCss(attr) {
-    var val = null,
-      reg = null;
-    if (flag) { //现代浏览器
-      val = window.getComputedStyle(this, null)[attr];
-    } else { // ie6-8
-      // 遇到opacity filter:alpha(opacity=90.5)
-      if (attr === "opacity") {
-        val = this.currentStyle[filter]; // filter:alpha(opacity=10) 把获取到的结果进行剖析,获得里面的数字 让数字除以100才和标准浏览器一致
-        reg = /^alpha\(opacity=(\d+(?:\.\d+)?)\)$/i;
-        // 先检测是否存在 存在的话才取值
-        val = reg.test(val) ? reg.exec(val)[1] / 100 : 1;
-      } else {
-        val = this.currentStyle[attr];
-      }
-    }
-    // 如果遇到margin-top:-10px变成-10;
-    reg = /^(-?\d+(\.\d+)?)(px|pt|rem|em)?$/i;
-    return reg.test(val) ? parseFloat(val) : val;
-  }
-
   // 在js中给元素设置样式的属性值 我们只能通过  当前元素.style.left="3px",设置元素的行内样式
   // box.style.left = 100 + "px";
   // box.style.width = 200 + "px";
   // 给当前的元素的某一个样式设置值(增加在行内样式的)
-  function setCss(attr, value) {
+  function setCss(curEle, attr, value) {
     // 在js中设置float 也要设置兼容
     if (attr === "float") {
       // 现代浏览器
-      this["style"]["cssFloat"] = value;
+      curEle["style"]["cssFloat"] = value;
       // ie6-8 opera
-      this["style"]["styleFloat"] = value;
+      curEle["style"]["styleFloat"] = value;
       return;
     }
     // opacity在ie6-8不兼容 设置两套样式
     if (attr === "opacity") {
-      this["style"]["opacity"] = value;
-      this["style"]["filter"] = "alpha(opacity=" + value * 100 + ")";
+      curEle["style"]["opacity"] = value;
+      curEle["style"]["filter"] = "alpha(opacity=" + value * 100 + ")";
       return;
     }
 
@@ -449,50 +448,46 @@ var utils = (function() {
         value += "px"
     }
 
-    this["style"][attr] = value;
+    curEle["style"][attr] = value;
   }
 
-  function setGroupCss(options) {
-    // 遍历对象中的每一项 调取setCss方法一个个进行设置即可
-    for (var key in options) {
-      // 必须是私有属性
-      if (options.hasOwnProperty(key)) {
-        setCss.call(this, key, options[key])
+  function setGroupCss(curEle, options) {
+    // 通过检测options的 数据类型 不是一个对象 则不能进行批量设置
+    options = options || 0;
+    // if (Object.prototype.toString.call(options) === "[object Object]") {
+    if (options.toString() === "[object Object]") {
+      // 遍历对象中的每一项 调取setCss方法一个个进行设置即可
+      for (var key in options) {
+        // 必须是私有属性
+        if (options.hasOwnProperty(key)) {
+          this.setCss(curEle, key, options[key])
+        }
       }
     }
-    // // 通过检测options的 数据类型 不是一个对象 则不能进行批量设置
-    // options = options || 0;
-    // // if (Object.prototype.toString.call(options) === "[object Object]") {
-    // if (options.toString() === "[object Object]") {
-
-    // }
   }
   // jq提供css 既可以获取 也可以设置 也可以批量设置样式值
   // $("#box").css("width")
   // $("#box").css("width",200)
   // $("#box").css({width:200,height:200})
-  // 注意这里的 css是getCss setCss setGroupCss的集成 
-  // 这里this的高级运用
   function css(curEle) {
-    var argTwo = arguments[1];
-    var arr = Array.prototype.slice.call(arguments, 1)
+     var argTwo = arguments[1];
+     // 第二个参数值是字符串 ->获取样式或者设置 ->如果第三个参数存在的话 就是设置单样式
+     if(typeof argTwo==="string"){
+        var argThree = arguments[2];
+        if(typeof argThree==="undefined"){
+            return this.getCss.apply(this,arguments)
+        }
+        // 第三个参数存在的话 :
+        // this.setCss(curEle,argTwo,argThree);
+        this.setCss.apply(this,arguments);
 
-    // 第二个参数值是字符串 ->获取样式或者设置 ->如果第三个参数存在的话 就是设置单样式
-    if (typeof argTwo === "string") {
-      if (typeof arr[2] === "undefined") {
-        return getCss.apply(curEle, arr)
-      }
-      // 第三个参数存在的话 :
-      // this.setCss(curEle,argTwo,argThree);
-      setCss.apply(curEle, arr);
-
-    }
-    // null undefined false "" -> 0
-    argTwo = argTwo || 0;
-    if (argTwo.toString() === "[object Object]") {
-      // 批量设置
-      setGroupCss.apply(curEle, arr)
-    }
+     }
+     // null undefined false "" -> 0
+     argTwo = argTwo || 0;
+     if(argTwo.toString()==="[object Object]"){
+        // 批量设置
+        this.setGroupCss.apply(this,arguments)
+     }
 
   }
 
@@ -536,7 +531,10 @@ var utils = (function() {
     getElementsByClass: getElementsByClass,
     // 获取css的具体样式
     // 只有符合"数字+单位/数字"才能使用parseFloat
-    css: css
+    getCss: getCss,
+    setCss: setCss,
+    setGroupCss: setGroupCss,
+    css:css
 
     // 这里end
   }
