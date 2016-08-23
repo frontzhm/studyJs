@@ -74,8 +74,8 @@
             <li class="cur">内容1</li>
             <li>
                 <ul>
-                    <li>2</li>
-                    <li>2</li>
+                    <li>w</li>
+                    <li>w</li>
                 </ul>
             </li>
             <li>内容3</li>
@@ -92,13 +92,10 @@
 
 
     for (var i = 0; i < oms.length; i++) {
-        // oms[i].index = i;
         oms[i].onclick = function() {
-            var siblings = utils.siblings(this);
-            for (var i = 0; i < siblings.length; i++) {
-                utils.removeClass(siblings[i], "cur");
+            for (var i = 0; i < oms.length; i++) {
+                utils.removeClass(oms[i], "cur");
                 utils.removeClass(ocs[i], "cur");
-                console.log(ocs[i])
             }
             // 在让当前点击的这个元素有选中的样式
             utils.addClass(this, "cur")
