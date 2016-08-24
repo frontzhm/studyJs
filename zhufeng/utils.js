@@ -479,7 +479,7 @@ var utils = (function() {
 
     // 第二个参数值是字符串 ->获取样式或者设置 ->如果第三个参数存在的话 就是设置单样式
     if (typeof argTwo === "string") {
-      if (typeof arr[2] === "undefined") {
+      if (typeof arr[1] === "undefined") {
         return getCss.apply(curEle, arr)
       }
       // 第三个参数存在的话 :
