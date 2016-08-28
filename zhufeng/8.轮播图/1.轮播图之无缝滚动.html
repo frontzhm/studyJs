@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		ul{
+			list-style: none;
+		}
+		img{
+			display: block;
+			border: none;
+		}
+		a,a:hover,a.active,a:visited{
+			color: #000;
+			text-decoration: none;
+		}
+		.banner{
+			height: 200px;
+			margin:0 auto;
+			width:300px;
+			position: relative;
+		}
+		.banner .inner{
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 200px;
+			width: 1200px;
+			
+		}
+		.banner .inner img{
+			float: left;
+			width: 300px;
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner">
+		<div class="inner">
+			<img src="img/01.jpg" alt="">
+			<img src="img/02.jpg" alt="">
+			<img src="img/03.jpg" alt="">
+			<img src="img/04.jpg" alt="">
+		</div>
+		<ul class="bannerTip">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<a href="javascript:;" class="bannerLeft"></a>
+		<a href="javascript:;" class="bannerRight"></a>
+	</div>
+	<script></script>
+</body>
+</html>
