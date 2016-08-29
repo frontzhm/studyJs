@@ -406,7 +406,7 @@ var utils = (function() {
     } else { // ie6-8
       // 遇到opacity filter:alpha(opacity=90.5)
       if (attr === "opacity") {
-        val = this.currentStyle[filter]; // filter:alpha(opacity=10) 把获取到的结果进行剖析,获得里面的数字 让数字除以100才和标准浏览器一致
+        val = this.currentStyle["filter"]; // filter:alpha(opacity=10) 把获取到的结果进行剖析,获得里面的数字 让数字除以100才和标准浏览器一致
         reg = /^alpha\(opacity=(\d+(?:\.\d+)?)\)$/i;
         // 先检测是否存在 存在的话才取值
         val = reg.test(val) ? reg.exec(val)[1] / 100 : 1;
