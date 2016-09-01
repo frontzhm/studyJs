@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.widget{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="widget">hello</div>
+	<script>
+		var host = document.querySelector(".widget");
+		var root = host.createShadowRoot();
+		root.innerHTML = '<style>:host{text-align: left;line-height: 50px;border: 1px dashed red;width: 300px;}</style><p><content></content></p>'
+	</script>
+</body>
+</html>

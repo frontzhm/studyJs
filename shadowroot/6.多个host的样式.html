@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <p>我的段落</p>
+  <div class="box">我的盒子</div>
+  <template class="shadow-template">
+    <style>
+    /*host为p标签的才有blue*/
+    
+    :host(p) {
+      color: blue;
+    }
+    /*host为.box的才有blue*/
+    
+    :host(.box) {
+      color: red;
+    }
+    
+    /*:host(*) {
+      font-size: 60px;
+    }*/
+    :host {
+      font-size: 60px;
+    }
+    </style>
+    <div>
+      <content></content>
+    </div>
+  </template>
+  <script>
+  // 我们可以利用 :host 选择器来改变我们组件的某一个特定标签样式。我们还可以根据类名、ID、属性等等来进行匹配选择——任何有效的 CSS 选择器都可以正常工作。
+  // /通过使用 * 选择器，我们可以创造应用于全部 :host 元素的默认的样式，正如在这个例子中我们设置所有组件的 font-size 为 24px。通过这一方式你可以构建组件的基本外观，然后在通过不同方式的选择器给你的组件增光添彩。
+  var root1 = document.querySelector("p").createShadowRoot();
+  var root2 = document.querySelector("div").createShadowRoot();
+  var template = document.querySelector(".shadow-template");
+  root1.appendChild(document.importNode(template.content, true))
+  root2.appendChild(document.importNode(template.content, true))
+  </script>
+</body>
+
+</html>
