@@ -29,7 +29,7 @@
   
   .banner {
     height: 200px;
-    margin: 0 auto;
+    margin: 50px auto;
     width: 300px;
     position: relative;
     overflow: hidden;
@@ -222,7 +222,7 @@
     		utils.css(inner,"left",0)
     		step=1;
     	}
-    	console.log(step)
+    	console.log(utils.css(inner,"left"))
     	animate(inner,{left:-step*300},500)
     	// 0 0
     	 // 1 -300
