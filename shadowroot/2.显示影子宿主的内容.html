@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="pokemon">
+		胖丁
+	</div>
+	<template class="pokemon-template">
+		<h1>一只野生的 <content></content> 出现了！</h1>
+	</template>
+	<script>
+	// 想要引用影子宿主里面的内容，我们首先需要采用一个新的标签—— <content> 标签
+	var host = document.querySelector(".pokemon");
+	var root = host.createShadowRoot();
+	var template = document.querySelector(".pokemon-template")
+	// importNode 复制节点 默认是true是深复制 false是浅复制
+	root.appendChild(document.importNode(template.content,true))
+	// 使用 <content> 标签，我们创建了一个插入点（insertion point），其将 .pokemon div 中的文本投射（projects） 出来，使之得以在我们的影子节点 <h1> 中展示。插入点十分强大，它允许我们在不改变源代码的情况下改变渲染顺序，这也意味着我们可以对要呈现的内容进行选择。
+</script>
+</body>
+
+
+
+
+</html>

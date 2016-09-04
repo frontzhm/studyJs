@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		button{
+			color:red;
+		}
+	</style>
+</head>
+<body>
+	<button>普通的按钮</button>
+
+	<div></div>
+	<script>
+	// 影子边界 影子形成边界 外人无法入侵
+	// Shadow DOM 提供给我们的样式边界意味着我们终于可以开始用一种更加局部的、特定组件化的方式来考虑和编写我们的 CSS。
+		var host = document.querySelector("div");
+		var root = host.createShadowRoot();
+		root.innerHTML = '<button style="width:300px">影子按钮</button>';
+	</script>
+</body>
+</html>

@@ -420,7 +420,7 @@
                 // 		utils.css(curEle,key,target[key]);
                 // 	}
                 // }
-                utils.css(curEle, key, target);
+                utils.css(curEle, target);
                 clearInterval(curEle.timer);
                 // 在动画结束的时候,如果用户传了回调函数,就会执行
                 // 相当于动画结束之后执行的动作
@@ -431,7 +431,10 @@
             // 未到达目标:分别获取每个方向的当前位置,然后设置即可
             for (key in target) {
                 if (target.hasOwnProperty(key)) {
-                	var curPos = tempEffect(begin[key], distance[key], time, duration)
+                    // Linear: function(start, alter, curTime, dur) {
+            // return start + curTime / dur * alter; },
+            // 300+1000/500*300
+                	var curPos = tempEffect(begin[key], distance[key], time, duration);
                     utils.css(curEle, key, curPos);
                 }
             }

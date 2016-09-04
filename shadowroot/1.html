@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="widget">hello,world</div>
+	<script>
+	// http://www.ituring.com.cn/article/177461
+	// 首先要指定一个节点担任影子宿主（shadow host）。在这个例子里，我们将 .widget 当做我们的影子宿主
+		var host = document.querySelector(".widget");
+		// 然后我们给影子宿主添加一个称作影子根（shadow root）的新节点。影子根作为影子树的第一个节点，其他的节点都是它的子节点。
+		var root = host.createShadowRoot();
+		// 结果表明，影子宿主里面的内容没有被渲染，反而影子根里面的内容被渲染了出来。
+		root.textContent="我在你的div里";
+		// 沿用了之前的例子并给它添加了两个新元素，之所以这样做是为了说明 Shadow DOM 的操作与普通的DOM 的操作区别真的不大。你仍然可以使用 appendChild 和 insertBefore 来将子节点添加到父节点上
+		var header = document.createElement("h1");
+		header.textContent = "一只野生的影子标题出现了！";
+		var para = document.createElement("p");
+		para.textContent = "一些影子文本也探头探脑滴冒了出来…";
+		root.appendChild(header);
+		root.appendChild(para);
+		// 和之前一样，影子宿主 里面的内容 Hello world 并没有被渲染，取而代之展现的的是 影子根。
+
+		// 你可能会说：“这个我知道，但我如果想要渲染影子宿主里的内容，那该怎么玩？”
+
+		// 既然你诚心诚意的发问了，我就大发慈悲的告诉你——这绝对是 Shadow DOM 的一个杀手锏！请耐心读下去，我会向你展示它的神奇之处。
+		// 看2
+	</script>
+</body>
+</html>

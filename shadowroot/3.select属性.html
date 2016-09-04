@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="hua">
+    <span class="name">花花</span>
+    <span class="city">河南</span>
+    <span id="hobby">bobo</span>
+    <p>一只会说话的花花</p>
+    <p>胖胖的身体</p>
+    <p>反应不太灵敏,喜欢bobo</p>
+  </div>
+  <template class="hua-template">
+    <dl>
+      <dt>名字</dt>
+      <dd>
+        <content select=".name"></content>
+      </dd>
+      <dt>城市</dt>
+      <dd>
+        <content select=".city"></content>
+      </dd>
+      <dt>兴趣</dt>
+      <dd>
+        <content select="#hobby"></content>
+      </dd>
+    </dl>
+    <p>
+      <content select=""></content>
+    </p>
+  </template>
+  <script>
+  // ************请记住，内容存在于影子宿主中，而呈现的方式存在于影子根也就是 shadow DOM 中************
+  // 在这个例子中我们创建了一个非常简单的简历组件。因为每个定义的字段都需要特定的内容，我们必须告诉 <content> 标签有选择性的插入内容。为了做到这一点，我们使用 select 属性。select 属性使用 CSS 选择器来选取想要展示的内容。
+  // 通过插入点，我们不必修改 content 内容的结构而改变渲染的顺序。
+  // 通过改变插入点的顺序来完成了这一切，仔细回味一下你就会发现这个功能的强大之处。
+  // ************请记住，内容存在于影子宿主中，而呈现的方式存在于影子根也就是 shadow DOM 中************
+  // 我们有一个 content 标签，他的 select 属性值为空。
+  // 这种被称作通配符选择器（wildcard selection），其可以抓取影子宿主中所剩余的全部内容。以下三种选择器是完全相等的：
+  // <content></content>  
+  // <conent select=""></conent>  
+  // <content select="*"></content>
+  var host = document.querySelector(".hua");
+  var root = host.createShadowRoot();
+  var template = document.querySelector(".hua-template");
+  root.appendChild(template.content)
+  </script>
+</body>
+
+</html>
