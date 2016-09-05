@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		ol,ul{
+			list-style: none;
+		}
+		.box{
+			
+		}
+		.banner{
+			margin:50px auto;
+			width: 300px;
+			height: 200px;
+			position: relative;
+		}
+		.slidelist{
+			height: inherit;
+			background:#ccc url(img/load1.gif) no-repeat center center;
+		}
+		.slidelist>li,.slidelist>li>a,.slidelist>li img{
+			display: block;
+			width: inherit;
+			height: inherit;
+		}
+		.slidelist>li{
+			position: absolute;
+			z-index: 0;
+			/*开始是隐藏状态*/
+			opacity: 0;
+			filter:alpha(opacity=0);
+			/*动画到opacity1*/
+		}
+		.slidelist>li.cur{
+			z-index: 1;
+		}
+		.slidelist>li img{
+			display: none;
+		}
+		/*小索引*/
+		.tiplist{
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+			font-size: 0;
+		}
+		.tiplist>li{
+			display: inline-block;
+			cursor: pointer;
+			width: 10px;
+			height: 10px;
+			border-radius: 100px;
+			background-color: #fff;
+			-webkit-box-shadow: 1px 1px 2px #999;
+			box-shadow: 1px 1px 2px #999;
+			margin-left: 10px;
+		}
+		.tiplist>li.cur{
+			background-color: #c99;
+		}
+		/*左右箭头*/
+		.arrleft,.arrright{
+			position: absolute;
+			top:50%;
+			margin-top: -35px;
+			width: 40px;
+			height: 70px;
+			background-image: url(img/arr.png);
+		}
+		.arrright{
+			right: 0;
+			background-position: -41px 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="banner" id="banner">
+		<!-- 轮播图的幻灯片 -->
+			<ul class="slidelist">
+			</ul>
+			<!-- 小索引 -->
+			<ol class="tiplist">
+			</ol>
+			<!-- 左右箭头 -->
+			<a href="" class="arrleft"></a>
+			<a href="" class="arrright"></a>
+		</div>
+	</div>
+	<script src="../utils.js"></script>
+	<script src="../tween.js"></script>
+	<script>
+		var banner = document.getElementById("banner");
+		// 0
+		var slidelist = utils.getElementsByClass("slidelist",banner)[0];
+		var tiplist = utils.getElementsByClass("tiplist",banner)[0];
+		var arrleft = utils.getElementsByClass("arrleft",banner)[0];
+		var arrright = utils.getElementsByClass("arrright",banner)[0];
+		var slides = slidelist.getElementsByTagName("li");
+		var imgs = slidelist.getElementsByTagName("img");
+		var tips = tiplist.getElementsByTagName("li");
+		var jsonData = null;
+		var len = 0;
+		// 1.获取数据
+		~function () {
+			// var xml = new XMLHTTPRequest;
+			// xml.open("get","data.txt?_="+Math.random(),false);
+			// xml.onreadystatechange = function () {
+			// 	 if(xml.readyState===4&&/^2\d{2}$/.test(xml.status)){
+			// 	 	jsonData = formatJSON(xml.responseText);
+			// 	 } 
+			// }
+			// xml.send(null);
+			jsonData = [{
+			  "img": "img/01.jpg",
+			  "desc": "2016新世界",
+			  "url":"http://www.baidu.com"
+			}, {
+			  "img": "img/02.jpg",
+			  "desc": "2016新世界",
+			  "url":"http://www.baidu.com"
+			}, {
+			  "img": "img/03.jpg",
+			  "desc": "2016新世界",
+			  "url":"http://www.baidu.com"
+			}, {
+			  "img": "img/04.jpg",
+			  "desc": "2016新世界",
+			  "url":"http://www.baidu.com"
+			}];
+			len = jsonData.length;
+		}()
+		// 2.绑定数据
+		~function () {
+			  var str="",str1 = "",className="";
+			  for (var i = 0; i <len; i++) {
+			  	var cur = jsonData[i];
+			  	className = i===0? ' class="cur"':"";
+			  	str+='<li'+className+'><a href="'+cur.url+'"><img trueImg="'+cur.img+'" src="" alt="'+cur.desc+'" title="'+cur.desc+'"></a></li>';
+			  	str1+='<li'+className+'></li>';
+			  }
+			  slidelist.innerHTML = str;
+			  tiplist.innerHTML = str1;
+		}()
+	</script>
+</body>
+</html>
