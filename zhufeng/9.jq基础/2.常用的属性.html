@@ -51,7 +51,10 @@
 	})
 	// 3.attr() ->get/setAttribute 适合自定义的属性
 	// prop()适合浏览器天生自带的属性,特别是表单元素
-	// 
+	var $box = $("#box");
+	var $boxDiv = $("div",$box)// 上下文不传是document
+	var c = $("#box div")
+	// jQuery选择器获取到的集合 让集合直接调用jQuery中提供的方法,相当于给集合中每一个元素都调用了这个方法(jQuery的内置循环操作)
 </script>
 </body>
 </html>
