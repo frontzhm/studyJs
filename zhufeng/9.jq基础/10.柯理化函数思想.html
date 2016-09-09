@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="box"></div>
+  <script>
+    // 柯理化函数思想:一个js预处理的思想
+    // 核心原理:利用函数执行形成一个不销毁的私有作用域,把需要预先处理的内容都存在这个不销毁的作用域中,并且返回一个小函数,以后我们执行的都是小函数,在小函数中把之前预先存储的内容执行 13:21
+    var obj = {name:"huaua"};
+    function fn() {
+       console.log(this)
+    }
+    window.setTimeout(fn, 0) // window
+    // bind预先处理this 但是不执行
+    window.setTimeout(fn.bind(obj), 0) // obj
+    // zbind把传递进来的callback的this预先处理为context
+    function zbind (callback,context) {
+      context = context || window;
+      return function () {
+        callback.call(context);
+      }
+    }
+    window.setTimeout(zbind(fn,obj), 0) // obj
+  </script>
+</body>
+
+</html>

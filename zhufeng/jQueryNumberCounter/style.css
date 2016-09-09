@@ -1,0 +1,87 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+ul{
+	list-style: none;
+}
+h3,h2{
+	margin-top: 10px;
+}
+body {
+  font-family: Arial;
+  padding: 25px;
+  background-color: #f5f5f5;
+  color: #808080;
+  text-align: center;
+}
+/*-=-=-=-=-=-=-=-=-=-=-=- */
+/* Column Grids */
+/*-=-=-=-=-=-=-=-=-=-=-=- */
+/*中间的间隙是2% 这样两个有一个间隙就剩98%
+三个有两个间隙4% 96/3 ,以此类推*/
+.col-half{
+	width: 49%;
+}
+.col-third{
+	width: 32%;
+}
+.col-fourth{
+	width: 23.5%;
+}
+.col-fifth{
+	width: 18.4%;
+}
+.col-sixth{
+	width: 15%;
+}
+/*1/4 3/4 中间有一个间隙,1/4是23.5%,3/4就是74.5*/
+.col-three-fourth{
+	width: 74.5%;
+}
+.col-two-third{
+	width: 66%;
+}
+.col-half,
+.col-third,
+.col-fourth,
+.col-fifth,
+.col-sixth,
+.col-three-fourth,
+.col-two-third{
+	position: relative;
+	display: inline;
+	display: inline-block;
+	float: left;
+	margin-right: 2%;
+	margin-bottom: 20px;
+}
+.end{
+	margin-right: 0!important;
+}
+/* Column Grids End */
+.wrapper{
+	width: 980px;
+	margin: 30px auto;
+	position: relative;
+}
+.counter{
+	background-color: #fff;
+	padding: 20px 0 ;
+	border-radius: 5px;
+
+}
+.counter-title{
+	font-size: 40px;
+	font-weight: normal;
+	margin-top: 10px;
+}
+.count-text{
+	font-size:13px;
+	font-weight: normal;
+	margin-top: 10px;
+}
+.fa-2x{
+	/*display: table;*/
+	color: #4ad1e5;
+}
