@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 400px;
+            height: 400px;
+            background-color: #f99;
+            position: relative;
+        }
+        #mark{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background-color: #f11;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <!-- <div id="mark"></div> -->
+    </div>
+    <script>
+        var box = document.getElementById("box");
+        box.onmouseover = function (e) {
+            e =  e||window.event;
+             var mark = document.createElement("div");
+             mark.id="mark";
+             box.appendChild(mark);
+             mark.style.left = e.clientX-this.offsetLeft+"px"; 
+             mark.style.top = e.clientY-this.offsetTop+"px"; 
+             mark.onmouseover= function (e) {
+                e =  e||window.event;
+                e.stopPropagation?e.stopPropagation():e.cancelBubble = true;
+                 e.stopPropagation()  
+             }
+        }
+        box.onmousemove = function (e) {
+            e =  e||window.event;
+             var mark = document.getElementById("mark")
+             mark.style.left = e.clientX-this.offsetLeft+"px"; 
+             mark.style.top = e.clientY-this.offsetTop+"px"; 
+             mark.onmouseover= function (e) {
+                e =  e||window.event;
+                e.stopPropagation?e.stopPropagation():e.cancelBubble = true;
+                 e.stopPropagation()  
+             }
+        }
+        
+    </script>
+</body>
+</html>
