@@ -1,56 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
+
 <body>
-	<script>
-		function runOnce (callback,context) {
-			  return function () {
-			  	 try{
-			  	 	callback.apply(context||this,arguments);
-			  	 } catch(e){
-			  	 	console.log(e)
-			  	 }finally{
-			  	 	callback=null
-			  	 }
+  <script>
+ 
+function once (fn,context) {
+	 var result;
+	 return function () {
+	 	 if(fn!==null){
+	 	 	result = fn.apply(context||this,arguments);
+	 	 	fn=null;
+	 	 } 
+	 	 return result;
+	 }
+}
 
-			  }
-		}
-		function fn(){
-			console.log(1)
-		}
-
-		var once = runOnce(fn)
-		once();
-		once();
-
-
-
+// Usage
+var canOnlyFireOnce = once(function() {
+    console.log('Fired!');
+    return "op"
+});
+ 
+console.log(canOnlyFireOnce()) // "Fired!"
+console.log(canOnlyFireOnce()) // nothing
 
 
 
-		function once(fn, context) { 
-		    var result;
-		 
-		    return function() { 
-		        if(fn) {
-		            result = fn.apply(context || this, arguments);
-		            fn = null;
-		        }
-		 
-		        return result;
-		    };
-		}
-		 
-		// Usage
-		var canOnlyFireOnce = once(function() {
-		    console.log('Fired!');
-		});
-		 
-		canOnlyFireOnce(); // "Fired!"
-		canOnlyFireOnce(); // nothing
-	</script>
+  </script>
 </body>
+
 </html>

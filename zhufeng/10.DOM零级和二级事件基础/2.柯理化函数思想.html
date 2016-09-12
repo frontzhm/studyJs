@@ -77,23 +77,44 @@
       // window.setTimeout(zbind(fn,obj,1,2), 0) // obj
       // 
       // 
-      Function.prototype.zbind = function zbind(context) {
+      // Function.prototype.zbind = function zbind(context) {
       
-          var _this = this;
-          context = context || window;
-          var outerArg = Array.prototype.slice.call(arguments, 1);
-          // 兼容
-          if ("bind" in Function.prototype) {
+      //     var _this = this;
+      //     context = context || window;
+      //     var outerArg = Array.prototype.slice.call(arguments, 1);
+      //     // 兼容
+      //     if ("bind" in Function.prototype) {
       
-              return this.bind.apply(this, [context].concat(outerArg))
+      //         return this.bind.apply(this, [context].concat(outerArg))
+      //     }
+      //     // 不兼容
+      //     return function() {
+      //         var innerArg = Array.prototype.slice.call(arguments, 0)
+      //         if (innerArg.length === 0) {
+      //             innerArg[innerArg.length - 1] = window.event
+      //         }
+      //         callback.apply(context, outerArg.concat(innerArg));
+      //     }
+      // }
+      Function.prototype.zbind = function(context){
+        var _this = this;
+        context = context || window;
+        // 兼容
+        if("bind" in Function.prototype){
+          return this.bind(context)
+        }
+        // 不兼容
+        var outerArg = Array.prototype.slice.call(arguments,1);
+
+        return function(){
+          var innerArg =Array.prototype.slice.call(arguments, 0);
+          if(innerArg.length===0){
+            // ie6 不传递MouseEvent
+            innerArg[innerArg.length] = window.event;
           }
-          return function() {
-              var innerArg = Array.prototype.slice.call(arguments, 0);
-              if (innerArg === 0) {
-                  innerArg[innerArg.length] = window.event
-              }
-              _this.apply(context, outerArg.concat(innerArg))
-          }
+          _this.apply(context, outerArg.concat(innerArg));
+          
+        }
       }
       document.body.onclick = fn.zbind(obj, 100, 12)
     </script>
