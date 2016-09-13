@@ -8,29 +8,60 @@
 
 <body>
   <script>
- 
-function once (fn,context) {
-	 var result;
-	 return function () {
-	 	 if(fn!==null){
-	 	 	result = fn.apply(context||this,arguments);
-	 	 	fn=null;
-	 	 } 
-	 	 return result;
-	 }
-}
+  function runOnce(callback, context) {
+    return function() {
+      if (callback) {
+        callback.apply(context || this, arguments);
+        callback = null;
+      }
 
-// Usage
-var canOnlyFireOnce = once(function() {
-    console.log('Fired!');
-    return "op"
-});
- 
-console.log(canOnlyFireOnce()) // "Fired!"
-console.log(canOnlyFireOnce()) // nothing
+    }
+  }
 
 
 
+
+
+
+  // usage1
+  var a = 0;
+  var canOnlyFireOnce = runOnce(function() {
+    a++;
+    console.log(a)
+  })
+  canOnlyFireOnce(); //1
+  canOnlyFireOnce(); // nothing
+  canOnlyFireOnce(); // nothing
+
+
+  // usage 2
+  var name = "张三";
+  var canOnlyFireOnce = runOnce(function() {
+    console.log('hello, ' + this.name)
+  })
+  canOnlyFireOnce() //你好张三
+  canOnlyFireOnce() // nothing
+
+  // usage 3
+  var obj = {
+    name: "花花",
+    age: 24
+  };
+  var canOnlyFireOnce = runOnce(function() {
+    console.log('hello', this.name)
+  }, obj)
+
+  // usage 4
+  var obj = {
+    name: "huahau",
+    active: function A(para) {
+      console.log(this)
+      console.log(para)
+    }
+  };
+  var fireOne = runOnce(obj.active.bind(obj, "p"));
+  fireOne()
+  fireOne()
   </script>
 </body>
 

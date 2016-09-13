@@ -1,0 +1,11 @@
+body {
+  font-family: Helvetica, sans-serif;
+  color: #333; }
+
+nav {
+  text-align: center; }
+  nav ul {
+    -ms-text-align-last: auto;
+    text-align-last: auto; }
+
+/*# sourceMappingURL=style.css.map */

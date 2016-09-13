@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.scss">
+</head>
+<body>
+	<h2>变量 $color:#333;</h2>
+	<p>p{color:$color}</p>
+	<h2>嵌套ol{li{color:$color}}</h2>
+	<h2>导入 @import'reset'</h2>
+	<h2>mixin定义代码片段</h2>
+	<p>
+		@mixin box-sizing($sizing){
+		-webkit-box-sizing:$sizing;     
+		      -moz-box-sizing:$sizing;
+		           box-sizing:$sizing;
+		}
+		.box{
+		@include box-sizing(border-box)
+		}
+	</p>
+	<h2>扩展和继承 @extend</h2>
+	<p>
+		.h14{height:14px;}
+		.box{@extend .h14}
+	</p>
+	<h2>运算 sass可进行简单的加减乘除运算等</h2>
+	<p>
+		.box{width:300px/2}
+	</p>
+	<h2>颜色 sass中集成了大量的颜色函数，让变换颜色更加简单。</h2>
+	<p>.box{color:darken($color,10%)}
+	</p>
+</body>
+</html>
