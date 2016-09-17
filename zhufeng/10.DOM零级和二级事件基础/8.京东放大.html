@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			position: relative;
+			top: 20px;
+			left: 20px;
+			width: 350px;
+			height: 350px;
+			box-shadow: 1px 1px 2px #000;
+		}
+		#mark{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 175px;
+			height: 175px;
+			background-color: #000;
+			opacity: 0.5;
+			filter:alpha(opacity=50);
+			cursor: move;
+			/*display: none;*/
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<img src="img/01.jpg" alt="">
+		<div id="mark"></div>
+	</div>
+	<script>
+		var box = document.getElementById("box");
+		var mark = document.getElementById("mark");
+		box.onmouseenter = function (e) {
+			 e = e || window.event;
+			 mark.style.display = "block";
+			 setPosition(e);  
+		}
+		box.onmouseleave= function (e) {
+			 e = e || window.event;
+			 mark.style.display = "none";
+			 
+		}
+		box.onmousemove= function (e) {
+			 e = e || window.event;
+			 // mark.style.display = "none";
+			 setPosition(e);
+		}
+		// 设置盒子的位置
+		function setPosition (e) {
+			  var top = e.clientY - box.offsetTop - (mark.offsetHeight/2);
+			  var left = e.clientX - box.offsetLeft - (mark.offsetWidth/2);
+			  var minL = 0,minT = 0,maxL = box.offsetWidth - mark.offsetWidth,maxT = box.offsetHeight- mark.offsetHeight;
+			  if(left<minL){
+			  	left=minL
+			  }else if(left>maxL){
+			  	left = maxL
+			  }
+			  if(top<minT){
+			  	top=minTL
+			  }else if(top>maxT){
+			  	top = maxT
+			  }
+			  mark.style.top = top+"px";
+			  mark.style.left = left+"px";
+		}
+		
+
+	</script>
+</body>
+</html>
