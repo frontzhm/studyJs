@@ -1,7 +1,7 @@
 {
-  "name": "testgulp",
+  "name": "copymulti",
   "version": "1.0.0",
-  "description": "test",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,20 @@
   "author": "zhm",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^5.0.0",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-jshint": "^2.0.1",
+    "gulp-jslint": "^1.0.5",
+    "gulp-less": "^3.1.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "gulp-watch": "^4.3.9",
+    "run-sequence": "^1.2.2"
   }
 }
