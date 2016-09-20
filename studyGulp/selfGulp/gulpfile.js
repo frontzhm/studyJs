@@ -2,8 +2,9 @@ var
   gulp = require('gulp'),
   watch = require('gulp-watch'),
   del = require('del'),
-  runSequece = require('run-sequece'),
+  runSequence = require('run-sequence'),
   sass = require("gulp-sass"),
+  ts = require("gulp-typescript"),
   concat = require('gulp-concat'),
   imagemin = require("gulp-imagemin"),
   minifyCss = require("gulp-minify-css"),
@@ -48,3 +49,32 @@ gulp.task('del-tempjs',function (){
 	  })
 })
 // run-sequece
+// typescript  自动编译
+// gulp.task('tsc',function () {
+//    watch('app/ts/*.ts')
+//    .pipe(ts())
+//    .pipe(gulp.dest('www/build/js'))
+// })
+var tsProj = ts.createProject('tsconfig.json');
+gulp.task('tsc', function () {
+    var tsResult = gulp.src('app/ts/*.ts')
+        .pipe(ts(tsProj))
+        .pipe(gulp.dest('www/build/js'));
+});
+
+gulp.task('tsc:w', ['tsc'], function () {
+    gulp.watch('app/ts/*.ts', ['tsc']);
+});
+
+// var tsProj = ts.createProject('tsconfig.json');
+// gulp.task('tsc', function () {
+//     watch('app/ts/*.ts')
+//         .pipe(ts(tsProj))
+//         .pipe(gulp.dest('www/build/js'));
+// });
+// scss 自动编译
+gulp.task('scssc',function () {
+   watch('app/scss/*.scss')
+   .pipe(sass())
+   .pipe(gulp.dest('www/build/css/')) 
+})

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>=></title>
+</head>
+<body>
+	<script>
+	
+	// 箭头左边是输入,右边是输出
+		// 1.参数只有一个的时候。
+	var f = v=>v;
+	// 上面相当于
+	// var f = function (v) {
+	// 	 return v 
+	// }
+	console.log(f(0))
+	// 2.不是1那种情况,也就是没有参数或者多于一个参数,需要圆括号
+	var sum = (num1,num2)=>num1+num2
+	console.log(sum(1,2))
+	// 3.当函数体内的语句不知一句的时候需要用{},且如果返回值是一个对象的时候,必须在外面加括号,防止误会
+	var item = id => ({id:id,name:'h'})
+	console.log(item(1))
+	// 4.箭头函数可以和变量解构结合使用
+	const full = ({first,last})=>first+' '+last;
+	// 相当于
+	// function full (person) {
+	// 	 return person.first+' '+person.last; 
+	// }
+	// 简单明了
+	const isEven = n => n%2==0;
+	const squareOf = n => n*n;
+	console.log(isEven(3))
+	console.log(squareOf(3))
+	// 简化回调函数
+	console.log([1,2,3].map(n=>n*n));
+	console.log([11,2,3].sort((a,b)=>a-b>0));
+
+	// rest 和箭头的例子
+	const numbers = (...nums)=>nums;
+	numbers(1,2,3) // [1,2,3]
+	const headtail = (head,...tail)=>[head,tail]
+	headtail(1,2,3,4) // [1,[2,3,4]]
+	// ...arr 表示arr[0],arr[1]... 也就是省略号后面是数组
+	// 箭头函数不能用作Generator函数。
+	// 箭头函数中，this是固定的,是定义时所在的对象，而不是使用时所在的对象,这种特性很有利于封装回调函数
+	// this指向的固定化，并不是因为箭头函数内部有绑定this的机制，实际原因是箭头函数根本没有自己的this，导致内部的this就是外层代码块的this。正是因为它没有this，所以也就不能用作构造函数。
+	// 除了this，以下三个变量在箭头函数之中也是不存在的，指向外层函数的对应变量：arguments、super、new.target。
+	// 另外，由于箭头函数没有自己的this，所以当然也就不能用call()、apply()、bind()这些方法去改变this的指向。
+	// 
+	// 
+	// 下面是一个部署管道机制（pipeline）的例子，即前一个函数的输出是后一个函数的输入。
+	const plus1 = a=>a+1;
+	const mult2 = a=>a*2;
+	mult2(plus1(5))
+
+
+
+	</script>
+</body>
+</html>
