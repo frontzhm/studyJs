@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// var pro = new Promise(function (resolve,reject) {
+		// 	  if(异步操作成功){
+		// 	  	resolve(value)
+		// 	  }else{
+		// 	  	reject(error)
+		// 	  }
+		// })
+		// promise.then(function(value){},function (error) {})
+
+
+
+		let pro = new Promise((resolve,reject)=>{
+
+		})
+
+		function timeout (ms) {
+			 return new Promise((resolve,reject)=>{
+			 	setTimeout(resolve,ms,'done')
+			 })
+		}
+		timeout(100).then((value)=>{console.log(value)})
+
+		function test (str) {
+			 return new Promise((resolve,reject)=>{
+			 console.log(str)
+			 resolve(2);
+			 })
+		}
+		test("1").then((value)=>{console.log(value)})
+
+
+
+// Promise新建后立即执行，所以首先输出的是“Promise”。然后，then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行，所以“Resolved”最后输出。
+		let promise = new Promise(function(resolve, reject) {
+		  console.log('Promise');
+		  resolve();
+		});
+
+		promise.then(function() {
+		  console.log('Resolved.');
+		});
+
+		console.log('Hi!');
+	</script>
+</body>
+</html>

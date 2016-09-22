@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 1.属性的简洁写法 ,ES6允许在对象之中，只写属性名，不写属性值。这时，属性值等于属性名所代表的变量
+  // 注意，简洁写法的属性名总是字符串，这会导致一些看上去比较奇怪的结果。
+  var foo = 'bar';
+  var obj = {
+    foo
+  };
+  // 用于函数返回值特别方便
+  function fn(x, y) {
+    return {
+      x,
+      y
+    } // 相当于{"x":x,"y":y}
+  }
+  console.log(fn(1, 2)) //Object {"x": 1, "y": 2}
+    // 2.方法的简写
+  var o = {
+    method() {
+      return 'hello'
+    },
+    // "method":function(){return 'hello'}
+    me() {
+      return 'hi'
+    }
+  }
+  console.log(o)
+    // 如果某个方法的值是一个Generator函数，前面需要加上星号。
+  var obj = { * m() {
+      yield 'hello world';
+    }
+  };
+  // 3.属性名表达式
+  // JavaScript语言定义对象的属性，有两种方法。
+  // 方法一
+  obj.foo = true;
+
+  // 方法二 [表达式]翻译完之后变成字符串
+  obj['a' + 'bc'] = 123;
+  // 字面量定义属性
+  {
+    let propKey = 'foo';
+
+    let obj = {
+      [propKey]: true,
+      ['a' + 'bc']: 123
+    };
+  }
+  // 表达式还可以用于定义方法名。
+
+  {
+    let obj = {
+      ['h' + 'ello']() {
+        return 'hi';
+      }
+    };
+
+    obj.hello() // hi
+  }
+  // 4.Object.assign  对象的合并  返回新对象且改变原对象
+  // Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。
+  // Object.assign方法的第一个参数是目标对象，后面的参数都是源对象。
+
+  // 注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。
+  {
+    let obj = {
+      a: 1
+    };
+    let obj1 = {
+      b: 2
+    };
+    console.log(Object.assign(obj, obj1))
+    console.log(obj)
+    console.log(obj1)
+      // 如果该参数不是对象，则会先转成对象，然后返回。
+      // 神奇的是
+    console.log(Object.assign("hello")) //String {0: "h", 1: "e", 2: "l", 3: "l", 4: "o", length: 5, [[PrimitiveValue]]: "hello"}
+
+  }
+  // Object.assign方法实行的是浅拷贝，而不是深拷贝。也就是说，如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用。
+  {
+    var obj = {
+      z: 1
+    };
+    var obj1 = {
+      s: 2
+    };
+    Object.assign(obj, obj1);
+    obj1.s = 3;
+    console.log(Object.assign(obj, obj1)) //Object {z: 1, s: 3}
+      // 只是返回值是浅复制  obj目标对象是已经确定的
+    console.log(obj) //Object {z: 1, s: 2}
+  }
+  // 用途
+  // 1.为对象添加属性
+  {
+    class Point {
+      constructor(name, age) {
+        // return {name,age}
+        Object.assign(this, {
+          name,
+          age
+        })
+      }
+    }
+    console.log(new Point("hua", 12))
+
+  // 2.为原型添加方法
+  Object.assign(Point.prototype,{
+  	do(){
+  		alert(0)
+  	},
+  	doo(){
+  		alert(1)
+  	}
+  })
+  console.log(Point.prototype)
+  // 3.合并对象 
+  let merge = Object.assign({},{name:"j"},{age:89});
+  console.log(merge)
+  // 4.为属性指定默认值
+  const DEFAULTS = {name:"hua",age:12};
+  function fn(options){
+  	options = Object.assign({},DEFAULTS,options)
+  	console.log(options);
+  }
+  fn({name:"hhh"})
+  }
+  </script>
+</body>
+
+</html>

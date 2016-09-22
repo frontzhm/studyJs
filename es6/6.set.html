@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // ES6提供了新的数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+
+  // Set本身是一个构造函数，用来生成Set数据结构。
+  // 通过add方法向Set结构加入成员，结果表明Set结构不会添加重复的值。
+
+  // Set函数可以接受一个数组（或类似数组的对象）作为参数，用来初始化。
+  {
+  	let se = new Set([1,2,1])
+  	console.log(se) // set{1,2}
+  	console.log(se.add(3)) //set{1,2,3}
+  	console.log(se.size) //3
+
+  	// 顺便解决了除掉重复值得方法
+  	let arr = [1,2,3,4,5,1,3,4];
+  	arr = [...new Set(arr)];
+  	console.log(arr) //[1,2,3,4,5]
+  
+  }
+  // Set实例的方法分为两大类：操作方法（用于操作数据）和遍历方法（用于遍历成员）。下面先介绍四个操作方法。
+
+// add(value)：添加某个值，返回Set结构本身。
+// delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
+// has(value)：返回一个布尔值，表示该值是否为Set的成员。
+// clear()：清除所有成员，没有返回值。
+// Array.from方法可以将Set结构转为数组。
+{
+	let se = new Set([1,2,3,1]);
+	let arr = Array.from(se)
+
+ 
+}
+// 利用扩展运算符,数组的map和filter方法也可以用于Set了
+// map 是 返回每个项改变后的值组成的数组
+// filter 返回true的项组成的数组
+// 因此使用Set可以很容易地实现并集（Union）、交集（Intersect）和差集（Difference）。
+
+{
+	let a = new Set([1,2,3,4]);
+	let b = new Set([1,2,5,6]);
+	// 并集
+	let union  = new Set([...a,...b]);
+	// 交集  filter默认参数 项 index 原值
+	let intersect = new Set([...a].filter(item=>b.has(item)));
+	// 差集
+	let difference = new Set([...a].filter(item=>!b.has(item)));
+}
+
+ </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 1.ES6引入了一种新的原始数据类型Symbol，表示独一无二的值。它是JavaScript语言的第七种数据类型，前六种是：Undefined、Null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）。
+		let s = Symbol();
+		console.log(s) //Symbol()
+		console.log(typeof s) //"symbol"
+		// 2.注意，Symbol函数的参数只是表示对当前Symbol值的描述，因此相同参数的Symbol函数的返回值是不相等的。
+		{
+			let s1 = Symbol("1");
+			let s2 = Symbol("2");
+			console.log(s1) //Symbol(1)
+			console.log(s1 === s2) //false
+		
+		// 3.Symbol值不能与其他类型的值进行运算，会报错。
+		// 但是，Symbol值可以显式转为字符串。
+		// 0+s1; //Uncaught TypeError: Cannot convert a Symbol value to a number
+	}
+	</script>
+</body>
+</html>
