@@ -6,6 +6,10 @@
 </head>
 <body>
 	<script>
+	// 1.promise的含义:一个容器,保存着未来才会结束的事件
+	// 有两个特点:1.对此的状态不受外界影响(pending resolved rejected)
+	// 2.状态一旦改变就不会再变
+	// 异步是 各种事情同时做
 		// var pro = new Promise(function (resolve,reject) {
 		// 	  if(异步操作成功){
 		// 	  	resolve(value)
@@ -39,16 +43,33 @@
 
 
 // Promise新建后立即执行，所以首先输出的是“Promise”。然后，then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行，所以“Resolved”最后输出。
-		let promise = new Promise(function(resolve, reject) {
-		  console.log('Promise');
-		  resolve();
-		});
-
-		promise.then(function() {
-		  console.log('Resolved.');
-		});
-
-		console.log('Hi!');
+		{
+			let promise = new Promise(function (resolve,reject) {
+				 console.log('Promise');
+				 resolve() 
+			})
+			promise.then(function () {
+				 console.log('resolved') 
+			})
+			console.log('Hi')
+			// promise
+			// hi
+			// resolved
+		}
+		// 异步加载图片的例子
+		function loadImgSyn (url) {
+			 var img = new Image();
+			 img.src = url;
+			 img.onload  = function () {
+			 	 resolve(img) 
+			 }
+			 img.onerror = function () {
+			 	 reject(new Error('could not load img at'+url)); 
+			 }
+		}
+		loadImgSyn().then(function () {
+			  
+		})
 	</script>
 </body>
 </html>
