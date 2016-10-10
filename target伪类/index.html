@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    html,
+    body {
+        height: 100%;
+    }
+    
+    #para:target {
+        color: #f99;
+    }
+    
+    #film:not(:target) {
+        display: none;
+    }
+    
+    #para:target {
+        display: block;
+    }
+    
+    #nav {
+        position: fixed;
+        width: 80%;
+        max-length: 300px;
+        height: 100%;
+        top: 0;
+        background-color: #f8f8f8;
+
+    }
+     #nav:not(:target){
+     	right: -100%;
+     	transition:right .5s;
+     }
+     #nav:target{
+        right: 0;
+        transition: right 1s;
+     }
+
+     #modal{
+     	position: fixed;
+     	width: 100%;
+     	height: 100%;
+     	background-color: rgba(0,0,0,0.5);
+     	left: 0;
+     	top: 0;
+     	/*这里居中*/
+     	display: flex;
+     	/*justify-content: center;
+     	align-items: center;*/
+
+     }
+     #modal:not(:target){
+     	opacity:0;
+     	/*display: none;*/
+     	visibility: hidden;
+     	transition: opacity .5s,visibility .5s;
+     }
+     #modal:target{
+     	opacity:1;
+     	/*display: block;*/
+     	visibility: visible;
+     	transition: opacity 1s,visibility 1s;
+     }
+     .cn{
+     	width: 200px;
+     	background-color: #fff;
+     	text-align: center;
+     	margin:auto;
+     }
+
+
+     section{
+     	display: flex;
+     }
+     main{
+     	flex:3;
+     	background-color: #f6f6f6;
+     }
+  
+     #body:not(:target) aside{
+     	-webkit-flex: 0;
+     	-moz-flex: 0;
+     	-ms-flex: 0;
+     	-o-flex: 0;
+     	flex: 0;
+     	display: none;
+     }
+     #body:not(:target) #hideSide{
+     	display: none;
+     }
+     #body:target aside{
+     	-webkit-flex: 1;
+     	-moz-flex: 1;
+     	-ms-flex: 1;
+     	-o-flex: 1;
+     	flex: 1;
+     	display: block;
+     }
+     #body:target #showSide{
+     	display: none;
+     }
+    </style>
+</head>
+
+<body id="body">
+    <h1>最简单的demo</h1>
+    <div>
+        <a href="#para">点我跳转</a>
+        <p id="para">
+            我是跳转的目标
+        </p>
+    </div>
+    <h2>隐藏显示电影</h2>
+    <div>
+        <a href="#film">显示电影</a>
+        <p id="film">我就是电影
+            <a href="#">隐藏</a>
+        </p>
+    </div>
+    <h2>侧边栏</h2>
+    <div id="nav">
+    	<a href="#">关闭侧边栏</a>
+    </div>
+    <div>
+        <a href="#nav">侧边栏</a>
+        
+        <p>什么是CSS伪类？ 通常选择器不能表现HTML元素或属性的状态，我们可以在CSS选择器上添加伪类表示元素的状态、特征。伪类名写在选择器的:冒号后面，必要时可以添加(),例如：#comments:not(:target)。 :target 伪类用来指定那些包含片段标识符的 URL 的目标元素样式。 例如：http://www.css88.com/demo/target-selector/#target-test这个 URL 包含了 #target-test 片段标识符。 在HTML中, 标识符是元素的id（或者name属性）。 这个示例 URL 指向的是ID为”target-test”的元素 。看看这个最简单的例子,页面上有个元素，如下：
+        什么是CSS伪类？ 通常选择器不能表现HTML元素或属性的状态，我们可以在CSS选择器上添加伪类表示元素的状态、特征。伪类名写在选择器的:冒号后面，必要时可以添加(),例如：#comments:not(:target)。 :target 伪类用来指定那些包含片段标识符的 URL 的目标元素样式。 例如：http://www.css88.com/demo/target-selector/#target-test这个 URL 包含了 #target-test 片段标识符。 在HTML中, 标识符是元素的id（或者name属性）。 这个示例 URL 指向的是ID为”target-test”的元素 。看看这个最简单的例子,页面上有个元素，如下：
+        什么是CSS伪类？ 通常选择器不能表现HTML元素或属性的状态，我们可以在CSS选择器上添加伪类表示元素的状态、特征。伪类名写在选择器的:冒号后面，必要时可以添加(),例如：#comments:not(:target)。 :target 伪类用来指定那些包含片段标识符的 URL 的目标元素样式。 例如：http://www.css88.com/demo/target-selector/#target-test这个 URL 包含了 #target-test 片段标识符。 在HTML中, 标识符是元素的id（或者name属性）。 这个示例 URL 指向的是ID为”target-test”的元素 。看看这个最简单的例子,页面上有个元素，如下：
+            <code><div id="target-test">这个元素的id为"target-test"</div></code> 添加CSS代码： #target-test { background-color: transparent; border-bottom: 3px solid #ffdb3a; font-weight: 700; } #target-test:target { background-color: #ffdb3a; } 点击查看：http://www.css88.com/demo/target-selector/ 当然这个是最简单的例子，下面我介绍几个有意思的例子。（例子来自：https://github.com/ireade/demo.bitsofco.de）
+        </p>
+    </div>
+
+
+
+    <h2>modal</h2>
+    <div id="modal">
+    	<div class="cn">我就是modal的内容
+
+			<p><a href="#">关闭modal</a></p>
+    	</div>
+    </div>
+    <div>
+    	<a href="#modal">显示modal</a>
+    </div>
+
+
+
+    <h2>显示和隐藏不重要区域</h2>
+		<div>
+			<a href="#body" id="showSide">显示side</a>
+			<a href="#" id="hideSide">隐藏side</a>
+			<section>
+				<main>huahua</main>
+				<aside>side</aside>
+			</section>
+		</div>
+</body>
+
+</html>
