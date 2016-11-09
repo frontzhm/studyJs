@@ -1,0 +1,76 @@
+html{
+	font-size: 100px;
+	line-height: auto;
+	color: #fff;
+	font-family: 'microsoft yahei'
+}
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.wrap,
+.swiper-container,
+.swiper-wrapper,
+.swiper-slide {
+	/*width: 100%;
+    height: 100%;*/
+}
+.swiper-slide{
+}
+
+.page1{
+	background: url(../img/slide6bg.jpg)  no-repeat;
+	background-size: cover;
+}
+.page1 .logo-wrap,.page1 .invite-wrap,.page1 .ips-wrap{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+}
+.page1 .logo-wrap{
+	height: .2rem;
+	top: .5rem;
+}
+.page1 .logo-wrap img,.page1 .invite-wrap img{
+	/*TODO 为什么除掉这个会有距离*/
+	display: block;
+	height: 100%;
+}
+.page1 .tri-wrap{
+	position: absolute;
+	width: 2.656rem;
+	height: 2.3rem;
+	left: 50%;
+	margin-left: -1.3rem;
+	text-align: center;
+	top: .8rem;
+	background: url(../img/tri.png)  no-repeat;
+	background-size: cover;
+}
+.page1 .tri-wrap h2{
+	font-size:.2rem;
+}
+.page1 .tri-wrap p{
+	font-size:.14rem;
+}
+.page1 .invite-wrap{
+	bottom: 2rem;
+	height: .55rem;
+
+}
+.page1 .ips-wrap{
+	bottom: .36rem;
+	width: 100%;
+
+}
+.page1 .ips-wrap img{
+	width: 100%;
+}
+/*******PAGE2**********/
+.page2 p{
+	color:#000;
+	font-size: .14rem;
+}
