@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    ul {
+        list-style: none;
+    }
+    
+    .flex-container {
+        display: flex;
+        justify-content: flex-end;
+        background-color: #eee;
+    }
+    
+    .flex-item>a {
+        text-decoration: none;
+        display: block;
+        padding: 1em;
+        color:#333;
+    }
+    
+    .flex-item>a:hover {
+        background-color: #ddd;
+    }
+    
+    @media all and (max-width:800px) {
+        .flex-container {
+            justify-content: center;
+        }
+    }
+    
+    @media all and (max-width:500px) {
+        .flex-container {
+            flex-flow: column nowrap;
+        }
+        .flex-item {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, .3);
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+        }
+        .flex-item:first-of-type {
+            border-top: 0;
+        }
+        .flex-item:last-of-type {
+            border-bottom: 0;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul class="flex-container">
+            <li class="flex-item"><a href="">Home</a></li>
+            <li class="flex-item"><a href="">Product</a></li>
+            <li class="flex-item"><a href="">About</a></li>
+            <li class="flex-item"><a href="">Help</a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>

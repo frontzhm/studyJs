@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	ul{
+		list-style: none;
+	}
+		.flex-container{
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-around;
+			background-color: #eee;
+		}
+		.flex-item{
+			background-color: #f69;
+			flex: 0 0 500px;
+			height: 200px;
+			margin-top: 10px;
+
+		}
+	</style>
+</head>
+<body>
+	<ul class="flex-container">
+		<li class="flex-item">1</li>
+		<li class="flex-item">2</li>
+		<li class="flex-item">3</li>
+		<li class="flex-item">4</li>
+		<li class="flex-item">5</li>
+		<li class="flex-item">6</li>
+	</ul>
+</body>
+</html>
