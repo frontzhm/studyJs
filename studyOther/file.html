@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    	input{
+    		display: none;
+    	}
+    </style>
+</head>
+
+<body>
+    <!-- 所有type属性(attribute)为file的 <input> 元素都有一个files属性(property),用来存储用户所选择的文 -->
+    <div>
+    	<label for="file1">选择文件</label>
+    	<input type="file" id="file1" multiple>
+    	<p id="file1-name"></p>
+    </div>
+    <button id="btn">删除</button>
+    <div>
+    	<!-- 拖拽的事 -->
+    </div>
+    <script>
+    // file
+    ~function(){
+    	var file1 = document.getElementById("file1");
+    	var file1name = document.getElementById("file1-name");
+    	console.dir(file1);
+    	console.dir(file1.files.length);
+    	file1.onchange= function () {
+            console.log(this.files.length)
+    		var str="";
+    		for (var i =0,len= this.files.length; i <len; i++) {
+    			var cur = this.files[i];
+    			console.log(cur);
+    			// file.size是以字节为单位的
+    			str+= cur.name+" "+(cur.size/1024).toFixed(2)+"KB"+" / ";
+    		}
+    		file1name.innerHTML = str;
+    	}
+        // 删文件 根本删不掉 啊喂  是只读属性
+        var btn = document.getElementById("btn");
+        btn.onclick = function(){
+            // 错误的方法
+            /*file1name.innerHTML ="";
+            console.log(file1.files);
+            Array.prototype.slice.call(file1.files,0).pop();
+            console.log(file1.files)*/
+            var html = file1.outerHTML;
+            
+        }
+    }()
+   
+    // 
+    ~function () {
+    	// TODO
+    }()
+    </script>
+</body>
+
+</html>

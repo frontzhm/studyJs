@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>需求:</h3>
+    <ol>
+        <li>点击增加单选组</li>
+        <li>单选项里特定项选择的时候文本框会出现,否则会消失</li>
+        <li>单选项里的hidden的值,非常特殊,有文本就是文本值否则就是单选本身的值</li>
+    </ol>
+    <h3>难点:</h3>
+    <ol>
+        <li>
+            增加的html,选择器不一样了,事件会失效
+        </li>
+    </ol>
+    <button id="add-btn">点击增加单选组</button>
+    <div id="radio-box">
+    </div>
+    <!--     <div class="radio-group">
+    <div>
+        <input type="radio" name="dog" id="1" value="1">
+        <label for="1">我是一只小小鸟</label>
+    </div>
+    <div>
+        <input type="radio" name="hua" id="2" value="2">
+        <label for="2">请给我一红包</label>
+        <input type="text" name="cao" placeholder="金额不限,最好上万">
+    </div>
+    <div>
+        <input type="radio" name="hua" id="3" value="3">
+        <label for="3">我是干扰项</label>
+    </div>
+    <input type="hidden" name="niao">
+</div>
+<div class="radio-group">
+    <div>
+        <input type="radio" name="hua1" id="11" value="11">
+        <label for="11">我是一只小小鸟</label>
+    </div>
+    <div>
+        <input type="radio" name="hua1" id="22" value="22">
+        <label for="22">请给我一红包</label>
+        <input type="text" name="cao" placeholder="金额不限,最好上万">
+    </div>
+    <div>
+        <input type="radio" name="hua1" id="33" value="33">
+        <label for="33">我是干扰项</label>
+    </div>
+    <input type="hidden" name="niao">
+</div> -->
+    <button>点击看到 hidden的值</button>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+    <script>
+    // 1.选择2的时候才显示text,选择别的时候不显示
+    // 2.niao的值,选择2的话是text的值 选择其他是其他的值
+    ~ function addRadio() {
+        var addBtn = $("#add-btn").first();
+        var box = $("#radio-box").first();
+
+        function htmlAddIndex(index) {
+            var html = `
+   					<div class="radio-group">
+   					    <div>
+   					        <input type="radio" name="dog${index}" id="l${index}" value="${index}">
+   					        <label for="l${index}">我是一只小小鸟</label>
+   					    </div>
+   					    <div>
+   					        <input type="radio" name="dog${index}" id="lo${index}" value="${index+1}">
+   					        <label for="lo${index}">请给我一红包</label>
+   					        <input type="text" name="mouse" placeholder="金额不限,最好上万">
+   					    </div>
+   					    <div>
+   					        <input type="radio" name="dog${index}" id="lov${index}" value="${index+2}">
+   					        <label for="lov${index}">我是干扰项</label>
+   					    </div>
+   					    <input type="hidden" name="cat">
+   					</div>
+   			`;
+            return html;
+        }
+        // 页面加载 默认增加一项
+        box.append(htmlAddIndex($(".radio-group").length));
+        // 点击按钮增加一项
+        addBtn.click(function() {
+            box.append(htmlAddIndex($(".radio-group").length)); // 每次增加更新 DOM howShowText();
+            howShowText();
+        });
+
+    }()
+    // 页面加载;
+    howShowText();
+
+    function howShowText() {
+        $.each($('.radio-group'), function() {
+            var self = $(this);
+            var radios = $(':radio', self);
+            var text = $(":text", self);
+            var hasInputRadio = radios.eq(1);
+
+            function showText() {
+                hasInputRadio.prop('checked') ? text.show(0) : text.hide(0);
+            }
+            showText();
+            radios.change(function() {
+                showText();
+            })
+        })
+    }
+
+    function getHiddenValue(wrapEle) {
+        var hasInputRadio = $(':radio', wrapEle).eq(1);
+        return hasInputRadio.prop('checked') ? $(":text", wrapEle).val() : $(':checked', wrapEle).val();
+    }
+    $('button').click(function() {
+        $.each($('.radio-group'), function() {
+            var self = $(this);
+            console.log(getHiddenValue(self))
+            $(':hidden', self).val(getHiddenValue(self))
+        })
+    })
+    </script>
+</body>
+
+</html>
