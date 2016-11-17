@@ -1,10 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .wrapper {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    
+    header,
+    footer {
+        flex: 0 0 100%;
+        line-height: 40px;
+        background-color: #f69;
+        text-align: center;
+    }
+    
+    aside {
+        flex: 0 0 100%;
+    }
+    
+    article {
+        flex: 0 0 100%;
+    }
+    
+    @media all and (min-width: 600px) {
+        aside {
+            flex: 0 0 50%;
+        }
+        article {
+            flex: 0 0 100%;
+        }
+    }
+    
+    @media all and (min-width: 800px) {
+        article {
+            order: 2;
+        }
+        .aside1 {
+            order: 1;
+        }
+        .aside2 {
+            order: 3;
+        }
+        footer {
+            order: 4;
+        }
+        aside {
+            flex: 1 1 0;
+        }
+        article {
+            flex: 3 1 0;
+        }
+    }
+    </style>
 </head>
+
 <body>
-	
+    <div class="wrapper">
+        <header>header</header>
+        <article>
+            <p>
+                在革命的年代 新三年旧三年 旧物改造又三年 虽然现在断舍离已经风靡全球 扔扔扔成为了收纳的高境界 但是小编还是很喜欢旧物DIY带来的成就感 看着一个废物经过自己的巧手变成实用的收纳好帮手 就像培育的娃娃突然长大了 这种满足感是怎么扔东西都享受不到的 所以啊，家里的废物都被忙着扔向垃圾桶 简单动手一改造 就是拥有魔力的收纳神奇 文／空间收纳大师（简书作者） 原文链接：http://www.jianshu.com/p/14f8fcff8715 著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。
+            </p>
+        </article>
+        <aside class="aside1">aside1</aside>
+        <aside class="aside2">aside2</aside>
+        <footer>footer</footer>
+    </div>
 </body>
+
 </html>
