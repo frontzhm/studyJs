@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+	<div>
+		<label for="year">请填写哪一年</label>
+		<input type="text" id="year" >
+	</div>
+	<br>
+	<div>
+		<label for="day">请填写第几天</label>
+		<input type="text" id="day" >
+	</div>
+	<br>
+	<button id="btn">确定</button>
+	<p id="txt"></p>
+    <script>
+    /**
+     * [getDate 计算特定年份的第几天是几月几日]
+     * @param  {[type]} whichYear [哪一年]
+     * @param  {[type]} whichDay  [第几天]
+     * @return {[type]}           [数组,第一个是月份,第二个是天]
+     */
+    function getDate(whichYear, whichDay) {
+    	// 参数出错的情况
+    	// if(typeof whichYear==="undefined" || typeof whichDay==="undefined"){
+    	if((!whichYear) ||  (!whichDay)){
+    		throw new Error("年份和天数必须都是必选项且不能为0");
+    	}
+    	if(isNaN(whichYear) || isNaN(whichDay)){
+    		throw new Error("年份和天数必须都是纯数字");
+    	}
+    	if(parseInt(whichYear)<1 ){
+    		throw new Error("年份必须大于0");
+    	}
+    	if(parseInt(whichDay)<1 || parseInt(whichDay)>366){
+    		throw new Error("天数必须大于0且小于367");
+    	}
+    	whichYear = parseInt(whichYear);
+    	whichDay = parseInt(whichDay);
+        var monthArr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        var sumArr = [31];
+        var isLeapYear = whichYear % 4 === 0;
+        monthArr[1] = isLeapYear?29:28;
+        if(!isLeapYear){
+        	if(whichDay===366){
+        		throw new Error(whichYear+'年总共才365天~');
+        	}
+        }
+        for (var i = 1; i < monthArr.length; i++) {
+        	sumArr[i] = sumArr[i-1]+monthArr[i];
+        }
+        var day = 0;
+        for (var i = 0; i <sumArr.length; i++) {
+        	if(whichDay<=sumArr[i]){
+        		if(i===0){
+        			day=whichDay;
+        		}else{
+        			day = whichDay-sumArr[i-1];
+        		}
+        		// return whichYear+'年的第'+whichDay+'天是'+(i+1)+'月'+day+'日';
+        		return [(i+1),day];
+        	}
+        }
+
+    }
+
+    var year = document.getElementById("year");
+    var day = document.getElementById("day");
+    var txt = document.getElementById("txt");
+    var btn = document.getElementById("btn");
+    var result="";
+    btn.onclick=function () {
+    	txt.innerHTML="";
+    	result = getDate(year.value,day.value);
+    	txt.innerHTML = year.value+'年的第'+day.value+'天是'+result[0]+'月'+result[1]+'日';
+    }
+    </script>
+</body>
+
+</html>
