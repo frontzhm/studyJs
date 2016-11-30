@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.flex-container{
+			display: flex;
+			flex-direction:column-reverse;
+			flex-wrap:wrap-reverse;
+			justify-content: center;
+			align-content: flex-end;
+			width: 180px;
+			height: 180px;
+			background-color: #f8f8f8;
+		}
+		.flex-item{
+			flex-basis: 30px;
+			margin: 10px;
+			height: 30px;
+			width: 30px;
+			background-color: #ccc;
+		}
+	</style>
+</head>
+<body>
+	<a href="http://www.w3cplus.com/css3/a-guide-to-flexbox-new.html">http://www.w3cplus.com/css3/a-guide-to-flexbox-new.html</a>
+	<a href="http://zhoon.github.io/css3/2014/08/23/flex.html">http://zhoon.github.io/css3/2014/08/23/flex.html</a>
+	<a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html">http://www.ruanyifeng.com/blog/2015/07/flex-examples.html</a>
+	<h2>容器上的属性:(想象成三行三列,9个人在列阵演戏)</h2>
+	<p>flex-direction 决定主轴的方向（即项目的排列方向）row | row-reverse | column | column-reverse;
+	大白话:
+	row :第一项是在第一行的第一个,第二项在第一行的第二个  --->
+	row-reverse第一项是在第一行的最后一个,第二项在第一行的倒数第一个     <---
+	<!-- row,row-reverse 一行行自上而下排列 -->
+	column第一项在第一列的第一个,第二项在第一列的第二个,
+	column-reverse第一项在第一列的倒数第一个,第二项在第一列的倒数第二个
+	<!-- column,column-reverse 一列列自左而右排列 -->
+	</p>
+
+<p>flex-wrap 默认情况下，项目都排在一条线（又称"轴线"）上。flex-wrap属性定义，如果一条轴线排不下，如何换行 nowrap | wrap | wrap-reverse
+大白话:nowrap:不换行,一条线走到天堂,
+wrap :普通换行,是什么方向就是什么方向, row,row-reverse 一行行自上而下排列 column,column-reverse 一列列自左而右排列
+wrap-reverse:row,row-reverse 一行行自下而上排列 column,column-reverse 一列列自右而左排列
+</p>
+<p>flex-flow flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap</p>
+<p>justify-content 定义了项目在主轴上的对齐方式 flex-start | flex-end | center | space-between | space-around
+大白话:虽然每个人的位置都定了,但是每个人离每个人的距离不定,flex-start,flex-end,center是紧挨着,然后靠左靠右靠上靠下靠中间,space-between两端没有缝隙,其余缝隙均分,space-around每个人都有两个空白,剩余空间/空白数 = 单个空白
+</p>
+<p>
+	align-items 项目在侧轴上如何对齐。flex-start | flex-end | center | baseline | stretch
+	大白话:以主轴是row为例,每一行是个整体,每一行里每个人占的竖直空间不一样大,每个人在每一行的前提下,在竖直方向的对齐情况,比如脚址对齐或者脚后跟对齐,或者脚中间对齐,或者突然每个人的脚拉成一样大
+</p>
+	align-content 定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用
+	大白话:以主轴是row为例,每一行是个整体,总共三行的话,这三行之间的距离怎么分布,靠上还是靠下靠中间靠两端靠均分
+</p>
+<h2>6个属性设置在项目上</h2>
+<p>order 定义项目的排列顺序。数值越小，排列越靠前，默认为0
+	大白话:本来大家按顺序排好了,突然呢发现有些人有很厉害的关系,于是呢改变他的序号,序号越小越靠前,其他人顺延(整数)
+</p>
+<p>
+	flex-grow 定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。没有剩余空间,属性无效
+	大白话:瓜分剩余空间的比例  ,如果剩余空间是100   甲想占2份 乙想占5份 丙不想要,那么甲最终的大小 = 甲本身的尺寸+100*2/(2+5) ,....
+</p>
+<p>
+	flex-shrink 定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。有剩余空间,属性无效
+	大白话:空间为负,甲缩小2份,乙缩小5份,丙不想缩小  总空间100px 甲60px 乙80px 丙20px       100 = 60*2x+80*5x+20   x=0.0114  那么甲最终的空间是60*2x ...
+</p>
+<p>
+	flex-basis 定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小
+	大白话:宽度或者高度,就是主轴方向的尺寸
+</p>
+<p>
+	flex flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选
+</p>
+
+
+
+<div>
+	<div class="flex-container">
+		<div class="flex-item">1</div>
+		<div class="flex-item">2</div>
+		<div class="flex-item">3</div>
+		<div class="flex-item">4</div>
+		<div class="flex-item">5</div>
+		<div class="flex-item">6</div>
+		<div class="flex-item">7</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <style>
+    .flex-container {
+        /*开启Flex容器：让一个元素变成伸缩容器    flex/inline-flex*/
+        display: flex;
+        /*创建主轴，从而定义Flex项目在Flex容器中放置的方向  row | row-reverse | column | column-reverse 第一个值是默认值*/
+        flex-direction: row;
+        /*默认情况之下，Flex项目都尽可能在一行显示。根据flex-wrap的属性值来改变，让Flex项目多行显示。方向在这也扮演了一个重要角度，决定新的一行堆放方向 nowrap | wrap | wrap-revers*/
+        flex-wrap: nowrap;
+        /*这是flex-direction和flex-wrap两个属性的缩写。两个属性决定了伸缩容器的主轴与侧轴。默认值是row nowrap（中间用空格隔开）。*/
+        flex-flow: row nowrap;
+        /*用于在主轴上对齐伸缩项目。这一行为会在所有可伸缩长度及所有自动边距均被解释后进行。当一行上的所有伸缩项目都不能伸缩或可伸缩但是已经达到其最大长度时，这一属性才会对多余的空间进行分配。当项目溢出某一行时，这一属性也会在项目的对齐上施加一些控制。
+			简而言之,分配多余空间 flex-start | flex-end | center | space-between | space-around*/
+        justify-content: flex-start;
+        /*伸缩项目可以在伸缩容器的当前行的侧轴上进行对齐，这类似于justify-content属性，但是是另一个方向。align-items可以用来设置伸缩容器中包括匿名伸缩项目的所有项目的对齐方式。flex-start | flex-end | center | baseline | stretch;*/
+        align-items: flex-start;
+        /*当伸缩容器的侧轴还有多余空间时，align-content属性可以用来调准伸缩行在伸缩容器里的对齐方式，这与调准伸缩项目在主轴上对齐方式的justify-content属性类似。*/
+        /*请注意本属性在只有一行的伸缩容器上没有效果。*/
+        /*这个是控制flex-item在多行中的对齐效果  ,把所有的flex-item看成整体*/
+        align-content: flex-start;
+    }
+    /*综上所述,flex-container上的属性有:
+    		1.展现形式display:flex
+    		2.主轴方向flex-direction
+    		3.主轴对齐justify-content
+    		4.侧轴对齐:align-items
+    		5.多行对齐方式:align-content 这个用的少吧
+    		6.内容是否多行显示flex-wrap 感觉用的也不多
+    		也就是主要是主轴的决定,和各轴对齐方式
+    		*/
+    
+    .flex-item {
+    	/*http://zhoon.github.io/css3/2014/08/23/flex.html*/
+        /*默认情况，Flex项目是按文档源的流顺序排列。然而，在Flex容器中可以通过order属性来控制Flex项目的顺序源。
+    	根据order重新排序伸缩项目。有最小（负值最大）order的伸缩项目排在第一个。若有多个项目有相同的order值，这些项目照文件顺序排。这个步骤影响了伸缩项目生盒树成的盒子的顺序，也影响了后面的演算法如何处理各项目。*/
+        order: 1;
+        /*如果有必要的话，flex-grow可以定义一个Flex项目的扩大比例。它接受一个没有单位的值作为一个比例。它可以使用Flex项目完全占用Flex容器可用的空间。
+
+					如果所有Flex项目的flex-grow设置为1时，表示Flex容器中的Flex项目具有相等的尺寸。如果你给其中一个Flex项目设置flex-grow的值为2，
+					那么这个Flex项目的尺寸将是其他Flex项目两倍（其他Flex项目的flex-grow值为1）。
+					字面理解grow表示成长*/
+        flex-grow: 0;
+        /*如果有必要，flex-shrink可以定义Flex项目的缩小比例。flex-shrink取负值将失效.默认是1*/
+        flex-shrink: 1;
+        /*flex-basis属性定义了Flex项目在分配Flex容器剩余空间之前的一个默认尺寸。main-size值使它具有匹配的宽度或高度，不过都需要取决于flex-direction的值。*/
+        flex-basis: auto;
+        /*flex是flex-grow，flex-shrink和flex-basis三个属性的缩写。第二个和第三个参数(flex-shrink和flex-basis)是可选值。
+        建议您 使用此简写属性，而不是设置单独属性。注意，如果flex取值为none时，其相当于取值为0 0 auto。
+        请注意flex-grow与flex-basis的初始值与他们在flex缩写被省略时的 默认值不同。这里的设计是为了让flex缩写在最常见的情景下比较好用。*/
+        flex: 0 1 auto;
+        /*如果align-self的值为auto，则其计算值为元素的父元素的align-items值，如果该元素没有父元素，则计算值为stretch*/
+        align-self: auto;
+        background-color: #f69;
+    }
+    /*flex-grow，flex-shrink和flex-basis深度理解
+			首先剩余空间表示主轴上的剩余空间=总空间-item1的空间-item2的空间.....
+			默认值是 0 1 auto 
+			flex-grow表示剩余空间分成几份,item占多少份,举个例子,有两个item,剩余空间是100px, item1 flex-grow:2;   item2 flex-grow:7;  那么 剩余空间*(2/9)归于item1,其余归item2,默认是0
+			flex-shrink表示剩余空间是负值的时候,总空间是100px  item1 20px item2 50px item3 80px   shrink是1的时候 100 = 20*x +50*x +80*x,如果某一个是2的话100 = 20*x +50*x*2 +80*x,此时flex-grow无效因为没有剩余空间
+			flex-basis基本算是width,同时存在width的话,优先于width,除非width是auto, item1的flex-basis是20px的话就相当于宽20px,flex-basis:auto; 表示根据内容决定宽度,默认是auto
+
+    */
+    /*
+    flex常见值
+		如果缩写「flex: 1」, 则其计算值为「1 1 0%」
+		如果缩写「flex: auto」, 则其计算值为「1 1 auto」
+		如果「flex: none」, 则其计算值为「0 0 auto」
+		如果「flex: 0 auto」或者「flex: initial」, 则其计算值为「0 1 auto」，即「flex」初始值
+    flex: 0 auto,flex: initial与flex: 0 1 auto相同。（这也就是初始值。）根据width／height属性决定元素的尺寸。（如果项目的主轴长度属性的计算值为auto，则会根据其内容来决定元素尺寸。）当剩余空间为正值时，伸缩项目无法伸缩，但当空间不足时，伸缩项目可收缩至其最小值。网页作者可以用对齐相关的属性以及margin属性的auto值控制伸缩项目沿着主轴的对齐方式。
+
+    flex: auto与flex: 1 1 auto相同。根据width／height属性决定元素的尺寸，但是完全可以伸缩，会吸收主轴上剩下的空间。如果所有项目均为flex: auto、flex: initial或flex: none，则在项目尺寸决定后，剩余的正空间会被平分给是flex: auto的项目。
+
+    flex: none与flex: 0 0 auto相同。根据width／height属性决定元素的尺寸，但是完全不可伸缩。其效果与initial类似，但即使在空间不够而溢出的情况下，伸缩项目也不能收缩。
+
+    flex: <positive-number>与flex: 1 0px相同。该值使元素可伸缩，并将伸缩基准值设置为零，导致该项目会根据设置的比率占用伸缩容器的剩余空间。如果一个伸缩容器里的所有项目都使用此模式，则它们的尺寸会正比于指定的伸缩比率。
+
+    默认状态下，伸缩项目不会收缩至比其最小内容尺寸（最长的英文词或是固定尺寸元素的长度）更小。网页作者可以靠设置min-width或min-height属性来改变这个默认状态。（参见《伸缩项目的默认最小长度》。）
+
+    本规范鼓励网页作者使用flex缩写来控制可伸缩性，而不是使用单独的属性，因为flex缩写会在最常见的情景正确的重置未指定的部件值。
+     */
+ /*    none：
+ none关键字的计算值为: 0 0 auto
+ <' flex-grow '>：
+ 用来指定扩展比率，即剩余空间是正值时此「flex子项」相对于「flex容器」里其他「flex子项」能分配到空间比例。
+ 在「flex」属性中该值如果被省略则默认为「1」
+ <' flex-shrink '>：
+ 用来指定收缩比率，即剩余空间是负值时此「flex子项」相对于「flex容器」里其他「flex子项」能收缩的空间比例。
+ 在收缩的时候收缩比率会以伸缩基准值加权
+ 在「flex」属性中该值如果被省略则默认为「1」
+ <' flex-basis '>：
+ 用来指定伸缩基准值，即在根据伸缩比率计算出剩余空间的分布之前，「flex子项」长度的起始数值。
+ 在「flex」属性中该值如果被省略则默认为「0%」
+ 在「flex」属性中该值如果被指定为「auto」，则伸缩基准值的计算值是自身的 <' width '> 设置，如果自身的宽度没有定义，则长度取决于内容。 */
+ /*默认 1 1 0 少哪个默认是初始值*/
+    /*flex:1  = 1 1 0*/
+    /*flex:2  = 2 1 0*/
+    /*flex:2 3 = 2 3 0*/
+    /*完美居中*/
+    
+    .parent {
+        display: flex;
+        height: 100px;
+        background-color: #f8f8f8;
+    }
+    
+    .child {
+        /*width: 200px;
+    	height: 200px;*/
+        /*这主要依赖于margin设置auto，自动分配Flex容器额外空间。这使用Flex项目在水平和垂直方向都居中*/
+        margin: auto;
+        /*background-color: #f69;*/
+    }
+    /*多余的就换行,在每行居中*/
+    
+    .list {
+        display: flex;
+        justify-content: space-around;
+        /*没有wrap的话默认是nowrap 也就是始终在一行*/
+        flex-flow: row wrap;
+    }
+    
+    .item {
+        width: 210px;
+        height: 160px;
+        background-color: #f69;
+        margin-top: 10px;
+    }
+    /*导航*/
+    
+    .nav-list {
+        display: flex;
+        justify-content: flex-end;
+        background-color: #f69;
+    }
+    
+    .nav-item {
+        color: #fff;
+        padding: 10px;
+        text-decoration: none;
+    }
+    
+    .nav-item:hover {
+        background-color: #f99;
+    }
+    /*medium*/
+    
+    @media all and (max-width:800px) {
+        .nav-list {
+            justify-content: space-around;
+        }
+    }
+    /*small*/
+    
+    @media all and (max-width:600px) {
+        .nav-list {
+            flex-direction: column;
+        }
+        .nav-list a {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, .3);
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+        }
+    }
+    /*小小的响应式布局*/
+    
+   /*  .wrapper {
+       display: flex;
+       flex-flow: row wrap;
+   }
+   
+   .wrapper>* {
+       flex: 1 100%;
+   }
+   
+   
+   header,
+   footer {
+       background-color: #f69;
+       text-align: center;
+       line-height: 50px;
+       width: 100%;
+   }
+   .aside1{
+   	background-color: tomato;
+   }
+   .aside2{
+   	background-color: skyblue;
+   }
+   
+   @media all and(min-width:600px) {
+       aside {
+           flex-grow flex-shrink flex-basis
+           flex: 1 auto;
+       }
+   }
+   
+   @media all and(min-width:800px) {
+       footer {
+           order: 5;
+       }
+       .aside1 {
+           order: 2;
+       }
+       .aside2 {
+           order: 4;
+       }
+       .main {
+           order: 3;
+           flex: 3 0px;
+       }
+   } */
+   .wrapper {
+     display: -webkit-box;
+     display: -moz-box;
+     display: -ms-flexbox;
+     display: -webkit-flex;
+     display: flex;  
+     
+     -webkit-flex-flow: row wrap;
+     flex-flow: row wrap;
+     
+     font-weight: bold;
+     text-align: center;
+   }
+
+   .wrapper > * {
+     padding: 10px;
+     /*flex-grow flex-shrink flex-basis*/
+     /*1 1 100%*/
+     /*100%是主轴上尺寸是100%*/
+     flex: 1 100%;
+   }
+
+
+ 
+ @media all and (min-width: 600px) {
+  .aside { flex: 1 auto; }
+} 
+
+@media all and (min-width: 800px) {
+
+	/*3 1 0px*/
+  .main    { flex: 3 0px; }
+  .aside-1 { order: 1; } 
+  .main    { order: 2; }
+  .aside-2 { order: 3; }
+  .footer  { order: 4; }
+}  
+/*单纯修饰*/
+   body {
+     padding: 2em; 
+   }
+   .header {
+     background: tomato;
+   }
+
+   .footer {
+     background: lightgreen;
+   }
+
+   .main {
+     text-align: left;
+     background: deepskyblue;
+   }
+
+   .aside-1 {
+     background: gold;
+   }
+
+   .aside-2 {
+     background: hotpink;
+   }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+    </div>
+    <div>
+        <h2>完美居中</h2>
+        <div class="parent">
+            <div class="child">dddd</div>
+        </div>
+    </div>
+    <div>
+        <h2>六个固定尺寸的列表 多了就换行</h2>
+        <div class="list">
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+    </div>
+    <div>
+        <h2>导航在手机和pc</h2>
+        <div class="nav-list">
+            <a href="###" class="nav-item">Home</a>
+            <a href="###" class="nav-item">About</a>
+            <a href="###" class="nav-item">Products</a>
+            <a href="###" class="nav-item">Help</a>
+        </div>
+    </div>
+    <div>
+        <h2>小小的响应式布局</h2>
+        <section class="wrapper">
+            <header class="header">header</header>
+            <article class="main">
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                </p>
+            </article>
+            <aside class="aside aside-1">aside1</aside>
+            <aside class="aside aside-2">aside2</aside>
+            <footer class="footer">footer</footer>
+        </section>
+    </div>
+</body>
+
+</html>

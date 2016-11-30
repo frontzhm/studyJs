@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>ejs</title>
+    <link rel="stylesheet" href="../js/normalize.css">
+    <style>
+    ul,
+    li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    
+    html {
+        font-size: 100px;
+    }
+    
+    html,
+    body {
+        width: 100%;
+        overflow-y: hidden;
+        font-size: .14rem;
+        /*des 320px */
+    }
+    
+    h1 {
+        font-size: .14rem;
+        overflow: hidden;
+    }
+    
+    header {
+        height: .5rem;
+        line-height: .5rem;
+        background: -webkit-linear-gradient(top left, #fed, #f79, #f89);
+    }
+    
+    header span {
+        float: left;
+        width: 25%;
+        text-align: center;
+    }
+    
+    .content li {
+        height: .4rem;
+        line-height: .4rem;
+    }
+    
+    .content li:last-child {
+        border-bottom: 0;
+    }
+    
+    .content li:nth-child(even) {
+        border-bottom: 0;
+        background-color: #eee;
+    }
+    
+    .content li span {
+        float: left;
+        text-align: center;
+        width: 25%;
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>
+			<span>编号</span>
+			<span>姓名</span>
+			<span>性别</span>
+			<span>分数</span>
+		</h1>
+    </header>
+    <section class="content">
+        <ul>
+            <!--    <li>
+                <span>01</span>
+                <span>花花</span>
+                <span>男</span>
+                <span>90</span>
+            </li>
+            <li>
+                <span>01</span>
+                <span>花花</span>
+                <span>男</span>
+                <span>90</span>
+            </li> -->
+        </ul>
+    </section>
+    <script src="../js/zepto.js"></script>
+    <script src="../js/ejs.js"></script>
+    <!-- 制作ejs模板 原有的html的基础上 把数据嵌套进来 ejs语法规定要编写的js代码写在<% %>,输出的内容写在<% = %> -->
+    <script id="conTmp" type="text/template">
+        <%$.each(data, function(index, item) {%>
+            <li>
+                <span><%=item.id%></span>
+                <span><%=item.name%></span>
+                <span><%=item.sex==1?"男":"女"%></span>
+                <span><%=item.score%></span>
+            </li>
+            <%})%>
+    </script>
+    <script>
+    /**
+     * 自适应
+     */
+    var desW = document.documentElement.clientWidth;
+    document.documentElement.style.fontSize = 100 / 320 * (desW) + "px";
+    if (desW > 750) {
+        document.body.style.width = "750px";
+        document.body.style.margin = '0 auto';
+
+    }
+    /**
+     * 获取数据
+     * 字符串拼接 开发效率低 不方便后期维护
+     * 于是使用模板引擎 渲染页面中的数据
+     */
+    // 1.字符串拼接 实在不想用古老的拼接
+    // function successCb(data) {
+    //     console.log(data);
+    //     var str = "";
+    //     $.each(data, function(index, item) {
+    //     	item.gender=item.gender===1?"男":"女";
+    //         str += `
+    // <li>
+    // 	<span>${item.id}</span>
+    // 	<span>${item.name}</span>
+    // 	<span>${item.gender}</span>
+    // 	<span>${item.score}</span>
+    // </li>
+
+    // 	 	 `
+    //     })
+    //     $("ul").html(str);
+    // }
+    // 2.ejs
+    function successCb(data) {
+        // 1.获得模板
+        var template = $("#conTmp").html();
+        // 2.使用ejs中的render向指定的模板中提供需要的数据,ejs按照既定的规则进行解析渲染,最后得到的是数据和html结构拼接在一起的字符串
+        var result = ejs.render(template, {
+            data: data
+        });
+        $("ul").html(result);
+        console.log(result);
+    }
+    $.ajax({
+        url: 'https://frontzhm.github.io/studyJs/data.json',
+        type: 'get',
+        dataType: 'json',
+        cache: false,
+        success: successCb
+    })
+    </script>
+</body>
+
+</html>
