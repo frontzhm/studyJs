@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <style>
+  * {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  body {
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  .comment-item {
+    position: relative;
+    height: 40px;
+  }
+  
+  .comment-item-top,
+  .comment-item-bottom {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f69;
+  }
+  
+  .comment-item-top {
+    z-index: 2;
+    background-color: #f69;
+  }
+  
+  .comment-item-bottom {
+    z-index: 1;
+  }
+  
+  .square-btn {
+    width: 40px;
+    height: 100%;
+    line-height: 40px;
+    display: inline-block;
+    background-color: #f53d3d;
+    color: #fff;
+  }
+  </style>
+</head>
+
+<body>
+  <div>
+    <ul class="comment-list">
+      <li class="comment-item">
+        <div class="comment-item-top"></div>
+        <div class="comment-item-bottom">
+          <a href="javascript:;" class="square-btn">删除</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <script src="zepto.js"></script>
+  <script>
+  $(".comment-item-top").swipeLeft(function(e) {
+    var self = $(this);
+    self.animate({
+      left: "-50px"
+    }, 300, "ease");
+  })
+  $(".comment-item-top").swipeRight(function(e) {
+    var self = $(this);
+    self.animate({
+      left: "0"
+    }, 200, "ease");
+  })
+  </script>
+</body>
+
+</html>
