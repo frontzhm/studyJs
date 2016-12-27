@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <form class="form-horizontal" role="form" id="myform" method="post" action="http://testapi.2cyj.com/index/upload" enctype="multipart/form-data">
+        <input id="file" type="file" name="file" multiple>
+        <p>
+            上传文件的数量: <span id="fileNum"></span>
+            <br> 上传文件的总大小:
+            <span id="fileSize"></span>
+        </p>
+        <button type="submit">submit</button>
+    </form>
+    <script>
+    var file = document.getElementById('file');
+    /**
+     * [updateSize 计算上传文件的数量和总大小,大小的单位可升级,显示在页面里]
+     * @param  {[type]} e [description]
+     * @return {[type]}   [description]
+     */
+    function updateSize(e) {
+        // 不考虑兼容的情况
+        var files = e.target.files;
+        var len = files.length;
+        var size = 0;
+        for (var i = 0; i < len; i++) {
+            var cur = files[i];
+            size += cur.size
+        }
+
+        function computeUnit(size) {
+            var units = ["KB", "MB", "GB", "TB"];
+            var uindex = 0;
+            var outSize = size;
+            // outSize/1024>1只要满足这个就往下计算
+            for (; outSize / 1024 > 1; uindex++) {
+
+                outSize /= 1024
+            }
+            return {size:outSize.toFixed(2),unit:units[uindex - 1]};
+        }
+        console.log(computeUnit(size))
+
+    }
+    // function updateSize() {
+    //   var nBytes = 0,
+    //       oFiles = document.getElementById("file").files,
+    //       nFiles = oFiles.length;
+    //   for (var nFileId = 0; nFileId < nFiles; nFileId++) {
+    //     nBytes += oFiles[nFileId].size;
+    //   }
+    //   var sOutput = nBytes + " bytes";
+    //   var aMultiples = ["KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"], 
+    //       nMultiple = 0, nApprox = nBytes / 1024;
+
+    //   // optional code for multiples approximation
+    //   for ( ; nApprox > 1; nApprox /= 1024, nMultiple++) {
+    //     sOutput = nApprox.toFixed(3) + " " + aMultiples[nMultiple] + " (" + nBytes + " bytes)";
+    //   }
+    //   // end of optional code
+    //   document.getElementById("fileNum").innerHTML = nFiles;
+    //   document.getElementById("fileSize").innerHTML = sOutput;
+    // }
+    /*file.onchange = function () {
+    	 
+    	 console.log(this.files[0]) 
+    	 lastModified:1474114162555,
+    	 lastModifiedDate:Sat Sep 17 2016 20:09:22 GMT+0800 (中国标准时间),
+    	 name:"Robin32.jpg",
+    	 size:61998,
+    	 type:"image/jpeg"
+    	 
+    	  
+    }*/
+    file.addEventListener('change', updateSize, false)
+    </script>
+</body>
+
+</html>
