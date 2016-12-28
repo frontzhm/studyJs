@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="lib/seajs/sea.js"></script>
+  <script>
+  seajs.config({
+    base: './js/'
+  })
+  seajs.use(['a'], function() {
+    console.log('a.js and b.js saved');
+  })
+  </script>
+</body>
+
+</html>
