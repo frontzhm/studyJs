@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  a {
+    text-decoration: none;
+  }
+  
+  .outer {
+    width: 200px;
+    height: 100px;
+    background-color: #f69;
+    border-radius: 6px;
+    text-align: center;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+  }
+  
+  .inner {
+    width: 100px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 6px;
+    margin: auto;
+  }
+  /*订制header*/
+  
+  header {
+    width: 1000px;
+    margin: 10px auto;
+    padding: 15px;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  header .btn {
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .5);
+    color: rgba(0, 0, 0, .5);
+    padding: 0 20px;
+    border-radius: 6px;
+    transition: all 0.4s linear 0s;
+  }
+  
+  header .btn:hover {
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
+    transition: background 0.2s ease-out;
+  }
+  
+  header input {
+    appearance: none;
+    border: 0;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, .5);
+    color: #000;
+  }
+  
+  header input:focus {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, .2);
+  }
+  
+  header .add {
+    border-radius: 6px;
+    display: inline-block;
+    line-height: 40px;
+    height: 40px;
+    padding: 0 20px;
+    text-align: center;
+    margin-left: 15px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, .5);
+    font-size: 24px;
+    vertical-align: middle;
+  }
+  
+  header .add:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .green-theme {
+    background-color: #5aaf4c;
+  }
+  </style>
+</head>
+
+<body>
+  <!-- 普通的 -->
+  <div class="outer">
+    <div class="inner">
+    </div>
+  </div>
+  <!-- 订制header -->
+  <header class="green-theme">
+    <a href="javascript:;" class="btn">ishadeed</a>
+    <div>
+      <input type="text" name="">
+      <a href="javascript:;" class="add">+</a>
+    </div>
+  </header>
+</body>
+
+</html>

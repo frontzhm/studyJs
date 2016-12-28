@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta name="viewport" content="width=device-width
+, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <style>
+  body {
+    height: 2000px;
+  }
+  </style>
+</head>
+
+<body>
+  <script src="zepto.js"></script>
+  <script>
+  /*$(window).scroll(function() {
+            var scrollTop = $(this).scrollTop();
+            var clientHeight = $(this).height();
+            var bodyHeight = $(document).height();
+            console.log(scrollTop) console.log(clientHeight) console.log(bodyHeight)
+             
+            if (scrollTop + clientHeight + 50 >= bodyHeight) {
+              console.log(1)
+            }
+
+          })*/
+  function loadMore(callback) {
+    $(window).scroll(function() {
+      var scrollTop = $(this).scrollTop();
+      var clientHeight = $(this).height();
+      var bodyHeight = $(document).height();
+      console.log(1)
+        /*console.log(scrollTop) console.log(clientHeight) console.log(bodyHeight)
+         */
+      if (scrollTop + clientHeight + 50 >= bodyHeight) {
+        callback();
+      }
+
+    })
+  }
+
+  function a() {
+    $(window).off("scroll")
+  }
+  loadMore(a)
+  </script>
+</body>
+
+</html>
