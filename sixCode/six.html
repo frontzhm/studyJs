@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  /*
+   * 1.数字和数字字符串
+   */
+
+  function getNum() {
+    var num = [];
+    var str = "(+!![])+";
+    var sum = "";
+    for (var i = 0; i < 10; i++) {
+      num[i] = sum.slice(0, -1)
+      sum += str;
+    }
+    num[0] = "(+(![]))";
+    return num;
+  }
+  // 数字组合 num
+  var num = getNum();
+  // 数字字符串组合 numString
+  var numString = num.map(function(item, index, arr) {
+      return num[index] + "+[]";
+    })
+    // 11 => +"11" =>[(...)]
+  function getAnyNumString(numVal) {
+    numVal = parseInt(numVal);
+    if (numVal > (-1) && numVal < 10) {
+      return num[numVal]
+    }
+    if (numVal > 9) {
+      var str = numVal + [];
+      str = str.split("");
+      var sum = "";
+      for (var i = 0, len = str.length; i < len; i++) {
+        if (i === len - 1) {
+          // 特别注意字符串拼接
+          sum += "(" + numString[str[i]] + ")";
+          break;
+        }
+        sum += "(" + numString[str[i]] + ")" + "+";
+
+      }
+
+      return "+(" + sum + ")";
+
+
+    }
+  }
+
+  /*
+   * 2."false"[0],"true"[0],"undefined"[0]
+   */
+
+
+  var alphaLowObj = {};
+  var falseString = "([] + ![])";
+  var trueString = "([] + (!![]))";
+
+  // 「 f 」「 a 」「 l 」「 s 」「 e 」「 t 」「 r 」「 u 」
+  // "false"[1],"true"[1]..
+  alphaLowObj["f"] = falseString + "[" + num[0] + "]";
+  alphaLowObj["a"] = falseString + "[" + num[1] + "]";
+  alphaLowObj["l"] = falseString + "[" + num[2] + "]";
+  alphaLowObj["s"] = falseString + "[" + num[3] + "]";
+  alphaLowObj["e"] = falseString + "[" + num[4] + "]";
+  alphaLowObj["t"] = trueString + "[" + num[0] + "]";
+  alphaLowObj["r"] = trueString + "[" + num[1] + "]";
+  alphaLowObj["u"] = trueString + "[" + num[2] + "]";
+
+  var undefinedString = "[]+[][[]]";
+  // n d i
+  alphaLowObj["n"] = "(" + undefinedString + ")" + "[" + num[1] + "]";
+  alphaLowObj["d"] = "(" + undefinedString + ")" + "[" + num[2] + "]";
+  alphaLowObj["i"] = "(" + undefinedString + ")" + "[" + num[5] + "]";
+
+  // 3.fill = "f"+"i" + "l" +"l" ([]+[] 别忘了加号)
+  var fillString = alphaLowObj["f"] + "+" + alphaLowObj["i"] + "+" + alphaLowObj["l"] + "+" + alphaLowObj["l"];
+  // []["fill"] + [] = "function fill() { [native code] }"
+  var fillNativeString = "[][" + fillString + "]+[]";
+  // 「c」「o」「v」「(」「)」「{」「}」「[」「]」
+  var fillNative = "function fill() { [native code] }";
+  alphaLowObj["c"] = "(" + fillNativeString + ")" + "[" + num[fillNative.indexOf("c")] + "]";
+  alphaLowObj["o"] = "(" + fillNativeString + ")" + "[" + num[fillNative.indexOf("o")] + "]";
+  alphaLowObj["v"] = "(" + fillNativeString + ")" + "[" + num[fillNative.indexOf("v")] + "]";
+  var signObj = {};
+  signObj["["] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("[")) + "]";
+  signObj["]"] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("]")) + "]";
+  signObj["("] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("(")) + "]";
+  signObj[")"] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf(")")) + "]";
+  signObj["{"] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("{")) + "]";
+  signObj["}"] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("}")) + "]";
+
+
+
+  // 4."constructor"
+
+
+
+  function getStringString(str) {
+    str = str.split("");
+    var sum = "";
+    for (var i = 0, len = str.length; i < len; i++) {
+      if (i === len - 1) {
+        // 特别注意字符串拼接
+        sum += "(" + alphaLowObj[str[i]] + ")";
+        break;
+      }
+      sum += "(" + alphaLowObj[str[i]] + ")" + "+";
+
+    }
+    return "(" + sum + ")";
+  }
+  var constructorString = getStringString("constructor");
+
+  // true["constructor"] + [] === "function Boolean() { [native code] }"
+  // 0["constructor"] + []    === "function Number() { [native code] }"
+  // ""["constructor"] + []   === "function String() { [native code] }"
+  // []["constructor"] + []   === "function Array() { [native code] }"
+
+
+  // var strr = (!![])["constructor"] + []
+  // var strr = '((!![])["constructor"] + [])'
+  // var trueFnStr = '((!![])[' + getStringString("constructor") + ']+[])'
+  var trueNative = true["constructor"] + [];
+  var numNative = 0["constructor"] + [];
+  var strNative = "" ["constructor"] + [];
+  var arrNative = []["constructor"] + [];
+
+  var trueNativeStr = '((!![])[' + getStringString("constructor") + ']+[])'
+  var numNativeStr = '((+(![]))[' + getStringString("constructor") + ']+[])'
+  var strNativeStr = '(([]+[])[' + getStringString("constructor") + ']+[])'
+  var arrNativeStr = '([][' + getStringString("constructor") + ']+[])'
+    // 新增「B」「N」「S」「A」「m」「g」「y」
+  alphaLowObj["B"] = "(" + trueNativeStr + ")" + "[" + getAnyNumString(trueNative.indexOf("B")) + "]";
+  alphaLowObj["N"] = "(" + numNativeStr + ")" + "[" + getAnyNumString(numNative.indexOf("N")) + "]";
+  alphaLowObj["S"] = "(" + strNativeStr + ")" + "[" + getAnyNumString(strNative.indexOf("S")) + "]";
+  alphaLowObj["A"] = "(" + arrNativeStr + ")" + "[" + getAnyNumString(arrNative.indexOf("A")) + "]";
+  alphaLowObj["m"] = "(" + numNativeStr + ")" + "[" + getAnyNumString(numNative.indexOf("m")) + "]";
+  alphaLowObj["g"] = "(" + strNativeStr + ")" + "[" + getAnyNumString(strNative.indexOf("g")) + "]";
+  alphaLowObj["y"] = "(" + arrNativeStr + ")" + "[" + getAnyNumString(arrNative.indexOf("y")) + "]";
+
+  // 5.toString
+  (10)["toString"](36) === "a";
+  (35)["toString"](36) === "z";
+
+  var toStringStr = getStringString("toString");
+  var a = '(' + getAnyNumString(10) + ')[' + toStringStr + '](' + getAnyNumString(36) + ')';
+  // 可以得到24个小写字母的字符
+  ~(function() {
+    var alphaLowTemp = "abcdefghijklmnopqrstuvwxyz";
+    var alphaLow = alphaLowTemp.split("");
+    for (var i = 0; i < 24; i++) {
+      alphaLowObj[alphaLow[i]] = '(' + getAnyNumString(10 + i) + ')[' + toStringStr + '](' + getAnyNumString(36) + ')';
+    }
+  }())
+
+  console.log(alphaLowObj)
+  console.log(signObj)
+  </script>
+</body>
+
+</html>
