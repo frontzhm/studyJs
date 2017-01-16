@@ -457,3 +457,526 @@ define('path/module/a',[],function(require){
 在该例中，模块ID定义为了path/moudle/a,那么a模块应该正确放置的位置就base(在config中定义的)/path/moudle/a.js,假如a.js不在该位置，则返回了null。
 ```
 至于为什么一定要使用一定要把 ID 定为文件路径，这一块请移步 [https://github.com/seajs/seajs/issues/930](https://github.com/seajs/seajs/issues/930)
+
+
+## seajs模块的module_id解析
+sea.js中的模块标识是Commonjs模块标识的超集:
+* 一个模块标识由斜线（/）分隔的多项组成。
+* 每一项必须是小驼峰字符串、 . 或 .. 。
+* 模块标识可以不包含文件后缀名，比如 .js 。
+* 模块标识可以是 相对 或 顶级 标识。如果第一项是 . 或..，则该模块标识是相对标识。
+* 顶级标识根据模块系统的基础路径来解析。
+* 相对标识相对 require 所在模块的路径来解析。
+
+seajs模块的module_id解析分为相对标识,顶级标识,普通路径(绝对路径和根路径)
+>相对标识:以.开头,只出现在define的factory方法里(模块环境中),相对于当前模块的uri来解析
+
+```
+// 在 http://example.com/js/a.js 的 factory 中：
+require.resolve('./b');
+  // => http://example.com/js/b.js
+
+// 在 http://example.com/js/a.js 的 factory 中：
+require.resolve('../c');
+  // => http://example.com/c.js
+```
+
+>顶级标识:不以.或/开始,会相对seajs的base路径(模块系统的基础路径)来解析
+
+```
+// 假设 base 路径是：http://example.com/assets/
+
+// 在模块代码里：
+require.resolve('gallery/jquery/1.9.1/jquery');
+  // => http://example.com/assets/gallery/jquery/1.9.1/jquery.js
+```
+
+>模块系统的基础路径:base的值,如果不设置就是base的默认值,默认值与seajs的访问路径有关
+
+```
+如果 sea.js 的访问路径是：
+  http://example.com/assets/sea.js
+
+则 base 路径为：
+  http://example.com/assets/
+当 sea.js 的访问路径中含有版本号时，base 不会包含 seajs/x.y.z 字串。 当 sea.js 有多个版本时，这样会很方便。
+
+如果 sea.js 的路径是：
+  http://example.com/assets/seajs/1.0.0/sea.js
+
+则 base 路径是：
+  http://example.com/assets/
+当然，也可以手工配置 base 路径：
+
+seajs.config({
+  base: 'http://code.jquery.com/'
+});
+
+// 在模块代码里：
+require.resolve('jquery');
+  // => http://code.jquery.com/jquery.js
+```
+
+
+>普通路径:会相对当前页面解析。分为绝对路径(就是拧出来都可以)和根路径(目录根路径+路径)
+
+```
+// 假设当前页面是 http://example.com/path/to/page/index.html
+
+// 绝对路径是普通路径：
+require.resolve('http://cdn.com/js/a');
+  // => http://cdn.com/js/a.js
+
+// 根路径是普通路径：
+require.resolve('/js/b');
+  // => http://example.com/js/b.js
+
+// use 中的相对路径始终是普通路径：
+seajs.use('./c');
+  // => 加载的是 http://example.com/path/to/page/c.js
+
+seajs.use('../d');
+  // => 加载的是 http://example.com/path/to/d.js
+```
+注意:
+Sea.js 在解析模块标识时， 除非在路径中有问号（?）或最后一个字符是井号（#），否则都会自动添加 JS 扩展名（.js）。如果不想自动添加扩展名，可以在路径末尾加上井号（#）。
+
+```
+// ".js" 后缀可以省略：
+require.resolve('http://example.com/js/a');
+require.resolve('http://example.com/js/a.js');
+  // => http://example.com/js/a.js
+
+// ".css" 后缀不可省略：
+require.resolve('http://example.com/css/a.css');
+  // => http://example.com/css/a.css
+
+// 当路径中有问号（"?"）时，不会自动添加后缀：
+require.resolve('http://example.com/js/a.json?callback=define');
+  // => http://example.com/js/a.json?callback=define
+
+// 当路径以井号（"#"）结尾时，不会自动添加后缀，且在解析时，会自动去掉井号：
+require.resolve('http://example.com/js/a.json#');
+  // => http://example.com/js/a.json
+```
+
+总结: ./ ../   模块的相对标识(相对路径), /(根路径) 和 http://(绝对路径) 是页面的普通路径,除了前面的就是绝对标识(base)
+
+
+## seajs的模块加载过程
+模块加载的整体思路:
+1.从seajs.use方法入口，开始加载use到的模块。
+2.use到的模块这时mod缓存当中一定是不存在的。seajs创建一个新的mod,赋予一些初始的状态。
+3.执行mod.load方法
+4.一堆逻辑之后走到seajs.request方法，请求模块文件。模块加载完成之后，执行define方法
+5.define方法分析提取模块的依赖模块，保存起来。缓存factory但不执行。
+6.模块的依赖模块再被加载，如果继续有依赖模块，则继续加载。直至所有被依赖的模块都加载完毕
+7.所有的模块加载完毕之后，执行use方法的callback.
+8.模块内部逻辑从callback开始执行。require方法在这个过程当中才被执行。
+
+####1.1 从线团的线头抓起,从use说起
+seajs.use方法有两个参数,第一个参数是要加载的模块,第二个是加载完模块后的回调函数（可选）
+
+其中要加载的模块，可以为一个字符串，也可以为一个数组。
+
+譬如：
+```
+seajs.use("a",function(){})
+
+seajs.use(['a','b'],function(){})
+```
+
+####1.2 看use里面做了什么
+
+```
+function preload(callback) {
+    var preloadMods = config.preload.slice()
+    config.preload = []
+    preloadMods.length ? globalModule._use(preloadMods, callback) : callback()
+}
+
+
+// Public API
+// ----------
+
+var globalModule = new Module(util.pageUri, STATUS.COMPILED)
+
+seajs.use = function(ids, callback) {
+    // Loads preload modules before all other modules.
+    preload(function() {
+        globalModule._use(ids, callback)
+    })
+
+    // Chain
+    return seajs
+}
+
+ 这段代码里在遇到seajs.use时候先加载了在config中定义的preload的模块，再去加载use里边的需要加载的模块。
+```
+####2.下来我们再看 globalModule.use(ids, callback) 也就到了module.prototypeuse方法了。
+
+```
+Module.prototype._use = function(ids, callback) {
+    util.isString(ids) && (ids = [ids])
+    var uris = resolve(ids, this.uri)
+
+    this._load(uris, function() {
+        // Loads preload files introduced in modules before compiling.
+        preload(function() {
+            var args = util.map(uris, function(uri) {
+                return uri ? cachedModules[uri]._compile() : null
+            })
+
+            if (callback) {
+                callback.apply(null, args)
+            }
+        })
+    })
+}
+
+先将单个ids转成数组,使用resolve获取到ids的uris,下来继续使用module.prototype._load()去加载模块，在加载完成后再去compile()分析模块，所有模块都加载了，再去执行use函数的callback方法。
+
+```
+
+####3. 分析module.prototype._load()
+
+```
+ Module.prototype._load = function(uris, callback) {
+
+     //获取到还没有加载过的资源列表
+    var unLoadedUris = util.filter(uris, function(uri) {
+        return uri && (!cachedModules[uri] ||
+            cachedModules[uri].status < STATUS.READY)
+    })
+
+    var length = unLoadedUris.length
+    if (length === 0) {
+        callback()
+        return
+    }
+
+    var remain = length
+
+    for (var i = 0; i < length; i++) {
+        (function(uri) {
+            var module = cachedModules[uri] ||
+                (cachedModules[uri] = new Module(uri, STATUS.FETCHING))
+
+            module.status >= STATUS.FETCHED ? onFetched() : fetch(uri, onFetched)
+
+            function onFetched() {
+                // cachedModules[uri] is changed in un-correspondence case
+                module = cachedModules[uri]
+
+                if (module.status >= STATUS.SAVED) {
+                     //模块加载完成后，查看是否有其它依赖模块，有其它依赖模块则继续加载新的模块，所有的文件都加载完成后，执行回调函数
+                    var deps = getPureDependencies(module)
+
+                    if (deps.length) {
+                        Module.prototype._load(deps, function() {
+                            cb(module)
+                        })
+                    } else {
+                        cb(module)
+                    }
+                }
+                // Maybe failed to fetch successfully, such as 404 or non-module.
+                // In these cases, just call cb function directly.
+                else {
+
+                    cb()
+                }
+            }
+
+        })(unLoadedUris[i])
+    }
+
+    function cb(module) {
+        (module || {}).status < STATUS.READY && (module.status = STATUS.READY)
+            --remain === 0 && callback()
+    }
+}
+```
+####4.在这里看下如何分析依赖模块的 getPureDependencies(module)
+
+在这里需要注意的是模块里边的循环调用处理。
+```
+ function getPureDependencies(module) {
+    var uri = module.uri
+
+     //循环调用的直接去除了,在加载
+
+    return util.filter(module.dependencies, function(dep) {
+        circularCheckStack = [uri]
+
+        var isCircular = isCircularWaiting(cachedModules[dep])
+        if (isCircular) {
+            circularCheckStack.push(uri)
+            printCircularLog(circularCheckStack)
+        }
+
+        return !isCircular
+    })
+}
+
+function isCircularWaiting(module) {
+    if (!module || module.status !== STATUS.SAVED) {
+        return false
+    }
+
+    circularCheckStack.push(module.uri)
+    var deps = module.dependencies
+
+    if (deps.length) {
+        if (isOverlap(deps, circularCheckStack)) {
+            return true
+        }
+
+        for (var i = 0; i < deps.length; i++) {
+            if (isCircularWaiting(cachedModules[deps[i]])) {
+                return true
+            }
+        }
+    }
+
+    circularCheckStack.pop()
+    return false
+}
+
+function printCircularLog(stack, type) {
+    util.log('Found circular dependencies:', stack.join(' --> '), type)
+}
+
+function isOverlap(arrA, arrB) {
+    var arrC = arrA.concat(arrB)
+    return arrC.length > util.unique(arrC).length
+}
+```
+
+再看看在模块定义define中都做了些什么？
+```
+Module._define = function(id, deps, factory) {
+    var argsLength = arguments.length
+
+    // define(factory)
+    if (argsLength === 1) {
+        factory = id
+        id = undefined
+    }
+    // define(id || deps, factory)
+    else if (argsLength === 2) {
+        factory = deps
+        deps = undefined
+
+        // define(deps, factory)
+        if (util.isArray(id)) {
+            deps = id
+            id = undefined
+        }
+    }
+
+    // Parses dependencies.
+    if (!util.isArray(deps) && util.isFunction(factory)) {
+            //parseDependencies方法做的事情主要就是用一个正则表达式把函数体里面所有require(XXX)里面的XXX提取出来，这也就是这个函数依赖到的所有模块了。
+        deps = util.parseDependencies(factory.toString())
+    }
+
+    var meta = {
+        id: id,
+        dependencies: deps,
+        factory: factory
+    }
+    var derivedUri
+
+    // Try to derive uri in IE6-9 for anonymous modules.
+    if (document.attachEvent) {
+        // Try to get the current script.
+        var script = util.getCurrentScript()
+        if (script) {
+            derivedUri = util.unParseMap(util.getScriptAbsoluteSrc(script))
+        }
+
+        if (!derivedUri) {
+            util.log('Failed to derive URI from interactive script for:',
+                factory.toString(), 'warn')
+
+            // NOTE: If the id-deriving methods above is failed, then falls back
+            // to use onload event to get the uri.
+        }
+    }
+
+    // Gets uri directly for specific module.
+    var resolvedUri = id ? resolve(id) : derivedUri
+
+    if (resolvedUri) {
+        // For IE:
+        // If the first module in a package is not the cachedModules[derivedUri]
+        // self, it should assign to the correct module when found.
+        if (resolvedUri === derivedUri) {
+            var refModule = cachedModules[derivedUri]
+            if (refModule && refModule.realUri &&
+                refModule.status === STATUS.SAVED) {
+                cachedModules[derivedUri] = null
+            }
+        }
+
+        var module = Module._save(resolvedUri, meta)
+
+        // For IE:
+        // Assigns the first module in package to cachedModules[derivedUrl]
+        if (derivedUri) {
+            // cachedModules[derivedUri] may be undefined in combo case.
+            if ((cachedModules[derivedUri] || {}).status === STATUS.FETCHING) {
+                cachedModules[derivedUri] = module
+                module.realUri = derivedUri
+            }
+        } else {
+            firstModuleInPackage || (firstModuleInPackage = module)
+        }
+    } else {
+        // Saves information for "memoizing" work in the onload event.
+        anonymousModuleMeta = meta
+    }
+}
+
+
+var REQUIRE_RE = /(?:^|[^.$])\brequire\s*\(\s*(["'])([^"'\s\)]+)\1\s*\)/g
+
+
+ 分析完deps之后,将模块定义存入缓存：
+util.parseDependencies = function(code) {
+    // Parse these `requires`:
+    //   var a = require('a');
+    //   someMethod(require('b'));
+    //   require('c');
+    //   ...
+    // Doesn't parse:
+    //   someInstance.require(...);
+    var ret = [],
+        match
+
+     //去除注释
+    code = removeComments(code)
+    REQUIRE_RE.lastIndex = 0
+
+    while ((match = REQUIRE_RE.exec(code))) {
+        if (match[2]) {
+            ret.push(match[2])
+        }
+    }
+
+    return util.unique(ret)
+}
+```
+
+下面说举几个例子说下：
+```
+index.html:
+
+<script src="lib/seajs/seajs1.3.0.js"></script>
+
+<script>
+    seajs.config({
+        base:"./js/"
+    })
+    seajs.use(["a"],function(){
+        console.log("a.js and b.js saved");
+    })
+</script>
+
+a.js:
+
+define(function(require,exports,module){
+    var b = require("b");
+
+    console.log("a.js exec");
+
+    console.log(module);
+})
+
+b.js:
+
+define(function(require,exports,module){
+    var b = require("a");
+
+    console.log("b.js exec");
+
+    console.log(module);
+
+    var c = require.async("c");
+
+})
+
+c.js:
+
+define(function(require,exports,module){
+    console.log("c.js exec");
+    console.log(module);    
+})
+```
+执行结果如下：
+
+上述例子seajs模块加载的逻辑，如下图：
+
+a依赖b b依赖a和c c不依赖
+
+尽管存在上述依赖，但是a，b，c，d模块download到浏览器端的顺序确是a，b，c而不是c,b,a，笨想一下后一种执行顺序也是不可能的，因为模块间的依赖只有download到浏览器端seajs才能进行分析。
+
+概括一下整个加载的流程就是：
+
+自顶向下的download，自底向上的反馈准备就绪。
+
+如何做到的呢？
+
+主要是Module中的几个属性发挥的作用，模块被download到浏览器端后，按照CMD规范，define函数会被执行，module.define会分析该模块的依赖，记录到dependencies属性中，define函数执行完毕，绑定在script标签上的onload事件会被触发，进而加载当前模块的依赖模块，也就是执行module.load函数，这是一个循环往复的过程。
+
+假设d模块加载就绪，执行module.load时发现，d模块已无其他依赖，进而执行module.onload, 在module.onload中，通过waitings属性找到父模块，操作父模块的依赖计数remain，达到通知父模块的目的。
+
+这是一个完美的反馈系统。
+
+至此，模块加载过程就算是说完了。
+
+
+##seajs的插件
+
+Sea.js官方提供了7个插件，对Sea.js的功能进行了补充。
+
+seajs-text：用来加载HTML或者模板文件；
+seajs-style：提供了importStyle，动态地向页面中插入css；
+seajs-combo：该插件提供了依赖combo的功能，能把多个依赖的模块uri combo，减少HTTP请求；
+seajs-flush：该插件是对seajs-combo的补充，或者是大杀器，可以先hold住前面的模块请求，最后将请求的模块combo成一个url，一次加载hold住的模块；
+seajs-debug：基本就是提供了这样一种功能，可以通过修改config，将线上文件proxy到本地服务器，便于线上开发调试和排错；
+seajs-log：提供一个seajs.log API，觉得比较鸡肋；
+seajs-health：目标功能是，分析当前网页的模块健康情况。
+
+## seajs的调试工具
+Sea.JS 开发过程中有哪些调试技巧?
+
+seajs.cache：用Chrome访问使用Seajs的站点，打开Console，输入seajs.cache，可以看到当前加载好的模块，点开某一个，可以查看该模块的详细信息，包括该模块ID，该模块暴露的API等等信息，很常用；
+
+seajs.find：包装好的模块的API不会污染全局变量，但在Console中，有时想用一下jQuery，这样就需要使用seajs.find了，var $ = seajs.find("jquery")[0]，然后就可以在Console的上下文中使用jQuery了，PS.seajs.find返回的是一个数组；
+
+seajs.log：在Console中打印信息，功能和console.log差不多，但是不会在IE下报错。由seajs-log 插件提供,记得加载该插件。
+
+seajs.resolve: 类似 require.resolve，会利用模块系统的内部机制对传入的字符串参数进行路径解析。
+```
+seajs.resolve('jquery');
+// => http://path/to/jquery.js
+
+seajs.resolve('./a', 'http://example.com/to/b.js');
+// => http://example.com/to/a.js
+```
+
+seajs.resolve 方法不光可以用来调试路径解析是否正确，还可以用在插件开发环境中。
+
+seajs.require: 全局的 require 方法，可用来直接获取模块接口，比如
+```
+seajs.use(['a', 'b'], function() {
+
+  var a = seajs.require('a')
+  var b = seajs.require('b')
+
+  // do something...
+})
+```
+seajs.data: 通过 seajs.data，可以查看 seajs 所有配置以及一些内部变量的值，可用于插件开发。当加载遇到问题时，也可用于调试。
