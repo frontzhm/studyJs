@@ -90,13 +90,14 @@
   alphaLowObj["c"] = "(" + fillNativeString + ")" + "[" + num[fillNative.indexOf("c")] + "]";
   alphaLowObj["o"] = "(" + fillNativeString + ")" + "[" + num[fillNative.indexOf("o")] + "]";
   alphaLowObj["v"] = "(" + fillNativeString + ")" + "[" + num[fillNative.indexOf("v")] + "]";
-  var signObj = {};
-  signObj["["] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("[")) + "]";
-  signObj["]"] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("]")) + "]";
-  signObj["("] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("(")) + "]";
-  signObj[")"] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf(")")) + "]";
-  signObj["{"] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("{")) + "]";
-  signObj["}"] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("}")) + "]";
+  alphaLowObj[" "] = "(" + fillNativeString + ")" + "[" + num[fillNative.indexOf(" ")] + "]";
+  // var alphaLowObj = {};
+  alphaLowObj["["] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("[")) + "]";
+  alphaLowObj["]"] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("]")) + "]";
+  alphaLowObj["("] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("(")) + "]";
+  alphaLowObj[")"] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf(")")) + "]";
+  alphaLowObj["{"] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("{")) + "]";
+  alphaLowObj["}"] = "(" + fillNativeString + ")" + "[" + getAnyNumString(fillNative.indexOf("}")) + "]";
 
 
 
@@ -163,7 +164,63 @@
   }())
 
   console.log(alphaLowObj)
-  console.log(signObj)
+  console.log(alphaLowObj)
+
+  // 6.link   ""["link"](true) 得到「 < 」「 > 」和「 / 」
+  // ""["link"]("") = "<a href=""></a>"
+  var linkNative = "" ["link"]("");
+  var linkNativeStr = '""[' + getStringString("link") + ']([]+[])';
+  alphaLowObj["<"] = "(" + linkNativeStr + ")" + "[" + getAnyNumString(linkNative.indexOf("<")) + "]";
+  alphaLowObj[">"] = "(" + linkNativeStr + ")" + "[" + getAnyNumString(linkNative.indexOf(">")) + "]";
+  alphaLowObj["/"] = "(" + linkNativeStr + ")" + "[" + getAnyNumString(linkNative.indexOf("/")) + "]";
+
+
+
+  /* 7.escape,这个属性可能会被废弃,但这里需要用下
+      escape将一个字符串，转换成一种浏览器友好的 URL 格式，并且能够被常见的浏览器识别和解析。其一个全局作用域下的函数，就是说它不属于我们目前为止处理过的任何函数类型。
+
+     任意函数的构造函数是 function Function() { [native code] }
+      []["fill"]["constructor"] === Function
+      利用这一点，我们能通过一串代码来构造一个实际功能的函数。
+      Function("alert('test')");即
+      function anonymous() {
+        alert('test')
+      }
+      这里非常重要,可以返回任意的全局函数,以避免引号嵌套的问题
+      Function("return alert")();即
+      function alert() { [native code] }
+      Function("return alert")()(1);即
+      alert(1);
+
+      然后[]["fill"]["constructor"]("return escape(' ')")() === "%20"
+      []["fill"]["constructor"]("return escape")()('<')[2] === "C"
+*/
+
+  var FunctionStr = []["fill"]["constructor"];
+  var FunctionNativeStr = '[]['+getStringString("fill")+']['+getStringString("constructor")+']';
+  var CStr = []["fill"]["constructor"]("return escape")()("<")[2];
+  var CNativeStr = FunctionNativeStr+"("+getStringString("return escape")+")()("+alphaLowObj["<"]+")["+num[2]+"]";
+  alphaLowObj["C"] = CNativeStr;
+
+  // 8.fromCharCode这个函数的功能是将我们给定的十进制数转换为「 Unicode 」码 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode
+  // 利用  [Unicode Lookup: convert special characters](http://unicodelookup.com/)工具能够很容易地找到任何字符的十进制表示形式
+  ""["constructor"] === "String";
+  String.fromCharCode(65) === "A";
+  String.fromCharCode(46) === ".";
+  String.fromCharCode(39) === "'";
+  ""["constructor"]["fromCharCode"](39) === "'"
+  function getAnyString(num){
+    // var numStr = getAnyNumString(num);
+    // var t = ""["constructor"]["fromCharCode"](39)
+    var t = []+[]+"["+getStringString("constructor")+"]["+getStringString("fromCharCode")+"]("+getAnyNumString(num)+")";
+    console.log(eval(t))
+    if(alphaLowObj[t]){
+      return false;
+    }
+    alphaLowObj[t] = t;
+  }
+  getAnyString(39)
+  // 这个算是最终的神器 因为其他的字符和字母都通过这个来转换
   </script>
 </body>
 
