@@ -7,9 +7,9 @@
 </head>
 
 <body>
-  <script>
+<script>
   function runOnce(callback, context) {
-    return function() {
+    return function () {
       if (callback) {
         callback.apply(context || this, arguments);
         callback = null;
@@ -19,13 +19,9 @@
   }
 
 
-
-
-
-
   // usage1
   var a = 0;
-  var canOnlyFireOnce = runOnce(function() {
+  var canOnlyFireOnce = runOnce(function () {
     a++;
     console.log(a)
   })
@@ -36,7 +32,7 @@
 
   // usage 2
   var name = "张三";
-  var canOnlyFireOnce = runOnce(function() {
+  var canOnlyFireOnce = runOnce(function () {
     console.log('hello, ' + this.name)
   })
   canOnlyFireOnce() //你好张三
@@ -47,7 +43,7 @@
     name: "花花",
     age: 24
   };
-  var canOnlyFireOnce = runOnce(function() {
+  var canOnlyFireOnce = runOnce(function () {
     console.log('hello', this.name)
   }, obj)
 
@@ -62,7 +58,7 @@
   var fireOne = runOnce(obj.active.bind(obj, "p"));
   fireOne()
   fireOne()
-  </script>
+</script>
 </body>
 
 </html>

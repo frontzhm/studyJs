@@ -2,7 +2,306 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b05e1dff-278e-4704-b870-e33bb4d80083" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/11.ejs.html" afterPath="$PROJECT_DIR$/zhufeng/11.移动端/11.ejs.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/littleLodash/js/main.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/1.预解释.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/2.私有作用的预解释.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/js内存释放.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/this关键字.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/作用域练习1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/作用域练习2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/作用域练习题.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/全局作用域下var带与不带的区别.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/内存释放.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/内存释放特殊情况.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/如何查找上级作用域.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/如何查找上级作用域.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/私有作用域.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/私有作用域的综合实战.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/私有作用域的综合练习.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/私有作用域综合练习.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/预解释.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/预解释.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/1.预解释.作用域.this.原理和运用/预解释中的变态机制.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/1.解读回调函数.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/10.拖拽.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/10.模拟百度的搜索.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/11.多级菜单的展开和收起.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/2.柯理化函数思想.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/3.什么是事件.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/4.事件对象及兼容和处理.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/5.事件的传播机制.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/6.鼠标跟随的案例jq.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/7.鼠标跟随的案例js.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/8.京东放大.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/9.事件委托-点击购物车.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/01.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/02.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/03.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/04.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/arr.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/big.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/default.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/json.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/load.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/load1.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/small.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/self模拟百度的搜索.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/test放大.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/冒泡.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/拖拽.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/放大镜.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/放大镜比例问题.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/视口标签''.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/1.media.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/10.slide/img/__2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/10.slide/img/alone_in_the_forest_4.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/10.slide/img/dt.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/10.slide/img/evening.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/10.slide/img/fall-dribbble-alex-pasquarella.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/10.slide/img/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/10.slide/img/night.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/10.slide/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/10.slide/slide.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/10.slide/slide.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/11.ejs.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/11.本地存储.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/12.isSroll.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/2.liebao/html5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/2.liebao/img/logo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/2.liebao/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/2.liebao/normalize.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/3.iframe.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/4.rem.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/5.swiper.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/55.swiper.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/6.wechatApply.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/7.移动端事件.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/8.移动端事件-touch.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/9.zepto.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/boxModel.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/cookieRender.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/swiper.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/index.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/public.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/img/0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/img/icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/img/left.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/img/logo_sports.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/img/menu.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/img/right.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/js/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/js/less.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/11.移动端/无缝滚动.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/1.单例模式.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/10.原型继承.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/11.call继承.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/12.冒充对象继承.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/13.混合模式继承.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/14.寄生组合继承.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/15.周氏继承.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/16.综合练习.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/2.工厂模式.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/3.构造函数模式.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/4.构造函数的拓展.工厂模式2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/5.原型链模式.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/6-plus-reduce.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/6-zslice.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/6.原型链扩展-this.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/7.原型链扩展-批量设置.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/8.可枚举和不可枚举.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/9.Object.create.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/原型拓展-批量设置公有属性.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/原型继承.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/2.单例模式.工厂模式.构造函数.原型链/原型链模式.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/1.原型深入.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/10.json.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/11.数据绑定和DOM回流.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/12.简单的表格排序.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/13.Dom的映射机制.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/2.函数的三种角色.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/3.call和apply.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/4.call和apply的应用.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/5.call和apply,bind.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/6.求平均数.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/7.类数组.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/7.类数组变数组.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/8.浏览器异常信息的捕获.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/9.sort深入研究.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/DOM映射.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/dom元素节点普通节点.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/test.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/3.call.apply.表格排序.正则/原型图.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/4.正则/1.正则的作用.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/4.正则/10.正则捕获继续练习.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/4.正则/11.检测数据类型.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/4.正则/2.正则的组成.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/4.正则/3.元字符应用.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/4.正则/4.字面量和实例创建正则的区别.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/4.正则/5.贪婪性和懒惰性.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/4.正则/6.分组捕获.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/4.正则/7.replace.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/4.正则/8.replace应用.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/4.正则/9.正则捕获练习.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/4.正则/正则综合练习.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/1.盒子模型.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/1.盒子模型八个重要属性.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/10.js的异步和同步.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/11.图片延迟加载.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/12.多张图片延迟加载.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/2.元素的具体样式.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/3.补充css伪类.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/4.盒子偏移量.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/5.浏览器卷去的高度.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/6.回到顶部.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/7.复习定时器.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/8.回到顶部优化.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/9.跑马灯.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/clientWidth.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/default.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/1f.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/2f.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/3f.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/4f.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/blood.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/compete.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/die.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/doubt.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/drink.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/false.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/footer.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/header.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/heartbreak.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/nowhere.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/img/sea.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/jd.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/jdscrolltop.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/lazyload.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/offset.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/pmd.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/任务队列'.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/其他屏幕的加载.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/图片懒加载.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/5.盒子模型和盒子偏移量/无缝滚动.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/1.复习DOM.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/10.选项卡实现1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/11.选项卡实现2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/12.选项卡之闭包.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/13.选项卡的事件委托.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/14.选项卡之构造函数.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/2.children(element).html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/3.siblings(element).html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/4.append(element).html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/5.addClass(className).html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/6.getElementsByElementByClassName(className).html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/7.setCss(className).html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/8.setCss(object).html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/9.css(options).html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/6.DOM深入和DOM库/tabFn.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/7.动画优化和tween库/1.指定时间实现单方向匀速运动的两种思想.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/7.动画优化和tween库/2.优化反弹效果的动画.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/7.动画优化和tween库/2.反弹效果的动画.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/7.动画优化和tween库/3.保证同一时间只能执行一个动画.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/7.动画优化和tween库/4.实现左边和右边同时运动.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/7.动画优化和tween库/5.实现同时运动的函数.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/7.动画优化和tween库/6.回调函数.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/7.动画优化和tween库/tween.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/1.轮播图之无缝滚动.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/2.轮播图之渐隐渐现.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/3.轮播图插件.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/bannerFn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/img/01.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/img/02.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/img/03.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/img/04.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/img/arr.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/img/default.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/img/json.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/img/load.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/img/load1.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/img/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/jq轮播图渐隐渐现/demo - f.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/jq轮播图渐隐渐现/demo - ff.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/jq轮播图渐隐渐现/demo.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/jq轮播图渐隐渐现/images/1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/jq轮播图渐隐渐现/images/2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/jq轮播图渐隐渐现/images/3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/jq轮播图渐隐渐现/images/4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/jq轮播图渐隐渐现/images/5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/jq轮播图渐隐渐现/images/arr.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/jq轮播图渐隐渐现/js/jquery-1.11.1.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/jq轮播图渐隐渐现/js/myjs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/jq轮播图渐隐渐现/js/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/lb.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/test1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/8.轮播图/test2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/1.常用的选择器.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/2.常用的属性.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/3.筛选,文档,css.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/4.ajax,动画,工具.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/5.核心.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/6.新建实例.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/7.选项卡.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/banner.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/img/01.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/img/02.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/img/03.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/img/04.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/img/arr.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/img/default.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/img/json.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/img/load.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/img/load1.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/img/loading-1.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/img/loading-3.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/img/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/jquery.1.11.3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/8.轮播/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/img/01.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/img/02.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/img/03.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/img/04.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/img/arr.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/img/default.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/img/json.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/img/load.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/img/load1.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/img/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/zhufeng/9.jq基础/jquery.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/DIYjq/1.jq1.html" afterPath="$PROJECT_DIR$/zhufeng/DIYjq/1.jq1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/banner.js" afterPath="$PROJECT_DIR$/zhufeng/banner.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/jQueryNumberCounter/index.html" afterPath="$PROJECT_DIR$/zhufeng/jQueryNumberCounter/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/jQueryNumberCounter/jquery.js" afterPath="$PROJECT_DIR$/zhufeng/jQueryNumberCounter/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/jQueryNumberCounter/number.js" afterPath="$PROJECT_DIR$/zhufeng/jQueryNumberCounter/number.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/jQueryNumberCounter/style.css" afterPath="$PROJECT_DIR$/zhufeng/jQueryNumberCounter/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/animate.css" afterPath="$PROJECT_DIR$/zhufeng/js/animate.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/cookieRender.js" afterPath="$PROJECT_DIR$/zhufeng/js/cookieRender.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/ejs.js" afterPath="$PROJECT_DIR$/zhufeng/js/ejs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/fastclick.js" afterPath="$PROJECT_DIR$/zhufeng/js/fastclick.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/iscroll-infinite.js" afterPath="$PROJECT_DIR$/zhufeng/js/iscroll-infinite.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/iscroll-lite.js" afterPath="$PROJECT_DIR$/zhufeng/js/iscroll-lite.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/iscroll-probe.js" afterPath="$PROJECT_DIR$/zhufeng/js/iscroll-probe.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/iscroll-zoom.js" afterPath="$PROJECT_DIR$/zhufeng/js/iscroll-zoom.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/iscroll.js" afterPath="$PROJECT_DIR$/zhufeng/js/iscroll.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/jade.js" afterPath="$PROJECT_DIR$/zhufeng/js/jade.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/md5.js" afterPath="$PROJECT_DIR$/zhufeng/js/md5.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/reset.css" afterPath="$PROJECT_DIR$/zhufeng/js/reset.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/swiper.css" afterPath="$PROJECT_DIR$/zhufeng/js/swiper.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/swiper.js" afterPath="$PROJECT_DIR$/zhufeng/js/swiper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/touch.0.2.14.js" afterPath="$PROJECT_DIR$/zhufeng/js/touch.0.2.14.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/js/zepto.js" afterPath="$PROJECT_DIR$/zhufeng/js/zepto.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/runOnceFn.html" afterPath="$PROJECT_DIR$/zhufeng/runOnceFn.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/threeDemo/table.html" afterPath="$PROJECT_DIR$/zhufeng/threeDemo/table.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/threeDemo/table2.html" afterPath="$PROJECT_DIR$/zhufeng/threeDemo/table2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/threeDemo/usefulFn.js" afterPath="$PROJECT_DIR$/zhufeng/threeDemo/usefulFn.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/tween.js" afterPath="$PROJECT_DIR$/zhufeng/tween.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/usefulFn.js" afterPath="$PROJECT_DIR$/zhufeng/usefulFn.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/utils.js" afterPath="$PROJECT_DIR$/zhufeng/utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhufeng/utilsbak.js" afterPath="$PROJECT_DIR$/zhufeng/utilsbak.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,52 +318,15 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="64" column="12" lean-forward="true" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.less" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/index.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="181" column="24" lean-forward="false" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
-              <folding>
-                <element signature="e#1593#1689#0" expanded="false" />
-                <element signature="e#1911#2619#0" expanded="false" />
-                <element signature="e#2630#2909#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="public.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/public.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="44" lean-forward="false" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/js/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -72,6 +334,7 @@
       <find>href</find>
       <find>div</find>
       <find>time</find>
+      <find>curEle</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -85,6 +348,13 @@
         <option value="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html" />
         <option value="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/public.less" />
         <option value="$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/index.less" />
+        <option value="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/dom.md" />
+        <option value="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/DOM2兼容this.html" />
+        <option value="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/11.DOM2事件.html" />
+        <option value="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/13.DOM2兼容处理.顺序问题.html" />
+        <option value="$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/12.DOM2兼容this.html" />
+        <option value="$PROJECT_DIR$/littleLodash/js/main.js" />
+        <option value="$PROJECT_DIR$/littleLodash/index.html" />
       </list>
     </option>
   </component>
@@ -104,13 +374,12 @@
     <handled-path value="$PROJECT_DIR$/studyGulp/selfGulp/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="584" />
-    <option name="y" value="31" />
-    <option name="width" value="786" />
-    <option name="height" value="688" />
+    <option name="x" value="407" />
+    <option name="width" value="888" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -123,16 +392,154 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="others" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="others" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="requirejs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="onlyOneScript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="others" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="requirejs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="onlyOneScript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="others" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="requirejs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="onlyOneScript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="littleLodash" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="studyJs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="littleLodash" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/Program Files/PortableGit/cmd/git.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -198,6 +605,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b05e1dff-278e-4704-b870-e33bb4d80083" name="Default" comment="" />
@@ -210,32 +620,41 @@
       <workItem from="1482150916589" duration="4096000" />
       <workItem from="1482238655083" duration="5512000" />
       <workItem from="1482654544685" duration="3749000" />
+      <workItem from="1483449084363" duration="4532000" />
+      <workItem from="1483534998280" duration="3123000" />
+      <workItem from="1483624036845" duration="4705000" />
+      <workItem from="1483968796063" duration="15000" />
+      <workItem from="1483968964803" duration="4597000" />
+      <workItem from="1484314028870" duration="1875000" />
+      <workItem from="1484363683783" duration="3778000" />
+      <workItem from="1484371567259" duration="359000" />
+      <workItem from="1484745055558" duration="4576000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21580000" />
+    <option name="totallyTimeSpent" value="49140000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="584" y="31" width="786" height="688" extended-state="0" />
+    <frame x="407" y="0" width="888" height="744" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17767295" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.028669724" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871974" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,63 +716,33 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="5" lean-forward="false" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-          <folding>
-            <element signature="e#1593#1689#0" expanded="false" />
-            <element signature="e#1911#2619#0" expanded="false" />
-            <element signature="e#2630#2909#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/img/logo_sports.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/public.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/12.DOM2兼容this.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/12.DOM2兼容this.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/11.DOM2事件.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/1.解读回调函数.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/dom.md" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/3.什么是事件.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/4.事件对象及兼容和处理.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/5.事件的传播机制.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/2.柯理化函数思想.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/11.DOM2事件.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/1.解读回调函数.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/dom.md" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/3.什么是事件.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/4.事件对象及兼容和处理.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/5.事件的传播机制.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/2.柯理化函数思想.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/11.DOM2事件.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/index.less" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/img/logo_sports.png" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/public.less" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/js/index.js" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html" />
     <entry file="file://$PROJECT_DIR$/es6/1.特性总览.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -368,44 +757,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/img/logo_sports.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html">
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/img/logo_sports.png" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/js/index.js" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/public.less" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/index.less" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/index.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/DOM2兼容this.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/img/11.DOM2事件.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/1.解读回调函数.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/dom.md" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/3.什么是事件.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/4.事件对象及兼容和处理.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/5.事件的传播机制.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/2.柯理化函数思想.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/11.DOM2事件.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/12.DOM2兼容this.html" />
+    <entry file="file://$PROJECT_DIR$/zhufeng/10.DOM零级和二级事件基础/13.DOM2兼容处理.顺序问题.html" />
+    <entry file="file://$PROJECT_DIR$/others/requirejs/onlyOneScript/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="64" column="12" lean-forward="true" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
+        <state relative-caret-position="0">
+          <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/js/index.js">
+    <entry file="file://$PROJECT_DIR$/littleLodash/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+        <state relative-caret-position="493">
+          <caret line="34" column="7" lean-forward="true" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/public.less">
+    <entry file="file://$PROJECT_DIR$/zhufeng/DIYjq/1.jq1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="44" lean-forward="false" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
+        <state relative-caret-position="-8">
+          <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhufeng/11.移动端/webAppDemo1/css/index.less">
+    <entry file="file://$PROJECT_DIR$/others/requirejs/onlyOneScript/js/add.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="181" column="24" lean-forward="false" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
+        <state relative-caret-position="136">
+          <caret line="8" column="3" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/littleLodash/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
-            <element signature="e#1593#1689#0" expanded="false" />
-            <element signature="e#1911#2619#0" expanded="false" />
-            <element signature="e#2630#2909#0" expanded="false" />
+            <element signature="e#0#49#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/others/requirejs/onlyOneScript/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>

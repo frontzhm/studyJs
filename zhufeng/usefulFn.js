@@ -1,11 +1,11 @@
 var utils = {
   // 数组之间一一替换
   zfindAndReplace: function zfindAndReplace(str, reg, oldarr, newarr) {
-    str = str.replace(reg, function() {
+    str = str.replace(reg, function () {
       try {
         return newarr[oldarr.indexOf(arguments[0])];
       } catch (e) {
-        Array.prototype.zindexOf = function(findStr) {
+        Array.prototype.zindexOf = function (findStr) {
           for (var i = 0, l = this.length; i < l; i++) {
             if (this[i] === findStr) {
               return i;
@@ -18,13 +18,13 @@ var utils = {
     return str;
   },
   /**
-  var oldarr = ["A", "B", "C", "D", "E"];
-  var newarr = ["a", "b", "c", "d", "e"];
-  var str = "ABCDADEC";
-  console.log(findAndReplace(str, /\w/g, oldarr, newarr)) // abcdadec
+   var oldarr = ["A", "B", "C", "D", "E"];
+   var newarr = ["a", "b", "c", "d", "e"];
+   var str = "ABCDADEC";
+   console.log(findAndReplace(str, /\w/g, oldarr, newarr)) // abcdadec
    */
   // 实现将类数组转化为数组
-  zlistToArray: function(likeArray) {
+  zlistToArray: function (likeArray) {
     var arr = [];
     try {
       arr = Array.prototype.slice.call(likeArray);
@@ -36,7 +36,7 @@ var utils = {
     return arr;
   },
   // 把json格式的字符串变成json格式的对象
-  zjsonParse: function(str) {
+  zjsonParse: function (str) {
     // try{
     //  return JSON.parse(str);
     // }catch(e){
@@ -45,12 +45,12 @@ var utils = {
     return "JSON" in window ? JSON.parse(str) : eval("(" + str + ")");
   },
   // 检测属性是不是公共属性
-  zhasPublicProperty: function(obj, prop) {
+  zhasPublicProperty: function (obj, prop) {
     // 首先必须是属于对象的属性 然后不是对象的私有属性
     return (prop in obj) && !obj.hasOwnProperty(prop);
   },
   // 检测类型
-  ztypeof: function(para) {
+  ztypeof: function (para) {
     return Object.prototype.toString.call(para).slice(8, -1).toLowerCase();
   },
 
@@ -59,7 +59,7 @@ var utils = {
   // 1.建立一个空对象
   // 2.从数组的第一个数开始,数组的项给对象的键值对,对象的键值相等
   // 3.数组的每项和对象相应的键比较,如果对象有obj[23]=23;如在遇到数组有23 那么检测到obj[23]已经存在
-  zunique: function(arr) {
+  zunique: function (arr) {
     var obj = {};
     for (var i = 0, l = arr.length; i < l; i++) {
       var cur = arr[i];
@@ -78,9 +78,7 @@ var utils = {
 }
 
 
-
-
-// 检测属性是不是公共属性 
+// 检测属性是不是公共属性
 function zhasPublicProperty(obj, prop) {
   // 首先必须是属于对象的属性 然后不是对象的私有属性
   return (prop in obj) && !obj.hasOwnProperty(prop)
@@ -119,7 +117,7 @@ String.prototype.zformatTime = function zformatTime(formatStr) {
   var arr = reg.exec(this).slice(1); // reg.exec(this)的最后的index和input不是数组的项
   // arr = ["2015", "7", "9", "13", "9", "10"]
   formatStr = formatStr || "{0}年{1}月{2}日 {3}:{4}:{5}";
-  formatStr = formatStr.replace(/{([\d]+)}/g, function() {
+  formatStr = formatStr.replace(/{([\d]+)}/g, function () {
     var val = arr[arguments[1]];
     return val.length === 1 ? "0" + val : val;
   })
@@ -142,17 +140,17 @@ function detectNavigator() {
     isChrome: !!window.chrome && !!window.chrome.webstore,
     // Edge 20+
     isEdge: !this.isIE && !!window.StyleMedia
-      // isBlink:(this.isChrome || this.isOpera) && !!window.CSS
+    // isBlink:(this.isChrome || this.isOpera) && !!window.CSS
   };
 }
 /*
-自己写的  不是很精准 因为userAgent可以改
-谷歌:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36      // Chrome/52.0.2743.116
-火狐:Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0     // Firefox/47.0
-IE:"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E)"    // MSIE 10.0;
-safari:"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2"    //Safari/534.57.2
-opera:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48     // OPR/39.0.2256.48
-*/
+ 自己写的  不是很精准 因为userAgent可以改
+ 谷歌:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36      // Chrome/52.0.2743.116
+ 火狐:Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0     // Firefox/47.0
+ IE:"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E)"    // MSIE 10.0;
+ safari:"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2"    //Safari/534.57.2
+ opera:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48     // OPR/39.0.2256.48
+ */
 function getBrowser() {
   var ua = navigator.userAgent;
   // opera 里面有opera chrome safari
@@ -169,8 +167,6 @@ function getBrowser() {
     return "浏览器不是ie firefox opera chrome safari"
   }
 }
-
-
 
 
 // 返回浏览器的一屏幕的宽高 clientWidth
@@ -242,8 +238,6 @@ function offset(selector) {
     top: top,
     left: left
   }
-
-
 
 
   // var par = selector.offsetParent;

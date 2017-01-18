@@ -1,5 +1,5 @@
 // 使用惰性思想(js高阶编程技巧之一),来封装常用的方法库,第一次赋值的时候,就把兼容处理好了,把最后的结果放在flag里,以后的每一个方法直接用即可不需再判断
-var utils = (function() {
+var utils = (function () {
   // listToArray formatJSON getCss offset win children
   var flag = "getComputedStyle" in window;
   // flag true是现代浏览器 不是是ie6-8的低级浏览器
@@ -7,11 +7,11 @@ var utils = (function() {
 
 
   function zfindAndReplace(str, reg, oldarr, newarr) {
-    str = str.replace(reg, function() {
+    str = str.replace(reg, function () {
       try {
         return newarr[oldarr.indexOf(arguments[0])];
       } catch (e) {
-        Array.prototype.zindexOf = function(findStr) {
+        Array.prototype.zindexOf = function (findStr) {
           for (var i = 0, l = this.length; i < l; i++) {
             if (this[i] === findStr) {
               return i;
@@ -23,11 +23,12 @@ var utils = (function() {
     })
     return str;
   }
+
   /**
-  var oldarr = ["A", "B", "C", "D", "E"];
-  var newarr = ["a", "b", "c", "d", "e"];
-  var str = "ABCDADEC";
-  console.log(findAndReplace(str, /\w/g, oldarr, newarr)) // abcdadec
+   var oldarr = ["A", "B", "C", "D", "E"];
+   var newarr = ["a", "b", "c", "d", "e"];
+   var str = "ABCDADEC";
+   console.log(findAndReplace(str, /\w/g, oldarr, newarr)) // abcdadec
    */
   function zlistToArray(likeArray) {
     // var arr = [];
@@ -154,8 +155,6 @@ var utils = (function() {
     }
 
 
-
-
     // var par = selector.offsetParent;
     // var top = selector.offsetTop
     //    // 自身的偏移 
@@ -168,6 +167,7 @@ var utils = (function() {
     //    //    par = par.offsetParent;
     //    ...
   }
+
   // 返回浏览器的一屏幕的宽高 clientWidth
   // 返回浏览器的所有屏幕的宽高 scrollWidth
   // 
@@ -181,6 +181,7 @@ var utils = (function() {
 
 
   }
+
   // children:获取所有子节点或者指定标签名的子节点
   // ->轻松得出firstChild,lastChild
   function children(curEle, tagName) {
@@ -228,6 +229,7 @@ var utils = (function() {
 
     return arr;
   }
+
   // firstChild:获取第一个元素子节点
   function firstChild(curEle) {
     var kids = this.children(curEle);
@@ -238,6 +240,7 @@ var utils = (function() {
     var kids = this.children(curEle);
     return kids.length ? kids[length - 1] : null
   }
+
   // prev:获取上一个哥哥节点
   // ->轻松得出 next prevAll nextAll sibling siblings index
   // ->低耦合 高内聚
@@ -268,6 +271,7 @@ var utils = (function() {
       return nex;
     }
   }
+
   // 获取所有的哥哥元素节点
   function prevAll(curEle) {
     var arr = [];
@@ -290,6 +294,7 @@ var utils = (function() {
     }
     return arr;
   }
+
   // sibling 获取相邻的两个元素节点
   function sibling(curEle) {
     var arr = [];
@@ -302,18 +307,22 @@ var utils = (function() {
       arr.push(nex)
     }
   }
+
   // siblings 获取所有的兄弟节点
   function siblings(curEle) {
     return this.prevAll(curEle).concat(this.nextAll(curEle))
   }
+
   // index 获取当前元素的索引
   function index(curEle) {
     return this.prevAll(curEle).length
   }
+
   // append 向指定容器末尾追加元素
   function append(newEle, container) {
     container.appendChild(newEle);
   }
+
   // 原生的只提供 appendChild insertBefore
   // 向容器末尾追加元素
   // container.appendChild(newEle)
@@ -335,10 +344,12 @@ var utils = (function() {
     }
     container.appendChild(newEle)
   }
+
   // insertBefore 把新元素追加到指定元素前面
   function insertBefore(newEle, oldEle) {
     oldEle.parentNode.insertBefore(newEle, oldEle);
   }
+
   // insertAfter 把新元素追加到指定元素后面
   // 相当于把新元素追加到指定元素下一个元素的前面
   // 如果指定元素的下一个元素不存在的话 相当于指定元素就是最后一个元素
@@ -350,7 +361,8 @@ var utils = (function() {
     }
     oldEle.parentNode.appendChild(newEle)
   }
-  // 判断类名的有无 
+
+  // 判断类名的有无
   // -> addClass removeClass
   function hasClass(curEle, className) {
     var oldClass = curEle.className;
@@ -418,6 +430,7 @@ var utils = (function() {
 
     }
   }
+
   // 在js中给元素设置样式的属性值 我们只能通过  当前元素.style.left="3px",设置元素的行内样式
   // box.style.left = 100 + "px";
   // box.style.width = 200 + "px";
@@ -465,29 +478,30 @@ var utils = (function() {
       }
     }
   }
+
   // jq提供css 既可以获取 也可以设置 也可以批量设置样式值
   // $("#box").css("width")
   // $("#box").css("width",200)
   // $("#box").css({width:200,height:200})
   function css(curEle) {
-     var argTwo = arguments[1];
-     // 第二个参数值是字符串 ->获取样式或者设置 ->如果第三个参数存在的话 就是设置单样式
-     if(typeof argTwo==="string"){
-        var argThree = arguments[2];
-        if(typeof argThree==="undefined"){
-            return this.getCss.apply(this,arguments)
-        }
-        // 第三个参数存在的话 :
-        // this.setCss(curEle,argTwo,argThree);
-        this.setCss.apply(this,arguments);
+    var argTwo = arguments[1];
+    // 第二个参数值是字符串 ->获取样式或者设置 ->如果第三个参数存在的话 就是设置单样式
+    if (typeof argTwo === "string") {
+      var argThree = arguments[2];
+      if (typeof argThree === "undefined") {
+        return this.getCss.apply(this, arguments)
+      }
+      // 第三个参数存在的话 :
+      // this.setCss(curEle,argTwo,argThree);
+      this.setCss.apply(this, arguments);
 
-     }
-     // null undefined false "" -> 0
-     argTwo = argTwo || 0;
-     if(argTwo.toString()==="[object Object]"){
-        // 批量设置
-        this.setGroupCss.apply(this,arguments)
-     }
+    }
+    // null undefined false "" -> 0
+    argTwo = argTwo || 0;
+    if (argTwo.toString() === "[object Object]") {
+      // 批量设置
+      this.setGroupCss.apply(this, arguments)
+    }
 
   }
 
@@ -534,15 +548,11 @@ var utils = (function() {
     getCss: getCss,
     setCss: setCss,
     setGroupCss: setGroupCss,
-    css:css
+    css: css
 
     // 这里end
   }
 }())
-
-
-
-
 
 
 // 时间字符串格式化  "2015-6-7 12:13:4".zformatTime() -> 2015年06月07日 12:14:04
@@ -552,7 +562,7 @@ String.prototype.zformatTime = function zformatTime(formatStr) {
   var arr = reg.exec(this).slice(1); // reg.exec(this)的最后的index和input不是数组的项
   // arr = ["2015", "7", "9", "13", "9", "10"]
   formatStr = formatStr || "{0}年{1}月{2}日 {3}:{4}:{5}";
-  formatStr = formatStr.replace(/{([\d]+)}/g, function() {
+  formatStr = formatStr.replace(/{([\d]+)}/g, function () {
     var val = arr[arguments[1]];
     return val.length === 1 ? "0" + val : val;
   })
@@ -575,17 +585,17 @@ function detectNavigator() {
     isChrome: !!window.chrome && !!window.chrome.webstore,
     // Edge 20+
     isEdge: !this.isIE && !!window.StyleMedia
-      // isBlink:(this.isChrome || this.isOpera) && !!window.CSS
+    // isBlink:(this.isChrome || this.isOpera) && !!window.CSS
   };
 }
 /*
-自己写的  不是很精准 因为userAgent可以改
-谷歌:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36      // Chrome/52.0.2743.116
-火狐:Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0     // Firefox/47.0
-IE:"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E)"    // MSIE 10.0;
-safari:"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2"    //Safari/534.57.2
-opera:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48     // OPR/39.0.2256.48
-*/
+ 自己写的  不是很精准 因为userAgent可以改
+ 谷歌:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36      // Chrome/52.0.2743.116
+ 火狐:Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0     // Firefox/47.0
+ IE:"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E)"    // MSIE 10.0;
+ safari:"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2"    //Safari/534.57.2
+ opera:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48     // OPR/39.0.2256.48
+ */
 function getBrowser() {
   var ua = navigator.userAgent;
   // opera 里面有opera chrome safari
