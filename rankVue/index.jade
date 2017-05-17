@@ -1,0 +1,82 @@
+doctype html
+html
+	head
+		title 免费充电限量抽
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+		style.
+			caption{
+				color:#f69;
+				font-weight:bold;
+				font-size:18px;
+			}
+			section{
+				width: 80%;
+				margin: 50px auto;
+				font-family:"microsoft yahei";
+				font-size:14px;
+			}
+			table{
+				margin-bottom:50px;
+				line-height:30px;
+			}
+			th,td{
+				width: 20%;
+				text-align: center;
+			}
+
+	body
+		section#app
+			table
+				caption 全国榜
+				thead
+					tr
+						th 排名
+						th 站点名称
+						th 运营商
+						th 评分
+						th 评分人数
+				tbody
+					tr(v-for="(item,index) in country")
+						td(v-text="index+1")
+						td {{item.zhan_name}}
+						td {{item.supplier}}
+						td {{item.score}}
+						td {{item.b}}
+			table(v-for="city in group")
+				caption {{city.city}}
+				thead
+					tr
+						th 排名
+						th 站点名称
+						th 运营商
+						th 评分
+						th 评分人数
+				tbody
+					tr(v-for="(item,index) in city.data")
+						td(v-text="index+1")
+						td {{item.zhan_name}}
+						td {{item.supplier}}
+						td {{item.score}}
+						td {{item.b}}
+		
+		script(src="../jquery.js")
+		script(src="../vue.js")
+		script.
+			var app = new Vue({
+				el:'#app',
+				data:{
+					some:1,
+					country:null,
+					group:null,
+				}
+			})
+			$.ajax({
+				type: "get",
+			   	url: "http://123.57.6.131/zhannew/basic/web/index.php/register/test",
+			   	success: function(data){
+			   		app.country = data.zhan_list;
+			   		app.group = data.group;
+			   }
+			});
+			
